@@ -8,6 +8,7 @@ import {
   Wishlist,
 } from "./components/components";
 import { Route, Routes } from "react-router-dom";
+import "./App.css";
 
 function App() {
   return (

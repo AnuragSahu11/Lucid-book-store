@@ -15,11 +15,30 @@ const Filters = () => {
         <div className="quantity-slider">
           <div className="title semibold">Price Range</div>
           <div className="slider-range">
-            <span className="slider-range-min">50</span>
-            <span className="slider-range-mid">150</span>
-            <span className="slider-range-max">200</span>
+            <span className="slider-range-min">200</span>
+            <span className="slider-range-mid">1000</span>
+            <span className="slider-range-max">2000</span>
           </div>
-          <input type="range" min={1} max={5000} className="slider" />
+          <input
+            type="range"
+            step={200}
+            min={200}
+            max={2000}
+            className="slider"
+            list="tickmarks"
+          />
+          <datalist id="tickmarks">
+            <option value="200"></option>
+            <option value="400"></option>
+            <option value="600"></option>
+            <option value="800"></option>
+            <option value="1000"></option>
+            <option value="1200"></option>
+            <option value="1400"></option>
+            <option value="1600"></option>
+            <option value="1800"></option>
+            <option value="2000"></option>
+          </datalist>
         </div>
         <div className="list-container">
           <div className="title semibold">Category</div>
