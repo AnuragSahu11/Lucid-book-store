@@ -1,6 +1,13 @@
-import { Homepage, Navbar, Footer } from "./components/components";
-import { Router, Route, Link, Routes } from "react-router-dom";
 import React from "react";
+import {
+  Homepage,
+  Navbar,
+  Footer,
+  ProductListing,
+  Cart,
+  Wishlist,
+} from "./components/components";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -8,6 +15,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/productListing" element={<ProductListing />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
       <Footer />
     </div>
