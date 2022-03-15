@@ -1,6 +1,8 @@
 import React from "react";
+import { useFilter } from "../../context/filter-context";
 
 const Filters = () => {
+  const { filterState, dispatch } = useFilter();
   return (
     <div className="filter-menu p-x-4 p-up-2  dk-shadow flex-c-w">
       <div className="filter-menu-responsive flex-row align-center space-between">
@@ -44,7 +46,15 @@ const Filters = () => {
         <ol className="list list-none">
           <li className="list-items">
             <label className="is-light form-checkbox is-2">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  return dispatch({
+                    type: "CATEGORY_STOCK",
+                    value: e.target.checked,
+                  });
+                }}
+              />
               Stocks
             </label>
           </li>
