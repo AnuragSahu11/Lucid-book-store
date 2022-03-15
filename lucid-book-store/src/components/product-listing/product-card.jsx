@@ -1,6 +1,7 @@
 import React from "react";
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
+  const { title, price, image, categoryName, author } = product;
   return (
     <div className="card elevated m-dw-5 shadow">
       <div className="card-head">
@@ -13,7 +14,7 @@ const ProductCard = () => {
         <span className="card-badge">Top Seller</span>
         <div className="card-image">
           <img
-            src="../images/bookstock.webp"
+            src={image}
             alt="card image"
             srcSet=""
             className="card-image-img product-img"
@@ -22,14 +23,12 @@ const ProductCard = () => {
       </div>
       <div className="card-body">
         <div className="textbox">
-          <div className="title">Stock Market for beginners</div>
-          <div className="subtitle">Stock</div>
+          <div className="title">{title}</div>
+          <div className="subtitle">{categoryName}</div>
         </div>
         <div className="textbox">
-          <p className="text">
-            A great book by andrew garton for the absolute beginners.
-          </p>
-          <p className="CTA-text">$36</p>
+          <p className="text">{author}</p>
+          <p className="CTA-text">${price}</p>
         </div>
         <div className="btn-vertical">
           <a href="productPage.html">

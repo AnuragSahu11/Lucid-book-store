@@ -8,19 +8,14 @@ import {
   Wishlist,
 } from "./components/components";
 import { Route, Routes } from "react-router-dom";
-import { getApiData } from "./utility/api-call";
+import { getProductsData } from "./utility/api-call";
 import "./App.css";
 import { useFilter } from "./context/filter-context";
 
 function App() {
+  const { filterState, dispatch } = useFilter();
   useEffect(() => {
-    (async () => {
-      console.log("hello");
-      const { filterState, dispatch } = useFilter();
-      const response = await axios.get("/api/products");
-      dispatch({ type: "API_DATA", value: response.data.products });
-      console.log(filterState);
-    })();
+    getProductsData(dispatch);
   }, []);
   return (
     <div className="App">
