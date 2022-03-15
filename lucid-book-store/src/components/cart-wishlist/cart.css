@@ -1,0 +1,28 @@
+.cart-summary {
+  height: min-content;
+}
+@media only screen and (max-width: 768px) {
+  .cart-summary {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 1124px) {
+  .cart-card {
+    width: 100%;
+  }
+}
+hr {
+  border-top: 1px solid var(--grey);
+}
+.btn-counter {
+  cursor: pointer;
+  height: var(--m);
+  width: var(--m);
+  border-radius: var(--border-radius-circle);
+  border: none;
+}
+.input-counter {
+  text-align: center;
+  width: 2rem;
+  height: 1.7rem;
+}

@@ -1,0 +1,19 @@
+.grid-product-listing {
+  position: relative;
+}
+.filter-menu {
+  left: 0;
+  top: 0;
+  position: sticky;
+  gap: var(--m);
+}
+@media only screen and (max-width: 788px) {
+  .filter-menu {
+    position: relative;
+    height: min-content;
+    padding-bottom: var(--xs);
+  }
+  .filter-menu > :nth-child(n + 2) {
+    display: none;
+  }
+}
