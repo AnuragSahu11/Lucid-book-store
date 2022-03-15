@@ -16,13 +16,13 @@ hr {
 }
 .btn-counter {
   cursor: pointer;
-  height: 24px;
-  width: 24px;
+  height: var(--m);
+  width: var(--m);
   border-radius: var(--border-radius-circle);
   border: none;
 }
 .input-counter {
   text-align: center;
-  width: 20px;
-  height: 17px;
+  width: 2rem;
+  height: 1.7rem;
 }
