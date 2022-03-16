@@ -2,6 +2,25 @@ import React from "react";
 
 const ProductCard = ({ product }) => {
   const { title, price, image, categoryName, author, rating } = product;
+  const showRatingStars = () => {
+    return [...Array(rating)].map((item, i) => (
+      <i key={i} className="fas is-3 fa-star"></i>
+    ));
+  };
+  const ratingStarColor = () => {
+    switch (rating) {
+      case 5:
+        return { color: "#26b539" };
+      case 4:
+        return { color: "#87d44a" };
+      case 3:
+        return { color: "#fead37" };
+      case 2:
+        return { color: "#fa6837" };
+      case 1:
+        return { color: "#ea2126" };
+    }
+  };
   return (
     <div className="card elevated m-dw-5 shadow">
       <div className="card-head">
@@ -26,9 +45,11 @@ const ProductCard = ({ product }) => {
           <div className="title">{title}</div>
           <div className="subtitle flex-row space-between align-center width-100">
             <p>{categoryName}</p>
-            <p>
-              {rating}
-              {"⭐"}
+            <p
+              className="br-1 product-listing-rating"
+              style={ratingStarColor()}
+            >
+              {rating} | {showRatingStars()}
             </p>
           </div>
         </div>
