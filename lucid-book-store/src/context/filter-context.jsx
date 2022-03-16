@@ -8,14 +8,9 @@ const useFilter = () => useContext(FilterContext);
 const initialReducerObject = {
   filters: {
     sort: "",
-    category: [
-      "Stocks",
-      "Forex",
-      "Crypto",
-      "Charting",
-      "Trader Psychology",
-      "Biography",
-    ],
+    category: [],
+    range: 0,
+    rating: 0,
   },
   products: [],
 };

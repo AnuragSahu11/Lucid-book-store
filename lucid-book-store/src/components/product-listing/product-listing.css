@@ -6,6 +6,8 @@
   top: 0;
   position: sticky;
   gap: var(--m);
+  height: 90vh;
+  border-bottom: none;
 }
 @media only screen and (max-width: 788px) {
   .filter-menu {

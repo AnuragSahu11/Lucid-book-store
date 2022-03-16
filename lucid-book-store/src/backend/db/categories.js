@@ -32,12 +32,6 @@ export const categories = [
   },
   {
     _id: uuid(),
-    categoryName: "Trader Psychology",
-    description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
-  },
-  {
-    _id: uuid(),
     categoryName: "Biography",
     description:
       "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",

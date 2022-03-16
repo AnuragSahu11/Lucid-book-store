@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProductCard = ({ product }) => {
-  const { title, price, image, categoryName, author } = product;
+  const { title, price, image, categoryName, author, rating } = product;
   return (
     <div className="card elevated m-dw-5 shadow">
       <div className="card-head">
@@ -21,10 +21,16 @@ const ProductCard = ({ product }) => {
           />
         </div>
       </div>
-      <div className="card-body">
+      <div className="card-body width-100">
         <div className="textbox">
           <div className="title">{title}</div>
-          <div className="subtitle">{categoryName}</div>
+          <div className="subtitle flex-row space-between align-center width-100">
+            <p>{categoryName}</p>
+            <p>
+              {rating}
+              {"⭐"}
+            </p>
+          </div>
         </div>
         <div className="textbox">
           <p className="text">{author}</p>
