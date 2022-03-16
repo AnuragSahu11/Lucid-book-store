@@ -21,7 +21,7 @@ const ProductList = () => {
   return (
     <div className="product-listing p-up-5 space-evenly flex-r-w">
       {filteredProducts.map((item) => (
-        <ProductCard product={item} />
+        <ProductCard key={item._id} product={item} />
       ))}
     </div>
   );

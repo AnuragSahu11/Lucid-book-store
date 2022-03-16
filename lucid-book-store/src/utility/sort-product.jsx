@@ -4,6 +4,6 @@ const sortProducts = ({ filters, products }) => {
     sortedProducts.sort((a, b) => a.price - b.price);
   filters.sort === "HIGH_TO_LOW" &&
     sortedProducts.sort((a, b) => b.price - a.price);
-  return sortedProducts
+  return sortedProducts;
 };
 export { sortProducts };
