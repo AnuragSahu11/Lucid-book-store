@@ -1,28 +1,3 @@
-import React from "react";
-
-const categoryFilter = (actionValue, filterState, category) => {
-  if (actionValue) {
-    return {
-      ...filterState,
-      filters: {
-        ...filterState.filters,
-        category: [...filterState.filters.category, category],
-      },
-    };
-  }
-  if (!actionValue) {
-    return {
-      ...filterState,
-      filters: {
-        ...filterState.filters,
-        category: [...filterState.filters.category].filter(
-          (item) => !(item === category)
-        ),
-      },
-    };
-  }
-};
-
 const filterReducer = (filterState, action) => {
   switch (action.type) {
     case "API_DATA":
@@ -69,6 +44,29 @@ const filterReducer = (filterState, action) => {
       };
     default:
       return { ...filterState };
+  }
+};
+
+const categoryFilter = (actionValue, filterState, category) => {
+  if (actionValue) {
+    return {
+      ...filterState,
+      filters: {
+        ...filterState.filters,
+        category: [...filterState.filters.category, category],
+      },
+    };
+  }
+  if (!actionValue) {
+    return {
+      ...filterState,
+      filters: {
+        ...filterState.filters,
+        category: [...filterState.filters.category].filter(
+          (item) => !(item === category)
+        ),
+      },
+    };
   }
 };
 

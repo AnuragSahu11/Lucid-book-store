@@ -1,7 +1,7 @@
 const compose =
-  ({ ...functions }) =>
+  (...functions) =>
   (filters, products) => {
-    return functions.reduce((acc, curr) => curr(filters, acc), []);
+    return functions.reduce((acc, curr) => curr(filters, acc), products);
   };
 
 export { compose };

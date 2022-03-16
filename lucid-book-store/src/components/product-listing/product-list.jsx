@@ -1,23 +1,26 @@
 import React from "react";
 import { useFilter } from "../../context/filter-context";
 import { ProductCard } from "./product-card";
-import { sortProducts } from "../../utility/sort-product";
 import {
+  sortProducts,
   filterByCategory,
-  filterByPrice,
   filterByRating,
-} from "../../utility/filter-product";
+  filterByPrice,
+  compose,
+} from "../../utility";
 
 const ProductList = () => {
   const { filterState } = useFilter();
-  const sortedProducts = sortProducts(filterState);
-  const filteredProducts1 = filterByCategory(filterState, [...sortedProducts]);
-  const filteredProducts2 = filterByPrice(filterState, filteredProducts1);
-  const filteredProducts3 = filterByRating(filterState, filteredProducts2);
-  console.log(filterState);
+  const filteredProducts = compose(
+    sortProducts,
+    filterByCategory,
+    filterByRating,
+    filterByPrice
+  )(filterState, [...filterState.products]);
+
   return (
     <div className="product-listing p-up-5 space-evenly flex-r-w">
-      {filteredProducts3.map((item) => (
+      {filteredProducts.map((item) => (
         <ProductCard product={item} />
       ))}
     </div>
