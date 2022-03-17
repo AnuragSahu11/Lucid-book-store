@@ -1,8 +1,12 @@
 import React from "react";
+import {
+  IncreaseProductQuantity,
+  DecreaseProductQuantity,
+} from "./add-to-cart";
 import { RemoveFromCart } from "./remove-from-cart";
 
 const CartCard = ({ product }) => {
-  const { title, price, image, _id } = product;
+  const { title, price, image, _id, quantity } = product;
   return (
     <div className="card cart-card width-80 center-x card-horizontal elevated shadow">
       <div className="card-head">
@@ -21,9 +25,14 @@ const CartCard = ({ product }) => {
         </div>
         <div className="textbox">
           <div className="counter-btn-div flex-row align-center">
-            <button className="btn-counter is-3 bold">-</button>
-            <input className="input-counter m-x-1 is-2 p-y-0" type="number" />
-            <button className="btn-counter is-3 semibold">+</button>
+            <DecreaseProductQuantity id={_id} quantity={quantity} />
+            <input
+              value={quantity}
+              className="input-counter m-x-1 is-2 p-y-0"
+              type="number"
+              readOnly
+            />
+            <IncreaseProductQuantity id={_id} />
           </div>
           <p className="CTA-text">{price}</p>
         </div>

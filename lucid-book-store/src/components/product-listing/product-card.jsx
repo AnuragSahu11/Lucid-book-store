@@ -1,5 +1,5 @@
 import React from "react";
-import { AddToCart } from "./add-to-cart";
+import { AddToCart } from "../cart-wishlist/add-to-cart";
 
 const ProductCard = ({ product }) => {
   const { title, price, image, categoryName, author, rating } = product;
@@ -59,7 +59,7 @@ const ProductCard = ({ product }) => {
           <p className="CTA-text">${price}</p>
         </div>
         <div className="btn-vertical">
-          <AddToCart product={{...product}} />
+          <AddToCart product={{ ...product }} />
         </div>
       </div>
     </div>
