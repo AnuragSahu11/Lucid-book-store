@@ -1,4 +1,5 @@
 import React from "react";
+import { AddToCart } from "./add-to-cart";
 
 const ProductCard = ({ product }) => {
   const { title, price, image, categoryName, author, rating } = product;
@@ -58,12 +59,7 @@ const ProductCard = ({ product }) => {
           <p className="CTA-text">${price}</p>
         </div>
         <div className="btn-vertical">
-          <a href="productPage.html">
-            <button className="btn-primary width-100 btn-w-icon btn-small">
-              <i className="fas fa-shopping-cart" />
-              Add to Cart
-            </button>
-          </a>
+          <AddToCart product={{...product}} />
         </div>
       </div>
     </div>
