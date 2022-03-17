@@ -5,7 +5,7 @@ import "./product-listing.css";
 
 const ProductListing = () => {
   return (
-    <div class="grid-20-80 grid-product-listing width-100">
+    <div className="grid-20-80 grid-product-listing width-100">
       <Filters />
       <ProductList />
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Homepage,
   Navbar,
@@ -8,9 +8,15 @@ import {
   Wishlist,
 } from "./components/components";
 import { Route, Routes } from "react-router-dom";
+import { getProductsData } from "./utility/api-call";
 import "./App.css";
+import { useFilter } from "./context/filter-context";
 
 function App() {
+  const { filterState, dispatch } = useFilter();
+  useEffect(() => {
+    getProductsData(dispatch);
+  }, []);
   return (
     <div className="App">
       <Navbar />

@@ -6,6 +6,12 @@
   top: 0;
   position: sticky;
   gap: var(--m);
+  height: 90vh;
+  border-bottom: none;
+}
+.product-listing-rating {
+  padding: 4px 3px;
+  background-color: #f3f3f3;
 }
 @media only screen and (max-width: 788px) {
   .filter-menu {

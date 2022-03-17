@@ -1,15 +1,21 @@
 import React from "react";
+import { useFilter } from "../../context/filter-context";
 
 const Filters = () => {
+  const { filterState, dispatch } = useFilter();
+  const filterClickHandler = (dispatchArguments) => {
+    dispatch(dispatchArguments);
+  };
+  const clearFilters = () => {
+    dispatch({ type: "CLEAR_FILTER" });
+  };
   return (
     <div className="filter-menu p-x-4 p-up-2  dk-shadow flex-c-w">
       <div className="filter-menu-responsive flex-row align-center space-between">
-        <a href="">
-          <div className="title is-dark">Filters</div>
-        </a>
-        <a href="" className="link-secondary m-up-1 is-2">
+        <div className="title is-dark">Filters</div>
+        <p onClick={clearFilters} className="link-secondary m-up-1 is-2">
           Clear all
-        </a>
+        </p>
       </div>
       <div className="quantity-slider">
         <div className="title semibold">Price Range</div>
@@ -25,6 +31,12 @@ const Filters = () => {
           max={2000}
           className="slider"
           list="tickmarks"
+          onChange={(e) =>
+            filterClickHandler({
+              type: "RANGE",
+              value: Number(e.target.value),
+            })
+          }
         />
         <datalist id="tickmarks">
           <option value="200"></option>
@@ -44,31 +56,71 @@ const Filters = () => {
         <ol className="list list-none">
           <li className="list-items">
             <label className="is-light form-checkbox is-2">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                onChange={(e) =>
+                  filterClickHandler({
+                    type: "CATEGORY_STOCKS",
+                    value: e.target.checked,
+                  })
+                }
+              />
               Stocks
             </label>
           </li>
           <li className="list-items">
             <label className="is-light form-checkbox is-2">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                onChange={(e) =>
+                  filterClickHandler({
+                    type: "CATEGORY_FOREX",
+                    value: e.target.checked,
+                  })
+                }
+              />
               Forex
             </label>
           </li>
           <li className="list-items">
             <label className="is-light form-checkbox is-2">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                onChange={(e) =>
+                  filterClickHandler({
+                    type: "CATEGORY_CRYPTO",
+                    value: e.target.checked,
+                  })
+                }
+              />
               Crypto
             </label>
           </li>
           <li className="list-items">
             <label className="is-light form-checkbox is-2">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                onChange={(e) =>
+                  filterClickHandler({
+                    type: "CATEGORY_CHARTING",
+                    value: e.target.checked,
+                  })
+                }
+              />
               Charting
             </label>
           </li>
           <li className="list-items">
             <label className="is-light form-checkbox is-2">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                onChange={(e) =>
+                  filterClickHandler({
+                    type: "CATEGORY_BIOGRAPHY",
+                    value: e.target.checked,
+                  })
+                }
+              />
               Biography
             </label>
           </li>
@@ -79,7 +131,12 @@ const Filters = () => {
         <ol className="list list-none">
           <li className="list-items">
             <label className="form-radio-label">
-              <input type="radio" name="opinion" defaultChecked="" />
+              <input
+                type="radio"
+                onClick={() => filterClickHandler({ type: "RATING", value: 4 })}
+                name="opinion"
+                defaultChecked=""
+              />
               <i />
               <span className="form-radio-button-text is-2 is-medium">
                 4 Star &amp; above
@@ -88,7 +145,12 @@ const Filters = () => {
           </li>
           <li className="list-items">
             <label className="form-radio-label">
-              <input type="radio" name="opinion" defaultChecked="" />
+              <input
+                type="radio"
+                onClick={() => filterClickHandler({ type: "RATING", value: 3 })}
+                name="opinion"
+                defaultChecked=""
+              />
               <i />
               <span className="form-radio-button-text is-2 is-medium">
                 3 Star &amp; above
@@ -97,7 +159,12 @@ const Filters = () => {
           </li>
           <li className="list-items">
             <label className="form-radio-label">
-              <input type="radio" name="opinion" defaultChecked="" />
+              <input
+                type="radio"
+                onClick={() => filterClickHandler({ type: "RATING", value: 2 })}
+                name="opinion"
+                defaultChecked=""
+              />
               <i />
               <span className="form-radio-button-text is-2 is-medium">
                 2 Star &amp; above
@@ -106,7 +173,12 @@ const Filters = () => {
           </li>
           <li className="list-items">
             <label className="form-radio-label">
-              <input type="radio" name="opinion" defaultChecked="" />
+              <input
+                type="radio"
+                onClick={() => filterClickHandler({ type: "RATING", value: 1 })}
+                name="opinion"
+                defaultChecked=""
+              />
               <i />
               <span className="form-radio-button-text is-2 is-medium">
                 1 Star &amp; above
@@ -120,19 +192,29 @@ const Filters = () => {
         <ol className="list list-none">
           <li className="list-items">
             <label className="form-radio-label">
-              <input type="radio" name="sort" defaultChecked="" />
+              <input
+                type="radio"
+                name="sort"
+                onClick={() => filterClickHandler({ type: "LOW_TO_HIGH" })}
+                defaultChecked=""
+              />
               <i />
               <span className="form-radio-button-text is-light is-2">
-                Price high to low
+                Price low to high
               </span>
             </label>
           </li>
           <li className="list-items">
             <label className="form-radio-label">
-              <input type="radio" name="sort" defaultChecked="" />
+              <input
+                type="radio"
+                name="sort"
+                onClick={() => filterClickHandler({ type: "HIGH_TO_LOW" })}
+                defaultChecked=""
+              />
               <i />
               <span className="form-radio-button-text is-light is-2">
-                Price low to high
+                Price high to low
               </span>
             </label>
           </li>
