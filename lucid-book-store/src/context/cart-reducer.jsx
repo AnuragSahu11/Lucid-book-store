@@ -3,7 +3,7 @@ const cartReducer = (cartState, action) => {
     case "ADD_TO_CART":
       return { ...cartState, cart: [...cartState.cart, action.value] };
     case "REMOVE_FROM_CART":
-      return removeFromList(cartState, action.value.id, "cart");
+      return removeFromList(cartState, action.value, "cart");
     case "INCREASE_QUANTITY":
       return changeQuantity(cartState, action.value, 1);
     case "DECREASE_QUANTITY":

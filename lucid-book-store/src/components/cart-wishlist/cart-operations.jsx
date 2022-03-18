@@ -48,4 +48,21 @@ const DecreaseProductQuantity = ({ id, quantity }) => {
   );
 };
 
-export { AddToCart, IncreaseProductQuantity, DecreaseProductQuantity };
+const RemoveFromCart = ({ id }) => {
+  const { cartDispatch } = useCart();
+  return (
+    <button
+      onClick={() => cartDispatch({ type: "REMOVE_FROM_CART", value: id })}
+      className="btn-grey btn-small btn-w-icon"
+    >
+      Remove from cart
+    </button>
+  );
+};
+
+export {
+  AddToCart,
+  IncreaseProductQuantity,
+  DecreaseProductQuantity,
+  RemoveFromCart,
+};

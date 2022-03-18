@@ -1,5 +1,5 @@
 import React from "react";
-import { RemoveFromWishlist } from "./add-to-wishlist";
+import { RemoveFromWishlist } from "./wishlist-operations";
 
 const WishlistCard = ({ product }) => {
   const { title, price, image } = product;

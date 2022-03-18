@@ -1,6 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const NavbarWishlistButton = () => (
+  <button className="btn-icon nav-icons">
+    <i className="fas is-dark fa-heart" />
+  </button>
+);
+const NavbarCartButton = () => (
+  <button className="btn-icon nav-icons m-x-1">
+    <i className="fas is-dark fa-shopping-cart icon-badge">
+      <span className="">2</span>
+    </i>
+  </button>
+);
+
 const Navbar = () => {
   return (
     <nav className="navbar li-shadow">
@@ -19,9 +32,7 @@ const Navbar = () => {
       </div>
       <div className="nav-menu">
         <div className="nav-start">
-          <a href="" className="nav-item link">
-            Home
-          </a>
+          <Link to="/">Home</Link>
           <Link to="/productListing">Shop Now</Link>
           <a className="nav-item link"></a>
         </div>
@@ -37,18 +48,15 @@ const Navbar = () => {
           <button className="dark-mode btn-icon is-dark nav-icons m-x-1">
             <i className="fas is-dark fa-moon" />
           </button>
-          <Link to="/cart">Cart</Link>
-          <button className="btn-icon nav-icons m-x-1">
-            <i className="fas is-dark fa-shopping-cart icon-badge">
-              <span className="">2</span>
-            </i>
-          </button>
-          <Link to="/Wishlist">Wishlist</Link>
-          <button className="btn-icon nav-icons">
-            <i className="fas is-dark fa-heart" />
-          </button>
+          <Link to="/cart">
+            <NavbarCartButton />
+          </Link>
 
-          <a href="pages/logout.html" className="">
+          <Link to="/Wishlist">
+            <NavbarWishlistButton />
+          </Link>
+
+          <a href="/Wishlist" className="">
             <button className="btn-icon nav-icons m-x-1">
               <i className="fas is-dark fa-sign-out-alt" />
             </button>

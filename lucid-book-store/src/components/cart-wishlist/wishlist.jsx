@@ -11,7 +11,9 @@ const Wishlist = () => {
       </div>
       <div className="wishlist-cards flex-r-w space-evenly">
         {cartState.wishlist.length > 0 ? (
-          cartState.wishlist.map((item) => <WishlistCard product={item} />)
+          cartState.wishlist.map((item) => (
+            <WishlistCard key={item._id} product={item} />
+          ))
         ) : (
           <></>
         )}

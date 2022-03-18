@@ -7,6 +7,7 @@ const AddToWishlistLarge = ({ product }) => {
     if (!checkInList(cartState.wishlist, product._id)) {
       cartDispatch({ type: "ADD_TO_WISHLIST", value: product });
     }
+    cartDispatch({ type: "REMOVE_FROM_CART", value: product._id });
   };
   return (
     <button onClick={() => clickHandler()} className="btn-secondary btn-small">
@@ -17,7 +18,6 @@ const AddToWishlistLarge = ({ product }) => {
 const AddToWishlistSmall = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
   const clickHandler = () => {
-    console.log(cartState.wishlist, product);
     if (!checkInList(cartState.wishlist, product._id)) {
       cartDispatch({ type: "ADD_TO_WISHLIST", value: product });
     }

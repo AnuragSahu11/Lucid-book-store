@@ -1,6 +1,6 @@
 import React from "react";
-import { AddToCart } from "../cart-wishlist/add-to-cart";
-import { AddToWishlistSmall } from "../cart-wishlist/add-to-wishlist";
+import { AddToCart } from "../cart-wishlist/cart-operations";
+import { AddToWishlistSmall } from "../cart-wishlist/wishlist-operations";
 
 const ProductCard = ({ product }) => {
   const { title, price, image, categoryName, author, rating } = product;

@@ -2,9 +2,9 @@ import React from "react";
 import {
   IncreaseProductQuantity,
   DecreaseProductQuantity,
-} from "./add-to-cart";
-import { AddToWishlistLarge } from "./add-to-wishlist";
-import { RemoveFromCart } from "./remove-from-cart";
+  RemoveFromCart,
+} from "./cart-operations";
+import { AddToWishlistLarge } from "./wishlist-operations";
 
 const CartCard = ({ product }) => {
   const { title, price, image, _id, quantity } = product;
