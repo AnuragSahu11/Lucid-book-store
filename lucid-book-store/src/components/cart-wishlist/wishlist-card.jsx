@@ -1,19 +1,16 @@
 import React from "react";
+import { RemoveFromWishlist } from "./add-to-wishlist";
 
-const WishlistCard = () => {
+const WishlistCard = ({ product }) => {
+  const { title, price, image } = product;
   return (
     <div className="card elevated m-dw-5 shadow">
       <div className="card-head">
-        <button className="card-cross btn-close is-medium">
-          <i className="fas fa-times" />
-        </button>
-        <span className="card-icon is-white">
-          <i className="fas fa-heart" />
-        </span>
+        <RemoveFromWishlist product={product} />
         <span className="card-badge">Top Seller</span>
         <div className="card-image">
           <img
-            src="../images/bookstock.webp"
+            src={image}
             alt="card image"
             srcSet=""
             className="card-image-img product-img"
@@ -22,12 +19,12 @@ const WishlistCard = () => {
       </div>
       <div className="card-body">
         <div className="textbox">
-          <div className="title">Stock market for beginners</div>
+          <div className="title">{title}</div>
           <div className="subtitle">Stock</div>
         </div>
         <div className="textbox">
           <p className="text">
-            50% off <span className="strike">$600</span>
+            50% off <span className="strike">${price}</span>
           </p>
           <p className="CTA-text">$300</p>
         </div>

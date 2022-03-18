@@ -1,12 +1,10 @@
 import { useCart } from "../../context/cart-wishlist-context";
+import { checkInList } from "../../utility/check-in-list";
 
 const AddToCart = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
-
   const clickHandler = () => {
-    console.log(product.quantity, product._id);
-    if (product.quantity >= 1) {
-      console.log(product.quantity, product._id);
+    if (checkInList(cartState.cart, product._id)) {
       cartDispatch({ type: "INCREASE_QUANTITY", value: product._id });
     } else {
       cartDispatch({
@@ -28,7 +26,6 @@ const AddToCart = ({ product }) => {
 
 const IncreaseProductQuantity = ({ id }) => {
   const { cartDispatch } = useCart();
-  console.log(id);
   return (
     <button
       onClick={() => cartDispatch({ type: "INCREASE_QUANTITY", value: id })}

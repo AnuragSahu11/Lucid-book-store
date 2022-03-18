@@ -3,23 +3,27 @@ const cartReducer = (cartState, action) => {
     case "ADD_TO_CART":
       return { ...cartState, cart: [...cartState.cart, action.value] };
     case "REMOVE_FROM_CART":
-      return removeFromCart(cartState, action.value.id);
+      return removeFromList(cartState, action.value.id, "cart");
     case "INCREASE_QUANTITY":
       return changeQuantity(cartState, action.value, 1);
     case "DECREASE_QUANTITY":
       return changeQuantity(cartState, action.value, -1);
+    case "ADD_TO_WISHLIST":
+      return {
+        ...cartState,
+        wishlist: [...cartState.wishlist, { ...action.value, quantity: 1 }],
+      };
+    case "REMOVE_FROM_WISHLIST":
+      return removeFromList(cartState, action.value, "wishlist");
   }
 };
 
-const removeFromCart = (cartState, id) => {
-  console.log(cartState.cart[0]._id, id);
-  const modifiedCart = cartState.cart.filter((item) => !(item._id === id));
-  return { ...cartState, cart: modifiedCart };
+const removeFromList = (cartState, id, list) => {
+  const modifiedList = cartState[list].filter((item) => !(item._id === id));
+  return { ...cartState, [list]: modifiedList };
 };
 const changeQuantity = (cartState, id, num) => {
-  console.log(cartState.cart[0].quantity);
   const modifiedCart = cartState.cart.map((item) => {
-    console.log(item._id, id);
     if (item._id === id) {
       return { ...item, quantity: item.quantity + num };
     } else {

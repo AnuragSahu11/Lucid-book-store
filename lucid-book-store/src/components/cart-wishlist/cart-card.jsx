@@ -3,6 +3,7 @@ import {
   IncreaseProductQuantity,
   DecreaseProductQuantity,
 } from "./add-to-cart";
+import { AddToWishlistLarge } from "./add-to-wishlist";
 import { RemoveFromCart } from "./remove-from-cart";
 
 const CartCard = ({ product }) => {
@@ -38,7 +39,7 @@ const CartCard = ({ product }) => {
         </div>
         <div className="btn-vertical m-dw-1">
           <RemoveFromCart id={_id} />
-          <button className="btn-secondary btn-small">Move to wishlist</button>
+          <AddToWishlistLarge product={product} />
         </div>
       </div>
     </div>

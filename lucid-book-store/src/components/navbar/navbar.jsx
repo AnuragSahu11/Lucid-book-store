@@ -43,7 +43,7 @@ const Navbar = () => {
               <span className="">2</span>
             </i>
           </button>
-
+          <Link to="/Wishlist">Wishlist</Link>
           <button className="btn-icon nav-icons">
             <i className="fas is-dark fa-heart" />
           </button>
