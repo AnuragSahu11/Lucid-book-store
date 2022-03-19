@@ -1,4 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+const NavbarWishlistButton = () => (
+  <button className="btn-icon nav-icons">
+    <i className="fas is-dark fa-heart" />
+  </button>
+);
+const NavbarCartButton = () => (
+  <button className="btn-icon nav-icons m-x-1">
+    <i className="fas is-dark fa-shopping-cart icon-badge">
+      <span className="">2</span>
+    </i>
+  </button>
+);
 
 const Navbar = () => {
   return (
@@ -18,12 +32,9 @@ const Navbar = () => {
       </div>
       <div className="nav-menu">
         <div className="nav-start">
-          <a href="" className="nav-item link">
-            Home
-          </a>
-          <a href="pages/productListing.html" className="nav-item link">
-            Shop Now
-          </a>
+          <Link to="/">Home</Link>
+          <Link to="/productListing">Shop Now</Link>
+          <a className="nav-item link"></a>
         </div>
         <div className="nav-end">
           <div className="form-div nav-search m-x-3">
@@ -37,19 +48,15 @@ const Navbar = () => {
           <button className="dark-mode btn-icon is-dark nav-icons m-x-1">
             <i className="fas is-dark fa-moon" />
           </button>
-          <a href="pages/cart.html" className="">
-            <button className="btn-icon nav-icons m-x-1">
-              <i className="fas is-dark fa-shopping-cart icon-badge">
-                <span className="">2</span>
-              </i>
-            </button>
-          </a>
-          <a href="pages/wishlist.html" className="">
-            <button className="btn-icon nav-icons">
-              <i className="fas is-dark fa-heart" />
-            </button>
-          </a>
-          <a href="pages/logout.html" className="">
+          <Link to="/cart">
+            <NavbarCartButton />
+          </Link>
+
+          <Link to="/Wishlist">
+            <NavbarWishlistButton />
+          </Link>
+
+          <a href="/Wishlist" className="">
             <button className="btn-icon nav-icons m-x-1">
               <i className="fas is-dark fa-sign-out-alt" />
             </button>

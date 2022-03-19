@@ -1,4 +1,6 @@
 import React from "react";
+import { AddToCart } from "../cart-wishlist/cart-operations";
+import { AddToWishlistSmall } from "../cart-wishlist/wishlist-operations";
 
 const ProductCard = ({ product }) => {
   const { title, price, image, categoryName, author, rating } = product;
@@ -24,12 +26,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="card elevated m-dw-5 shadow">
       <div className="card-head">
-        <button className="card-cross btn-close is-medium">
-          <i className="fas fa-times" />
-        </button>
-        <span className="card-icon is-white">
-          <i className="fas fa-heart" />
-        </span>
+        <AddToWishlistSmall product={product} />
         <span className="card-badge">Top Seller</span>
         <div className="card-image">
           <img
@@ -58,12 +55,7 @@ const ProductCard = ({ product }) => {
           <p className="CTA-text">${price}</p>
         </div>
         <div className="btn-vertical">
-          <a href="productPage.html">
-            <button className="btn-primary width-100 btn-w-icon btn-small">
-              <i className="fas fa-shopping-cart" />
-              Add to Cart
-            </button>
-          </a>
+          <AddToCart product={product} />
         </div>
       </div>
     </div>
