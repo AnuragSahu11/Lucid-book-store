@@ -103,7 +103,7 @@ export const products = [
     price: "381",
     rating: Math.floor(Math.random() * 6),
     categoryName: "Crypto",
-    image: "./images/product-images/bookcrypto1.webp",
+    image: "./images/product-images/bookcrypto1.jpg",
   },
   {
     _id: uuid(),
@@ -112,7 +112,7 @@ export const products = [
     price: "223",
     rating: Math.floor(Math.random() * 6),
     categoryName: "Crypto",
-    image: "./images/product-images/bookcrypto2.webp",
+    image: "./images/product-images/bookcrypto2.jpg",
   },
   {
     _id: uuid(),
@@ -121,7 +121,7 @@ export const products = [
     price: "1633",
     rating: Math.floor(Math.random() * 6),
     categoryName: "Crypto",
-    image: "./images/product-images/bookcrypto3.webp",
+    image: "./images/product-images/bookcrypto3.jpg",
   },
   {
     _id: uuid(),
@@ -130,7 +130,7 @@ export const products = [
     price: "1859",
     rating: Math.floor(Math.random() * 6),
     categoryName: "Crypto",
-    image: "./images/product-images/bookcrypto4.webp",
+    image: "./images/product-images/bookcrypto4.jpg",
   },
   {
     _id: uuid(),
@@ -139,7 +139,7 @@ export const products = [
     price: "1477",
     rating: Math.floor(Math.random() * 6),
     categoryName: "Crypto",
-    image: "./images/product-images/bookcrypto5.webp",
+    image: "./images/product-images/bookcrypto5.jpg",
   },
   {
     _id: uuid(),
@@ -148,6 +148,6 @@ export const products = [
     price: "1477",
     rating: Math.floor(Math.random() * 6),
     categoryName: "Charting",
-    image: "./images/product-images/bookcharting1.webp",
+    image: "./images/product-images/bookcharting1.jpg",
   },
 ];
