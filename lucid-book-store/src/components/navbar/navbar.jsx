@@ -1,15 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavbarWishlistButton = () => (
+const NavbarWishlistButton = ({ wishlistNotification }) => (
   <button className="btn-icon nav-icons">
-    <i className="fas is-dark fa-heart" />
+    <i className="fas is-dark fa-heart icon-badge">
+      {wishlistNotification > 0 ? (
+        <span className="">{wishlistNotification}</span>
+      ) : (
+        ""
+      )}
+    </i>
   </button>
 );
-const NavbarCartButton = () => (
+const NavbarCartButton = ({ cartNotification }) => (
   <button className="btn-icon nav-icons m-x-1">
     <i className="fas is-dark fa-shopping-cart icon-badge">
-      <span className="">2</span>
+      {cartNotification > 0 ? <span className="">{cartNotification}</span> : ""}
     </i>
   </button>
 );
