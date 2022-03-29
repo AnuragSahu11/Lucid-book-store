@@ -1,5 +1,5 @@
 import React from "react";
-import { AddToCart } from "../cart-wishlist/cart-operations";
+import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistSmall } from "../cart-wishlist/wishlist-operations";
 
 const ProductCard = ({ product }) => {
@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
           <p className="CTA-text">${price}</p>
         </div>
         <div className="btn-vertical">
-          <AddToCart product={product} />
+          <AddToCartProductListing product={product} />
         </div>
       </div>
     </div>

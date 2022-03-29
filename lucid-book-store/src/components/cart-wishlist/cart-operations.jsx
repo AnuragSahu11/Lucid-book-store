@@ -1,16 +1,21 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/cart-wishlist-context";
 import { checkInList } from "../../utility/check-in-list";
 
-const AddToCart = ({ product }) => {
+const AddToCartProductListing = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
+  const navigate = useNavigate();
+  const [buttonText, setButtonText] = useState("Add to Cart");
   const clickHandler = () => {
     if (checkInList(cartState.cart, product._id)) {
-      cartDispatch({ type: "INCREASE_QUANTITY", value: product._id });
+      navigate("/cart");
     } else {
       cartDispatch({
         type: "ADD_TO_CART",
         value: { ...product, quantity: 1 },
       });
+      setButtonText("Go to Cart");
     }
   };
   return (
@@ -19,7 +24,7 @@ const AddToCart = ({ product }) => {
       className="btn-primary width-100 btn-w-icon btn-small"
     >
       <i className="fas fa-shopping-cart" />
-      Add to Cart
+      {buttonText}
     </button>
   );
 };
@@ -61,7 +66,7 @@ const RemoveFromCart = ({ id }) => {
 };
 
 export {
-  AddToCart,
+  AddToCartProductListing,
   IncreaseProductQuantity,
   DecreaseProductQuantity,
   RemoveFromCart,

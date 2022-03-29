@@ -47,5 +47,33 @@ const RemoveFromWishlist = ({ product }) => {
     </button>
   );
 };
+const AddToCartWishlist = ({ product }) => {
+  const { cartState, cartDispatch } = useCart();
 
-export { AddToWishlistLarge, AddToWishlistSmall, RemoveFromWishlist };
+  const clickHandler = () => {
+    if (checkInList(cartState.cart, product._id)) {
+      cartDispatch({ type: "INCREASE_QUANTITY", value: product._id });
+    } else {
+      cartDispatch({
+        type: "ADD_TO_CART",
+        value: { ...product, quantity: 1 },
+      });
+    }
+  };
+  return (
+    <button
+      onClick={clickHandler}
+      className="btn-primary width-100 btn-w-icon btn-small"
+    >
+      <i className="fas fa-shopping-cart" />
+      Add to Cart
+    </button>
+  );
+};
+
+export {
+  AddToWishlistLarge,
+  AddToWishlistSmall,
+  RemoveFromWishlist,
+  AddToCartWishlist,
+};

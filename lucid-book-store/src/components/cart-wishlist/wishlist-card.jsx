@@ -1,5 +1,5 @@
 import React from "react";
-import { RemoveFromWishlist } from "./wishlist-operations";
+import { AddToCartWishlist, RemoveFromWishlist } from "./wishlist-operations";
 
 const WishlistCard = ({ product }) => {
   const { title, price, image } = product;
@@ -29,10 +29,7 @@ const WishlistCard = ({ product }) => {
           <p className="CTA-text">$300</p>
         </div>
         <div className="btn-vertical">
-          <button className="btn-primary btn-w-icon btn-small">
-            <i className="fas fa-shopping-cart" />
-            Add to Cart
-          </button>
+          <AddToCartWishlist product={product} />
         </div>
       </div>
     </div>
