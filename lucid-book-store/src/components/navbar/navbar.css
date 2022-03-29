@@ -36,6 +36,9 @@
 .custom-nav .nav-start {
   display: none;
 }
+.custom-nav .nav-search {
+  margin: 10px 0px;
+}
 .custom-nav .nav-end {
   flex-direction: column;
   margin-right: auto;
@@ -53,6 +56,12 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+  }
+  @media only screen and (max-width: 768px) {
+    .custom-nav .nav-btn {
+      display: block;
+      margin-top: 10px;
+    }
   }
   .nav-menu {
     display: none;
