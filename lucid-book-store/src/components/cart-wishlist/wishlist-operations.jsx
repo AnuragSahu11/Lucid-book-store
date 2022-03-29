@@ -21,6 +21,9 @@ const AddToWishlistSmall = ({ product }) => {
     if (!checkInList(cartState.wishlist, product._id)) {
       cartDispatch({ type: "ADD_TO_WISHLIST", value: product });
     }
+    if (checkInList(cartState.wishlist, product._id)) {
+      cartDispatch({ type: "REMOVE_FROM_WISHLIST", value: product._id });
+    }
   };
   const isRed = checkInList(cartState.wishlist, product._id)
     ? { color: "red" }
