@@ -9,7 +9,6 @@ const CartSummary = () => {
       0
     ) + 50;
   const cartSummaryProductName = (word) => {
-    console.log(word.split("").slice(0, 10).join(""));
     return word.split("").slice(0, 15).join("");
   };
   const productPrice = (price, quantity) => {

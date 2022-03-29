@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/cart-wishlist-context";
+import { SwitchTheme } from "../../utility/switch-theme";
+import { Search } from "./search";
+import "./navbar.css";
 
 const NavbarWishlistButton = ({ wishlistNotification }) => (
   <button className="btn-icon nav-icons">
@@ -21,45 +25,49 @@ const NavbarCartButton = ({ cartNotification }) => (
 );
 
 const Navbar = () => {
+  const { cartState } = useCart();
+  const [showNav, setShowNav] = useState("navbar li-shadow");
+  const hamburgerClickHandler = () => {
+    if (showNav === "navbar li-shadow")
+      setShowNav("navbar custom-nav li-shadow");
+    if (showNav === "navbar custom-nav li-shadow") {
+      setShowNav("navbar li-shadow");
+    }
+  };
   return (
-    <nav className="navbar li-shadow">
-      <div className="nav-brand">
-        <a href="" className="logo-a">
-          <img
-            className="logo-s"
-            src="images/02 - Colorful - Icon Only.png"
-            alt="Lucid logo"
-          />
-        </a>
+    <nav className={showNav}>
+      <div className="nav-head">
+        <div className="nav-brand">
+          <a href="" className="logo-a">
+            <img
+              className="logo-s"
+              src="images/02 - Colorful - Icon Only.png"
+              alt="Lucid logo"
+            />
+          </a>
+        </div>
+        <div onClick={hamburgerClickHandler} className="nav-hamburger">
+          <i className="fas fa-bars" />
+        </div>
       </div>
-      <div className="nav-hamburger">
-        <i className="dark-mode fas m-r-2 fas fa-moon" />
-        <i className="fas fa-bars" />
-      </div>
+
       <div className="nav-menu">
         <div className="nav-start">
           <Link to="/">Home</Link>
-          <Link to="/productListing">Shop Now</Link>
+          <Link to="/productListing">Shop</Link>
           <a className="nav-item link"></a>
         </div>
         <div className="nav-end">
-          <div className="form-div nav-search m-x-3">
-            <i className="fas fa-search is-blue" />
-            <input
-              type="text"
-              className="form-input br-3"
-              placeholder="search"
-            />
-          </div>
-          <button className="dark-mode btn-icon is-dark nav-icons m-x-1">
-            <i className="fas is-dark fa-moon" />
-          </button>
+          <Search />
+          <SwitchTheme />
           <Link to="/cart">
-            <NavbarCartButton />
+            <NavbarCartButton cartNotification={cartState.cart.length} />
           </Link>
 
           <Link to="/Wishlist">
-            <NavbarWishlistButton />
+            <NavbarWishlistButton
+              wishlistNotification={cartState.wishlist.length}
+            />
           </Link>
 
           <a href="/Wishlist" className="">

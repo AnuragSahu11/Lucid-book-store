@@ -1,6 +1,47 @@
 import React from "react";
+import { useFilter } from "../../context/filter-context";
+import { useNavigate } from "react-router-dom";
 
 const HomepageFeatures = () => {
+  const { filterState, dispatch } = useFilter();
+  let navigate = useNavigate();
+  const clickHandler = (category) => {
+    dispatch({
+      type: "CLEAR_FILTER",
+    });
+    if (category === "stock") {
+      dispatch({
+        type: "CATEGORY_STOCKS",
+        value: true,
+      });
+    }
+    if (category === "forex") {
+      dispatch({
+        type: "CATEGORY_FOREX",
+        value: true,
+      });
+    }
+    if (category === "crypto") {
+      dispatch({
+        type: "CATEGORY_CRYPTO",
+        value: true,
+      });
+    }
+    if (category === "charting") {
+      dispatch({
+        type: "CATEGORY_CHARTING",
+        value: true,
+      });
+    }
+    if (category === "biography") {
+      dispatch({
+        type: "CATEGORY_BIOGRAPHY",
+        value: true,
+      });
+    }
+    navigate(`/productListing`);
+  };
+
   return (
     <>
       <section className="product-showcase-homepage p-x-2">
@@ -28,12 +69,13 @@ const HomepageFeatures = () => {
                     dolor sit amet.
                   </p>
                 </div>
-                <a href="pages/productListing.html">
-                  <button className="btn-primary m-dw-1 btn-medium shadow btn-w-icon">
-                    <i className="fas fa-shopping-cart" />
-                    View Books
-                  </button>
-                </a>
+                <button
+                  onClick={() => clickHandler("stock")}
+                  className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
+                >
+                  <i className="fas fa-shopping-cart" />
+                  View Books
+                </button>
               </div>
             </div>
           </div>
@@ -59,12 +101,14 @@ const HomepageFeatures = () => {
                     dolor sit amet.
                   </p>
                 </div>
-                <a href="pages/productListing.html">
-                  <button className="btn-primary m-dw-1 btn-medium shadow btn-w-icon">
-                    <i className="fas fa-shopping-cart" />
-                    View Books
-                  </button>
-                </a>
+
+                <button
+                  onClick={() => clickHandler("crypto")}
+                  className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
+                >
+                  <i className="fas fa-shopping-cart" />
+                  View Books
+                </button>
               </div>
             </div>
           </div>
@@ -90,12 +134,13 @@ const HomepageFeatures = () => {
                     dolor sit amet.
                   </p>
                 </div>
-                <a href="pages/productListing.html">
-                  <button className="btn-primary m-dw-1 btn-medium shadow btn-w-icon">
-                    <i className="fas fa-shopping-cart" />
-                    View Books
-                  </button>
-                </a>
+                <button
+                  onClick={() => clickHandler("biography")}
+                  className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
+                >
+                  <i className="fas fa-shopping-cart" />
+                  View Books
+                </button>
               </div>
             </div>
           </div>
@@ -121,12 +166,13 @@ const HomepageFeatures = () => {
                     dolor sit amet.
                   </p>
                 </div>
-                <a href="pages/productListing.html">
-                  <button className="btn-primary m-dw-1 btn-medium shadow btn-w-icon">
-                    <i className="fas fa-shopping-cart" />
-                    View Books
-                  </button>
-                </a>
+                <button
+                  onClick={() => clickHandler("charting")}
+                  className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
+                >
+                  <i className="fas fa-shopping-cart" />
+                  View Books
+                </button>
               </div>
             </div>
           </div>
