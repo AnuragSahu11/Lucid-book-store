@@ -5,11 +5,18 @@ const Search = () => {
   const { filterState } = useFilter();
   let [searchedProducts, setSearchedProducts] = useState();
   const searchInputHandler = (searchText) => {
-    let matchingProducts = filterState.products.filter(({ title }) =>
-      title.toLowerCase().includes(searchText.toLowerCase())
-    );
-    setSearchedProducts(matchingProducts.map((item) => <p>hello</p>));
-    console.log(searchedProducts);
+    if (searchText === "") {
+      setSearchedProducts("");
+    } else {
+      let matchingProducts = filterState.products.filter(({ title }) =>
+        title.toLowerCase().includes(searchText.toLowerCase())
+      );
+      setSearchedProducts(
+        matchingProducts.map((item) => (
+          <p className="search-result is-2">{item.title}</p>
+        ))
+      );
+    }
   };
   return (
     <div className="form-div nav-search m-x-3">

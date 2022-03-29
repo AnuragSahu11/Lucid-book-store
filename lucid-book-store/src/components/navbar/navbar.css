@@ -1,6 +1,19 @@
 .navbar {
-  position: relative;
   z-index: 1;
+}
+.nav-search {
+  position: relative;
+  text-align: center;
+}
+.search-results {
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+.search-result {
+  background-color: white;
+  width: 100%;
 }
 .nav-menu {
   margin-left: auto;
@@ -27,9 +40,7 @@
   flex-direction: column;
   margin-right: auto;
 }
-.searched-results {
-  z-index: 5;
-}
+
 @media only screen and (max-width: 1024px) {
   .navbar .nav-search {
     display: block;
