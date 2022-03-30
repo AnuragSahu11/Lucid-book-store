@@ -4,10 +4,10 @@ import { checkInList } from "../../utility/check-in-list";
 const AddToWishlistLarge = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
   const clickHandler = () => {
-    if (!checkInList(cartState.wishlist, product._id)) {
+    if (!checkInList(cartState.wishlist, product.id)) {
       cartDispatch({ type: "ADD_TO_WISHLIST", value: product });
     }
-    cartDispatch({ type: "REMOVE_FROM_CART", value: product._id });
+    cartDispatch({ type: "REMOVE_FROM_CART", value: product.id });
   };
   return (
     <button onClick={() => clickHandler()} className="btn-secondary btn-small">
@@ -18,14 +18,14 @@ const AddToWishlistLarge = ({ product }) => {
 const AddToWishlistSmall = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
   const clickHandler = () => {
-    if (!checkInList(cartState.wishlist, product._id)) {
+    if (!checkInList(cartState.wishlist, product.id)) {
       cartDispatch({ type: "ADD_TO_WISHLIST", value: product });
     }
-    if (checkInList(cartState.wishlist, product._id)) {
-      cartDispatch({ type: "REMOVE_FROM_WISHLIST", value: product._id });
+    if (checkInList(cartState.wishlist, product.id)) {
+      cartDispatch({ type: "REMOVE_FROM_WISHLIST", value: product.id });
     }
   };
-  const isRed = checkInList(cartState.wishlist, product._id)
+  const isRed = checkInList(cartState.wishlist, product.id)
     ? { color: "red" }
     : {};
   return (
@@ -39,7 +39,7 @@ const RemoveFromWishlist = ({ product }) => {
   return (
     <button
       onClick={() =>
-        cartDispatch({ type: "REMOVE_FROM_WISHLIST", value: product._id })
+        cartDispatch({ type: "REMOVE_FROM_WISHLIST", value: product.id })
       }
       className="card-cross btn-close is-medium"
     >
@@ -51,8 +51,8 @@ const AddToCartWishlist = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
 
   const clickHandler = () => {
-    if (checkInList(cartState.cart, product._id)) {
-      cartDispatch({ type: "INCREASE_QUANTITY", value: product._id });
+    if (checkInList(cartState.cart, product.id)) {
+      cartDispatch({ type: "INCREASE_QUANTITY", value: product.id });
     } else {
       cartDispatch({
         type: "ADD_TO_CART",

@@ -33,9 +33,9 @@ const HomepageFeatures = () => {
         value: true,
       });
     }
-    if (category === "biography") {
+    if (category === "investment") {
       dispatch({
-        type: "CATEGORY_BIOGRAPHY",
+        type: "CATEGORY_INVESTMENT",
         value: true,
       });
     }
@@ -124,7 +124,7 @@ const HomepageFeatures = () => {
               </div>
               <div className="card-body">
                 <div className="textbox">
-                  <div className="title">Learn from Professional</div>
+                  <div className="title">Learn to undestand Chart</div>
                 </div>
                 <div className="textbox">
                   <p className="text">
@@ -135,7 +135,7 @@ const HomepageFeatures = () => {
                   </p>
                 </div>
                 <button
-                  onClick={() => clickHandler("biography")}
+                  onClick={() => clickHandler("charting")}
                   className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
                 >
                   <i className="fas fa-shopping-cart" />
@@ -156,7 +156,7 @@ const HomepageFeatures = () => {
               </div>
               <div className="card-body">
                 <div className="textbox">
-                  <div className="title">Trading Mindset</div>
+                  <div className="title">Investment Strategies</div>
                 </div>
                 <div className="textbox">
                   <p className="text">
@@ -167,7 +167,7 @@ const HomepageFeatures = () => {
                   </p>
                 </div>
                 <button
-                  onClick={() => clickHandler("charting")}
+                  onClick={() => clickHandler("investment")}
                   className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
                 >
                   <i className="fas fa-shopping-cart" />

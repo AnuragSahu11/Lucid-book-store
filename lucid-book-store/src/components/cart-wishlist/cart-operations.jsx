@@ -8,7 +8,7 @@ const AddToCartProductListing = ({ product }) => {
   const navigate = useNavigate();
   const [buttonText, setButtonText] = useState("Add to Cart");
   const clickHandler = () => {
-    if (checkInList(cartState.cart, product._id)) {
+    if (checkInList(cartState.cart, product.id)) {
       navigate("/cart");
     } else {
       cartDispatch({

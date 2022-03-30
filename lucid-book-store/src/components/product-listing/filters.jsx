@@ -31,6 +31,7 @@ const Filters = () => {
           max={2000}
           className="slider"
           list="tickmarks"
+          value={filterState.filters.range}
           onChange={(e) =>
             filterClickHandler({
               type: "RANGE",
@@ -58,6 +59,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
+                checked={filterState.filters.category.includes("Stocks")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: "CATEGORY_STOCKS",
@@ -72,6 +74,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
+                checked={filterState.filters.category.includes("Forex")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: "CATEGORY_FOREX",
@@ -86,6 +89,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
+                checked={filterState.filters.category.includes("Crypto")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: "CATEGORY_CRYPTO",
@@ -100,6 +104,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
+                checked={filterState.filters.category.includes("Charting")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: "CATEGORY_CHARTING",
@@ -114,14 +119,15 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
+                checked={filterState.filters.category.includes("Investment")}
                 onChange={(e) =>
                   filterClickHandler({
-                    type: "CATEGORY_BIOGRAPHY",
+                    type: "CATEGORY_INVESTMENT",
                     value: e.target.checked,
                   })
                 }
               />
-              Biography
+              Investment
             </label>
           </li>
         </ol>
@@ -133,6 +139,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
+                checked={filterState.filters.rating === 4}
                 onClick={() => filterClickHandler({ type: "RATING", value: 4 })}
                 name="opinion"
                 defaultChecked=""
@@ -147,6 +154,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
+                checked={filterState.filters.rating === 3}
                 onClick={() => filterClickHandler({ type: "RATING", value: 3 })}
                 name="opinion"
                 defaultChecked=""
@@ -161,6 +169,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
+                checked={filterState.filters.rating === 2}
                 onClick={() => filterClickHandler({ type: "RATING", value: 2 })}
                 name="opinion"
                 defaultChecked=""
@@ -175,6 +184,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
+                checked={filterState.filters.rating === 1}
                 onClick={() => filterClickHandler({ type: "RATING", value: 1 })}
                 name="opinion"
                 defaultChecked=""
@@ -195,6 +205,7 @@ const Filters = () => {
               <input
                 type="radio"
                 name="sort"
+                checked={filterState.filters.sort === "LOW_TO_HIGH"}
                 onClick={() => filterClickHandler({ type: "LOW_TO_HIGH" })}
                 defaultChecked=""
               />
@@ -209,6 +220,7 @@ const Filters = () => {
               <input
                 type="radio"
                 name="sort"
+                checked={filterState.filters.sort === "HIGH_TO_LOW"}
                 onClick={() => filterClickHandler({ type: "HIGH_TO_LOW" })}
                 defaultChecked=""
               />

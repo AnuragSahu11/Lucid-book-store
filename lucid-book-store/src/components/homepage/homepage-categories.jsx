@@ -33,9 +33,9 @@ const HomepageCategories = () => {
         value: true,
       });
     }
-    if (category === "biography") {
+    if (category === "investment") {
       dispatch({
-        type: "CATEGORY_BIOGRAPHY",
+        type: "CATEGORY_INVESTMENT",
         value: true,
       });
     }
@@ -84,11 +84,13 @@ const HomepageCategories = () => {
             </p>
           </div>
           <div
-            onClick={() => clickHandler("biography")}
+            onClick={() => clickHandler("investment")}
             className="scale-1 category-product m-l-1 dk-shadow"
           >
             <img src="images/biography.png" alt="" className="category-img" />
-            <p className="is-3 m-y-1 m-l-1 semibold category-name">Biography</p>
+            <p className="is-3 m-y-1 m-l-1 semibold category-name">
+              Investment
+            </p>
           </div>
         </div>
       </div>

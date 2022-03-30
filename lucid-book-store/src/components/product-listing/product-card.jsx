@@ -3,7 +3,7 @@ import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistSmall } from "../cart-wishlist/wishlist-operations";
 
 const ProductCard = ({ product }) => {
-  const { title, price, image, categoryName, author, rating } = product;
+  const { title, price, image, categoryName, author, rating, badge } = product;
   const showRatingStars = () => {
     return [...Array(rating)].map((item, i) => (
       <i key={i} className="fas is-3 fa-star"></i>
@@ -27,7 +27,7 @@ const ProductCard = ({ product }) => {
     <div className="card elevated m-dw-5 shadow">
       <div className="card-head">
         <AddToWishlistSmall product={product} />
-        <span className="card-badge">Top Seller</span>
+        <span className="card-badge">{badge}</span>
         <div className="card-image">
           <img
             src={image}

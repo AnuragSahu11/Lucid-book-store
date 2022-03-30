@@ -21,7 +21,7 @@ const CartSummary = () => {
         <hr />
         {cartState.cart.map((item) => (
           <div
-            key={item._id}
+            key={item.id}
             className="subtitle m-up-1 width-100 flex-row regular space-between"
           >
             <p className="m-y-0">
