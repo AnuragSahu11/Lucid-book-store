@@ -13,11 +13,12 @@
 }
 .filter-menu {
   left: 0;
-  top: 0;
+  top: 10vh;
   position: sticky;
   gap: var(--m);
   height: 90vh;
   border-bottom: none;
+  overflow-y: hidden;
 }
 .product-listing-rating {
   padding: 4px 3px;
@@ -26,11 +27,12 @@
 
 @media only screen and (max-width: 788px) {
   .filter-menu {
-    position: relative;
+    z-index: 1;
+    background-color: var(--background-white);
     height: min-content;
     padding-bottom: var(--xs);
   }
-  .filter-menu > :nth-child(n + 2) {
+  .hide-filter-menu > :nth-child(n + 2) {
     display: none;
   }
 }

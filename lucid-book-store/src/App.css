@@ -7,8 +7,14 @@ body {
 .App {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
 }
 footer {
   margin-top: auto;
+}
+:root {
+  --background-white: white;
+}
+.dark-theme {
+  --background-white: #171717;
 }

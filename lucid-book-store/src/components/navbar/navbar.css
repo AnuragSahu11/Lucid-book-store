@@ -1,18 +1,22 @@
 .navbar {
-  z-index: 1;
+  position: relative;
+  z-index: 2;
+  top: 0px;
+  position: sticky;
+  background-color: var(--background-white);
 }
 .nav-search {
   position: relative;
   text-align: center;
 }
 .search-results {
-  background-color: white;
+  background-color: var(--background-white);
   position: absolute;
   width: 100%;
   z-index: 2;
 }
 .search-result {
-  background-color: white;
+  background-color: var(--background-white);
   width: 100%;
 }
 .nav-menu {

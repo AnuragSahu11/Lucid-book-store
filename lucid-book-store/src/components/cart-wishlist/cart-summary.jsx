@@ -15,7 +15,7 @@ const CartSummary = () => {
     return price * quantity;
   };
   return (
-    <div className="cart-summary p-x-3 p-dw-3 p-up-3 width-50 elevated li-shadow br-3 center-x">
+    <div className="cart-summary p-x-3 p-dw-3 p-up-3 width-70 elevated li-shadow br-3 center-x">
       <div className="textbox">
         <div className="title m-dw-2">Your Order</div>
         <hr />

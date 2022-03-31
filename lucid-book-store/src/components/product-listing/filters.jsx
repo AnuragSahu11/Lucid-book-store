@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFilter } from "../../context/filter-context";
 
 const Filters = () => {
   const { filterState, dispatch } = useFilter();
+  const [filterStyle, setFilterStyle] = useState("");
+  const showFilterClickHandler = () => {
+    setFilterStyle(filterStyle === "" ? "hide-filter-menu" : "");
+  };
   const filterClickHandler = (dispatchArguments) => {
     dispatch(dispatchArguments);
   };
@@ -10,9 +14,13 @@ const Filters = () => {
     dispatch({ type: "CLEAR_FILTER" });
   };
   return (
-    <div className="filter-menu p-x-4 p-up-2  dk-shadow flex-c-w">
+    <div
+      className={`filter-menu ${filterStyle} p-x-4 p-up-2  dk-shadow flex-c-w`}
+    >
       <div className="filter-menu-responsive flex-row align-center space-between">
-        <div className="title is-dark">Filters</div>
+        <div onClick={showFilterClickHandler} className="title is-dark">
+          Filters
+        </div>
         <p onClick={clearFilters} className="link-secondary m-up-1 is-2">
           Clear all
         </p>
