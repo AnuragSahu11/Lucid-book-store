@@ -140,9 +140,10 @@ const Filters = () => {
               <input
                 type="radio"
                 checked={filterState.filters.rating === 4}
-                onClick={() => filterClickHandler({ type: "RATING", value: 4 })}
+                onChange={() =>
+                  filterClickHandler({ type: "RATING", value: 4 })
+                }
                 name="opinion"
-                defaultChecked=""
               />
               <i />
               <span className="form-radio-button-text is-2 is-medium">
@@ -155,9 +156,10 @@ const Filters = () => {
               <input
                 type="radio"
                 checked={filterState.filters.rating === 3}
-                onClick={() => filterClickHandler({ type: "RATING", value: 3 })}
+                onChange={() =>
+                  filterClickHandler({ type: "RATING", value: 3 })
+                }
                 name="opinion"
-                defaultChecked=""
               />
               <i />
               <span className="form-radio-button-text is-2 is-medium">
@@ -170,9 +172,10 @@ const Filters = () => {
               <input
                 type="radio"
                 checked={filterState.filters.rating === 2}
-                onClick={() => filterClickHandler({ type: "RATING", value: 2 })}
+                onChange={() =>
+                  filterClickHandler({ type: "RATING", value: 2 })
+                }
                 name="opinion"
-                defaultChecked=""
               />
               <i />
               <span className="form-radio-button-text is-2 is-medium">
@@ -185,9 +188,10 @@ const Filters = () => {
               <input
                 type="radio"
                 checked={filterState.filters.rating === 1}
-                onClick={() => filterClickHandler({ type: "RATING", value: 1 })}
+                onChange={() =>
+                  filterClickHandler({ type: "RATING", value: 1 })
+                }
                 name="opinion"
-                defaultChecked=""
               />
               <i />
               <span className="form-radio-button-text is-2 is-medium">
@@ -206,8 +210,7 @@ const Filters = () => {
                 type="radio"
                 name="sort"
                 checked={filterState.filters.sort === "LOW_TO_HIGH"}
-                onClick={() => filterClickHandler({ type: "LOW_TO_HIGH" })}
-                defaultChecked=""
+                onChange={() => filterClickHandler({ type: "LOW_TO_HIGH" })}
               />
               <i />
               <span className="form-radio-button-text is-light is-2">
@@ -221,8 +224,7 @@ const Filters = () => {
                 type="radio"
                 name="sort"
                 checked={filterState.filters.sort === "HIGH_TO_LOW"}
-                onClick={() => filterClickHandler({ type: "HIGH_TO_LOW" })}
-                defaultChecked=""
+                onChange={() => filterClickHandler({ type: "HIGH_TO_LOW" })}
               />
               <i />
               <span className="form-radio-button-text is-light is-2">

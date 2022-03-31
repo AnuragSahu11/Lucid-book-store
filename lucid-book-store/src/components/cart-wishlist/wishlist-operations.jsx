@@ -30,7 +30,7 @@ const AddToWishlistSmall = ({ product }) => {
     : {};
   return (
     <span onClick={() => clickHandler()} className="card-icon is-white">
-      <i style={isRed} className="fas fa-heart" />
+      <i style={isRed} className="fas is-5 fa-heart" />
     </span>
   );
 };
