@@ -20,8 +20,8 @@ const filterReducer = (filterState, action) => {
       return categoryFilter(action.value, filterState, "Crypto");
     case "CATEGORY_CHARTING":
       return categoryFilter(action.value, filterState, "Charting");
-    case "CATEGORY_BIOGRAPHY":
-      return categoryFilter(action.value, filterState, "Biography");
+    case "CATEGORY_INVESTMENT":
+      return categoryFilter(action.value, filterState, "Investment");
     case "RANGE":
       return {
         ...filterState,

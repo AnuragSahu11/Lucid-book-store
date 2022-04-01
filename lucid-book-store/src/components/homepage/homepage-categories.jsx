@@ -1,21 +1,70 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useFilter } from "../../context/filter-context";
 
 const HomepageCategories = () => {
+  const { filterState, dispatch } = useFilter();
+  let navigate = useNavigate();
+  const clickHandler = (category) => {
+    dispatch({
+      type: "CLEAR_FILTER",
+    });
+    if (category === "stock") {
+      dispatch({
+        type: "CATEGORY_STOCKS",
+        value: true,
+      });
+    }
+    if (category === "forex") {
+      dispatch({
+        type: "CATEGORY_FOREX",
+        value: true,
+      });
+    }
+    if (category === "crypto") {
+      dispatch({
+        type: "CATEGORY_CRYPTO",
+        value: true,
+      });
+    }
+    if (category === "charting") {
+      dispatch({
+        type: "CATEGORY_CHARTING",
+        value: true,
+      });
+    }
+    if (category === "investment") {
+      dispatch({
+        type: "CATEGORY_INVESTMENT",
+        value: true,
+      });
+    }
+    navigate(`/productListing`);
+  };
   return (
     <>
       <div className="m-up-6 category-div">
         <div className="category-sub-div">
-          <div className="scale-1 category-product m-l-1 dk-shadow">
+          <div
+            onClick={() => clickHandler("stock")}
+            className="scale-1 category-product m-l-1 dk-shadow"
+          >
             <img src="images/stock.png" alt="" className="category-img" />
             <p className="is-3 m-y-1 m-l-1 semibold category-name">Stock</p>
           </div>
-          <div className="scale-1 category-product m-l-1 dk-shadow">
+          <div
+            onClick={() => clickHandler("forex")}
+            className="scale-1 category-product m-l-1 dk-shadow"
+          >
             <img src="images/forex.png" alt="" className="category-img" />
             <p className="is-3 m-y-1 m-l-1 semibold category-name">Forex</p>
           </div>
         </div>
         <div className="category-sub-div">
-          <div className="scale-1 category-product m-l-1 dk-shadow">
+          <div
+            onClick={() => clickHandler("crypto")}
+            className="scale-1 category-product m-l-1 dk-shadow"
+          >
             <img
               src="images/cryptocurrencies.png"
               alt=""
@@ -23,23 +72,25 @@ const HomepageCategories = () => {
             />
             <p className="is-3 m-y-1 m-l-1 semibold category-name">Crypto</p>
           </div>
-          <div className="scale-1 category-product m-l-1 dk-shadow">
-            <img src="images/emotions.png" alt="" className="category-img" />
-            <p className="is-3 m-y-1 m-l-1 semibold category-name">
-              trader psychology
-            </p>
-          </div>
         </div>
         <div className="category-sub-div">
-          <div className="scale-1 category-product m-l-1 dk-shadow">
+          <div
+            onClick={() => clickHandler("charting")}
+            className="scale-1 category-product m-l-1 dk-shadow"
+          >
             <img src="images/analytics.png" alt="" className="category-img" />
             <p className="is-3 m-y-1 m-l-1 semibold category-name">
               Chart analysis
             </p>
           </div>
-          <div className="scale-1 category-product m-l-1 dk-shadow">
+          <div
+            onClick={() => clickHandler("investment")}
+            className="scale-1 category-product m-l-1 dk-shadow"
+          >
             <img src="images/biography.png" alt="" className="category-img" />
-            <p className="is-3 m-y-1 m-l-1 semibold category-name">Biography</p>
+            <p className="is-3 m-y-1 m-l-1 semibold category-name">
+              Investment
+            </p>
           </div>
         </div>
       </div>
@@ -51,11 +102,12 @@ const HomepageCategories = () => {
               <div className="title center-text is-blue is-6">
                 Welcome to The <span className="is-6">Lucid</span> Book Sale
               </div>
-              <a href="pages/productListing.html">
-                <button className="btn-primary m-up-2 shadow btn-medium">
-                  View Books
-                </button>
-              </a>
+              <button
+                onClick={() => navigate("/productListing")}
+                className="btn-primary m-up-2 shadow btn-medium"
+              >
+                View Books
+              </button>
             </div>
           </div>
         </div>

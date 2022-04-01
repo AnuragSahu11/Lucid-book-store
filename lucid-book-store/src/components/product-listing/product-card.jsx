@@ -1,9 +1,9 @@
 import React from "react";
-import { AddToCart } from "../cart-wishlist/cart-operations";
+import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistSmall } from "../cart-wishlist/wishlist-operations";
 
 const ProductCard = ({ product }) => {
-  const { title, price, image, categoryName, author, rating } = product;
+  const { title, price, image, categoryName, author, rating, badge } = product;
   const showRatingStars = () => {
     return [...Array(rating)].map((item, i) => (
       <i key={i} className="fas is-3 fa-star"></i>
@@ -24,10 +24,10 @@ const ProductCard = ({ product }) => {
     }
   };
   return (
-    <div className="card elevated m-dw-5 shadow">
+    <div className="card product-card m-x-3 elevated m-dw-5 li-shadow">
       <div className="card-head">
         <AddToWishlistSmall product={product} />
-        <span className="card-badge">Top Seller</span>
+        <span className="card-badge">{badge}</span>
         <div className="card-image">
           <img
             src={image}
@@ -38,9 +38,9 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
       <div className="card-body width-100">
-        <div className="textbox">
-          <div className="title">{title}</div>
-          <div className="subtitle flex-row space-between align-center width-100">
+        <div className="textbox p-dw-0">
+          <div className="title is-3 semibold">{title}</div>
+          <div className="subtitle m-y-0 flex-row regular space-between align-center width-100">
             <p>{categoryName}</p>
             <p
               className="br-1 product-listing-rating"
@@ -51,11 +51,13 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
         <div className="textbox">
-          <p className="text">{author}</p>
-          <p className="CTA-text">${price}</p>
+          <p className="text semibold m-y-0">Author - {author}</p>
+          <p className="CTA-text is-4 semibold">
+            ${price} <span className="is-3 m-l-1 is-green">50% off</span>
+          </p>
         </div>
         <div className="btn-vertical">
-          <AddToCart product={product} />
+          <AddToCartProductListing product={product} />
         </div>
       </div>
     </div>

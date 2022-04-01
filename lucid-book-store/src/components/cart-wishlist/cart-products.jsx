@@ -4,7 +4,7 @@ import { useCart } from "../../context/cart-wishlist-context";
 const CartProducts = () => {
   const { cartState } = useCart();
   return cartState.cart.map((item) => (
-    <CartCard key={item._id} product={item} />
+    <CartCard key={item.id} product={item} />
   ));
 };
 

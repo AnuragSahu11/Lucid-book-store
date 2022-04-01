@@ -1,25 +1,38 @@
+:root {
+  --rating-background: #f3f3f3;
+}
+
+.product-card {
+  width: 280px;
+}
 .grid-product-listing {
   position: relative;
 }
+.dark-theme {
+  --rating-background: #1f2123;
+}
 .filter-menu {
   left: 0;
-  top: 0;
+  top: 10vh;
   position: sticky;
   gap: var(--m);
   height: 90vh;
   border-bottom: none;
+  overflow-y: hidden;
 }
 .product-listing-rating {
   padding: 4px 3px;
-  background-color: #f3f3f3;
+  background-color: var(--rating-background);
 }
+
 @media only screen and (max-width: 788px) {
   .filter-menu {
-    position: relative;
+    z-index: 1;
+    background-color: var(--background-white);
     height: min-content;
     padding-bottom: var(--xs);
   }
-  .filter-menu > :nth-child(n + 2) {
+  .hide-filter-menu > :nth-child(n + 2) {
     display: none;
   }
 }

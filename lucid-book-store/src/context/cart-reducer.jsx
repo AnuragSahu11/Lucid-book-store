@@ -19,12 +19,12 @@ const cartReducer = (cartState, action) => {
 };
 
 const removeFromList = (cartState, id, list) => {
-  const modifiedList = cartState[list].filter((item) => !(item._id === id));
+  const modifiedList = cartState[list].filter((item) => !(item.id === id));
   return { ...cartState, [list]: modifiedList };
 };
 const changeQuantity = (cartState, id, num) => {
   const modifiedCart = cartState.cart.map((item) => {
-    if (item._id === id) {
+    if (item.id === id) {
       return { ...item, quantity: item.quantity + num };
     } else {
       return item;
