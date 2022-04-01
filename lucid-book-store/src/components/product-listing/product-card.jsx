@@ -1,13 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistSmall } from "../cart-wishlist/wishlist-operations";
 
 const ProductCard = ({ product }) => {
-  const { title, price, image, categoryName, author, rating, badge } = product;
+  const navigate = useNavigate();
+  const { title, price, image, categoryName, author, rating, badge, id } =
+    product;
   const showRatingStars = () => {
     return [...Array(rating)].map((item, i) => (
       <i key={i} className="fas is-3 fa-star"></i>
     ));
+  };
+  const cardImageHandler = () => {
+    navigate(`/productListing/${id}`);
   };
   const ratingStarColor = () => {
     switch (rating) {
@@ -25,7 +31,7 @@ const ProductCard = ({ product }) => {
   };
   return (
     <div className="card product-card m-x-3 elevated m-dw-5 li-shadow">
-      <div className="card-head">
+      <div onClick={cardImageHandler} className="card-head">
         <AddToWishlistSmall product={product} />
         <span className="card-badge">{badge}</span>
         <div className="card-image">

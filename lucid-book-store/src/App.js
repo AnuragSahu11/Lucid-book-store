@@ -11,6 +11,7 @@ import { Route, Routes } from "react-router-dom";
 import { getProductsData } from "./utility/api-call";
 import "./App.css";
 import { useFilter } from "./context/filter-context";
+import { SingleProductPage } from "./components/single-product-page/single-product-page";
 
 function App() {
   const { filterState, dispatch } = useFilter();
@@ -25,6 +26,10 @@ function App() {
         <Route path="/productListing" element={<ProductListing />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route
+          path="/productListing/:productId"
+          element={<SingleProductPage />}
+        />
       </Routes>
       <Footer />
     </div>
