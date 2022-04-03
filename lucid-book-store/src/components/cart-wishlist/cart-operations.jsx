@@ -20,7 +20,10 @@ const AddToCartProductListing = ({ product }) => {
   };
   return (
     <button
-      onClick={clickHandler}
+      onClick={(e) => {
+        e.stopPropagation();
+        clickHandler();
+      }}
       className="btn-primary width-100 btn-w-icon btn-small"
     >
       <i className="fas fa-shopping-cart" />

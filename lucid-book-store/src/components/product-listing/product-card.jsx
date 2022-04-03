@@ -31,10 +31,10 @@ const ProductCard = ({ product }) => {
   };
   return (
     <div className="card product-card m-x-3 elevated m-dw-5 li-shadow">
-      <div onClick={cardImageHandler} className="card-head">
+      <div className="card-head">
         <AddToWishlistSmall product={product} />
         <span className="card-badge">{badge}</span>
-        <div className="card-image">
+        <div onClick={cardImageHandler} className="card-image">
           <img
             src={image}
             alt="card image"
@@ -43,7 +43,7 @@ const ProductCard = ({ product }) => {
           />
         </div>
       </div>
-      <div className="card-body width-100">
+      <div onClick={cardImageHandler} className="card-body width-100">
         <div className="textbox p-dw-0">
           <div className="title is-3 semibold">{title}</div>
           <div className="subtitle m-y-0 flex-row regular space-between align-center width-100">
