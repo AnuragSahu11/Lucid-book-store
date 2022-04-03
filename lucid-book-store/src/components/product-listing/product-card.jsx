@@ -1,12 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { discountPercentateCalc } from "../../utility/discount-calculator";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistSmall } from "../cart-wishlist/wishlist-operations";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
-  const { title, price, image, categoryName, author, rating, badge, id } =
-    product;
+  const {
+    title,
+    price,
+    image,
+    categoryName,
+    author,
+    rating,
+    badge,
+    id,
+    originalPrice,
+  } = product;
   const showRatingStars = () => {
     return [...Array(rating)].map((item, i) => (
       <i key={i} className="fas is-3 fa-star"></i>
@@ -59,7 +69,10 @@ const ProductCard = ({ product }) => {
         <div className="textbox">
           <p className="text semibold m-y-0">Author - {author}</p>
           <p className="CTA-text is-4 semibold">
-            ${price} <span className="is-3 m-l-1 is-green">50% off</span>
+            ${price}{" "}
+            <span className="is-3 m-l-1 is-green">
+              {discountPercentateCalc(price, originalPrice)}% off
+            </span>
           </p>
         </div>
         <div className="btn-vertical">

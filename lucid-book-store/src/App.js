@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Mockman from "mockman-js";
 import {
   Homepage,
   Navbar,
@@ -30,6 +31,7 @@ function App() {
           path="/productListing/:productId"
           element={<SingleProductPage />}
         />
+        <Route path="/mock" element={<Mockman />} />
       </Routes>
       <Footer />
     </div>
