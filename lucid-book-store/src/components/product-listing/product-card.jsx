@@ -63,7 +63,10 @@ const ProductCard = ({ product }) => {
           </p>
         </div>
         <div className="btn-vertical">
-          <AddToCartProductListing product={product} />
+          <AddToCartProductListing
+            classes={"btn-primary width-100 btn-w-icon btn-small"}
+            product={product}
+          />
         </div>
       </div>
     </div>

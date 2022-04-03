@@ -1,7 +1,7 @@
 import { useCart } from "../../context/cart-wishlist-context";
 import { checkInList } from "../../utility/check-in-list";
 
-const AddToWishlistLarge = ({ product }) => {
+const AddToWishlistLarge = ({ product, classes }) => {
   const { cartState, cartDispatch } = useCart();
   const clickHandler = () => {
     if (!checkInList(cartState.wishlist, product.id)) {
@@ -10,7 +10,13 @@ const AddToWishlistLarge = ({ product }) => {
     cartDispatch({ type: "REMOVE_FROM_CART", value: product.id });
   };
   return (
-    <button onClick={() => clickHandler()} className="btn-secondary btn-small">
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        clickHandler();
+      }}
+      className={classes ? classes : "btn-secondary btn-small"}
+    >
       Move to wishlist
     </button>
   );
@@ -62,7 +68,10 @@ const AddToCartWishlist = ({ product }) => {
   };
   return (
     <button
-      onClick={clickHandler}
+      onClick={(e) => {
+        e.stopPropagation();
+        clickHandler();
+      }}
       className="btn-primary width-100 btn-w-icon btn-small"
     >
       <i className="fas fa-shopping-cart" />

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   IncreaseProductQuantity,
   DecreaseProductQuantity,
@@ -7,9 +8,16 @@ import {
 import { AddToWishlistLarge } from "./wishlist-operations";
 
 const CartCard = ({ product }) => {
+  const navigate = useNavigate();
   const { title, price, image, id, quantity, categoryName, author } = product;
+  const goToProductPage = () => {
+    navigate(`/productListing/${id}`);
+  };
   return (
-    <div className="card cart-card width-80 center-x card-horizontal elevated shadow">
+    <div
+      onClick={goToProductPage}
+      className="card cart-card width-80 center-x card-horizontal elevated shadow"
+    >
       <div className="card-head">
         <span className="card-icon">
           <i className="fas fa-heart" />
