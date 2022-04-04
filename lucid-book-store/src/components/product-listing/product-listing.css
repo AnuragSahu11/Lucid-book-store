@@ -19,6 +19,8 @@
   height: 90vh;
   border-bottom: none;
   overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .product-listing-rating {
   padding: 4px 3px;

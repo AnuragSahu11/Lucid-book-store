@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const HomepageFeatures = () => {
   const { filterState, dispatch } = useFilter();
   let navigate = useNavigate();
-  const clickHandler = (category) => {
+  const categoryClickHandler = (category) => {
     dispatch({
       type: "CLEAR_FILTER",
     });
@@ -70,7 +70,7 @@ const HomepageFeatures = () => {
                   </p>
                 </div>
                 <button
-                  onClick={() => clickHandler("stock")}
+                  onClick={() => categoryClickHandler("stock")}
                   className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
                 >
                   <i className="fas fa-shopping-cart" />
@@ -103,7 +103,7 @@ const HomepageFeatures = () => {
                 </div>
 
                 <button
-                  onClick={() => clickHandler("crypto")}
+                  onClick={() => categoryClickHandler("crypto")}
                   className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
                 >
                   <i className="fas fa-shopping-cart" />
@@ -135,7 +135,7 @@ const HomepageFeatures = () => {
                   </p>
                 </div>
                 <button
-                  onClick={() => clickHandler("charting")}
+                  onClick={() => categoryClickHandler("charting")}
                   className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
                 >
                   <i className="fas fa-shopping-cart" />
@@ -167,7 +167,7 @@ const HomepageFeatures = () => {
                   </p>
                 </div>
                 <button
-                  onClick={() => clickHandler("investment")}
+                  onClick={() => categoryClickHandler("investment")}
                   className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
                 >
                   <i className="fas fa-shopping-cart" />

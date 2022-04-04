@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/cart-wishlist-context";
 import { checkInList } from "../../utility/check-in-list";
 
-const AddToCartProductListing = ({ product }) => {
+const AddToCartProductListing = ({ product, classes }) => {
   const { cartState, cartDispatch } = useCart();
   const navigate = useNavigate();
   const [buttonText, setButtonText] = useState("Add to Cart");
-  const clickHandler = () => {
+  const addToCartclickHandler = () => {
     if (checkInList(cartState.cart, product.id)) {
       navigate("/cart");
     } else {
@@ -20,8 +20,11 @@ const AddToCartProductListing = ({ product }) => {
   };
   return (
     <button
-      onClick={clickHandler}
-      className="btn-primary width-100 btn-w-icon btn-small"
+      onClick={(e) => {
+        e.stopPropagation();
+        addToCartclickHandler();
+      }}
+      className={classes}
     >
       <i className="fas fa-shopping-cart" />
       {buttonText}
@@ -33,7 +36,10 @@ const IncreaseProductQuantity = ({ id }) => {
   const { cartDispatch } = useCart();
   return (
     <button
-      onClick={() => cartDispatch({ type: "INCREASE_QUANTITY", value: id })}
+      onClick={(e) => {
+        e.stopPropagation();
+        cartDispatch({ type: "INCREASE_QUANTITY", value: id });
+      }}
       className="btn-counter is-3 semibold"
     >
       +
@@ -43,11 +49,17 @@ const IncreaseProductQuantity = ({ id }) => {
 
 const DecreaseProductQuantity = ({ id, quantity }) => {
   const { cartDispatch } = useCart();
-  const clickHandler = () => {
+  const decreaseQtyclickHandler = () => {
     quantity > 1 && cartDispatch({ type: "DECREASE_QUANTITY", value: id });
   };
   return (
-    <button onClick={clickHandler} className="btn-counter is-3 bold">
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        decreaseQtyclickHandler();
+      }}
+      className="btn-counter is-3 bold"
+    >
       -
     </button>
   );
@@ -57,7 +69,10 @@ const RemoveFromCart = ({ id }) => {
   const { cartDispatch } = useCart();
   return (
     <button
-      onClick={() => cartDispatch({ type: "REMOVE_FROM_CART", value: id })}
+      onClick={(e) => {
+        e.stopPropagation();
+        cartDispatch({ type: "REMOVE_FROM_CART", value: id });
+      }}
       className="btn-grey btn-small btn-w-icon"
     >
       Remove from cart

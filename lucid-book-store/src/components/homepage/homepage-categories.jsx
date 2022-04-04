@@ -5,7 +5,7 @@ import { useFilter } from "../../context/filter-context";
 const HomepageCategories = () => {
   const { filterState, dispatch } = useFilter();
   let navigate = useNavigate();
-  const clickHandler = (category) => {
+  const categoryClickHandler = (category) => {
     dispatch({
       type: "CLEAR_FILTER",
     });
@@ -46,14 +46,14 @@ const HomepageCategories = () => {
       <div className="m-up-6 category-div">
         <div className="category-sub-div">
           <div
-            onClick={() => clickHandler("stock")}
+            onClick={() => categoryClickHandler("stock")}
             className="scale-1 category-product m-l-1 dk-shadow"
           >
             <img src="images/stock.png" alt="" className="category-img" />
             <p className="is-3 m-y-1 m-l-1 semibold category-name">Stock</p>
           </div>
           <div
-            onClick={() => clickHandler("forex")}
+            onClick={() => categoryClickHandler("forex")}
             className="scale-1 category-product m-l-1 dk-shadow"
           >
             <img src="images/forex.png" alt="" className="category-img" />
@@ -62,7 +62,7 @@ const HomepageCategories = () => {
         </div>
         <div className="category-sub-div">
           <div
-            onClick={() => clickHandler("crypto")}
+            onClick={() => categoryClickHandler("crypto")}
             className="scale-1 category-product m-l-1 dk-shadow"
           >
             <img
@@ -75,7 +75,7 @@ const HomepageCategories = () => {
         </div>
         <div className="category-sub-div">
           <div
-            onClick={() => clickHandler("charting")}
+            onClick={() => categoryClickHandler("charting")}
             className="scale-1 category-product m-l-1 dk-shadow"
           >
             <img src="images/analytics.png" alt="" className="category-img" />
@@ -84,7 +84,7 @@ const HomepageCategories = () => {
             </p>
           </div>
           <div
-            onClick={() => clickHandler("investment")}
+            onClick={() => categoryClickHandler("investment")}
             className="scale-1 category-product m-l-1 dk-shadow"
           >
             <img src="images/biography.png" alt="" className="category-img" />

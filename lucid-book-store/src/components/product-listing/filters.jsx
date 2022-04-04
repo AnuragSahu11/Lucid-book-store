@@ -14,9 +14,7 @@ const Filters = () => {
     dispatch({ type: "CLEAR_FILTER" });
   };
   return (
-    <div
-      className={`filter-menu ${filterStyle} p-x-4 p-up-2  dk-shadow flex-c-w`}
-    >
+    <div className={`filter-menu ${filterStyle} p-x-4 p-up-2  dk-shadow`}>
       <div className="filter-menu-responsive flex-row align-center space-between">
         <div onClick={showFilterClickHandler} className="title is-dark">
           Filters
