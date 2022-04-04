@@ -14,26 +14,6 @@ const SingleProductPage = () => {
   const { title, author, price, originalPrice, rating, image, description } =
     findProductData(productId);
 
-  const showRatingStars = () => {
-    return [...Array(rating)].map((item, i) => (
-      <i key={i} className="fas is-3 fa-star"></i>
-    ));
-  };
-  const ratingStarColor = () => {
-    switch (rating) {
-      case 5:
-        return { color: "#26b539" };
-      case 4:
-        return { color: "#87d44a" };
-      case 3:
-        return { color: "#fead37" };
-      case 2:
-        return { color: "#fa6837" };
-      case 1:
-        return { color: "#ea2126" };
-    }
-  };
-
   return (
     <div className="product p-x-2 p-y-6 br-3 elevated li-shadow elevate-1 m-up-6 width-80 center-x grid-30-70">
       <div className="product-image width-80 center-x m-l-">
@@ -48,9 +28,9 @@ const SingleProductPage = () => {
             <span className="m-r-4">{author}</span>
             <p
               className="br-1 m-y-0 product-listing-rating"
-              style={ratingStarColor()}
+              style={ratingStarColor(rating)}
             >
-              {rating} | {showRatingStars()}
+              {rating} | {showRatingStars(rating)}
             </p>{" "}
           </div>
 
