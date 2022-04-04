@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AddToCartWishlist, RemoveFromWishlist } from "./wishlist-operations";
+import { showRatingStars, ratingStarColor } from "../../utility/rating";
 
 const WishlistCard = ({ product }) => {
   const navigate = useNavigate();
@@ -9,25 +10,7 @@ const WishlistCard = ({ product }) => {
   const goToProductPage = () => {
     navigate(`/productListing/${id}`);
   };
-  const showRatingStars = () => {
-    return [...Array(rating)].map((item, i) => (
-      <i key={i} className="fas is-3 fa-star"></i>
-    ));
-  };
-  const ratingStarColor = () => {
-    switch (rating) {
-      case 5:
-        return { color: "#26b539" };
-      case 4:
-        return { color: "#87d44a" };
-      case 3:
-        return { color: "#fead37" };
-      case 2:
-        return { color: "#fa6837" };
-      case 1:
-        return { color: "#ea2126" };
-    }
-  };
+
   return (
     <div className="card product-card m-x-3 elevated m-dw-5 li-shadow">
       <div className="card-head">
@@ -49,9 +32,9 @@ const WishlistCard = ({ product }) => {
             <p>{categoryName}</p>
             <p
               className="br-1 product-listing-rating"
-              style={ratingStarColor()}
+              style={ratingStarColor(rating)}
             >
-              {rating} | {showRatingStars()}
+              {rating} | {showRatingStars(rating)}
             </p>
           </div>
         </div>

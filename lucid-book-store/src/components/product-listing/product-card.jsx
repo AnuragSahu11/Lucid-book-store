@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { discountPercentateCalc } from "../../utility/discount-calculator";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistSmall } from "../cart-wishlist/wishlist-operations";
+import { ratingStarColor, showRatingStars } from "../../utility/rating";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -17,28 +18,11 @@ const ProductCard = ({ product }) => {
     id,
     originalPrice,
   } = product;
-  const showRatingStars = () => {
-    return [...Array(rating)].map((item, i) => (
-      <i key={i} className="fas is-3 fa-star"></i>
-    ));
-  };
+
   const cardImageHandler = () => {
     navigate(`/productListing/${id}`);
   };
-  const ratingStarColor = () => {
-    switch (rating) {
-      case 5:
-        return { color: "#26b539" };
-      case 4:
-        return { color: "#87d44a" };
-      case 3:
-        return { color: "#fead37" };
-      case 2:
-        return { color: "#fa6837" };
-      case 1:
-        return { color: "#ea2126" };
-    }
-  };
+
   return (
     <div className="card product-card m-x-3 elevated m-dw-5 li-shadow">
       <div className="card-head">
@@ -60,9 +44,9 @@ const ProductCard = ({ product }) => {
             <p>{categoryName}</p>
             <p
               className="br-1 product-listing-rating"
-              style={ratingStarColor()}
+              style={ratingStarColor(rating)}
             >
-              {rating} | {showRatingStars()}
+              {rating} | {showRatingStars(rating)}
             </p>
           </div>
         </div>
