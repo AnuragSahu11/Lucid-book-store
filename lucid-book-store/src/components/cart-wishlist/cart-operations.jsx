@@ -7,7 +7,7 @@ const AddToCartProductListing = ({ product, classes }) => {
   const { cartState, cartDispatch } = useCart();
   const navigate = useNavigate();
   const [buttonText, setButtonText] = useState("Add to Cart");
-  const clickHandler = () => {
+  const addToCartclickHandler = () => {
     if (checkInList(cartState.cart, product.id)) {
       navigate("/cart");
     } else {
@@ -22,7 +22,7 @@ const AddToCartProductListing = ({ product, classes }) => {
     <button
       onClick={(e) => {
         e.stopPropagation();
-        clickHandler();
+        addToCartclickHandler();
       }}
       className={classes}
     >
@@ -49,14 +49,14 @@ const IncreaseProductQuantity = ({ id }) => {
 
 const DecreaseProductQuantity = ({ id, quantity }) => {
   const { cartDispatch } = useCart();
-  const clickHandler = () => {
+  const decreaseQtyclickHandler = () => {
     quantity > 1 && cartDispatch({ type: "DECREASE_QUANTITY", value: id });
   };
   return (
     <button
       onClick={(e) => {
         e.stopPropagation();
-        clickHandler();
+        decreaseQtyclickHandler();
       }}
       className="btn-counter is-3 bold"
     >

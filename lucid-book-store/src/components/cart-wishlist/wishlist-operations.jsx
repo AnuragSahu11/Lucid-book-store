@@ -3,7 +3,7 @@ import { checkInList } from "../../utility/check-in-list";
 
 const AddToWishlistLarge = ({ product, classes }) => {
   const { cartState, cartDispatch } = useCart();
-  const clickHandler = () => {
+  const addToWishlistClickHandler = () => {
     if (!checkInList(cartState.wishlist, product.id)) {
       cartDispatch({ type: "ADD_TO_WISHLIST", value: product });
     }
@@ -13,7 +13,7 @@ const AddToWishlistLarge = ({ product, classes }) => {
     <button
       onClick={(e) => {
         e.stopPropagation();
-        clickHandler();
+        addToWishlistClickHandler();
       }}
       className={classes ? classes : "btn-secondary btn-small"}
     >
@@ -23,7 +23,7 @@ const AddToWishlistLarge = ({ product, classes }) => {
 };
 const AddToWishlistSmall = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
-  const clickHandler = () => {
+  const AddToWishlistClickHandler = () => {
     if (!checkInList(cartState.wishlist, product.id)) {
       cartDispatch({ type: "ADD_TO_WISHLIST", value: product });
     }
@@ -35,7 +35,10 @@ const AddToWishlistSmall = ({ product }) => {
     ? { color: "red" }
     : {};
   return (
-    <span onClick={(e) => clickHandler(e)} className="card-icon is-white">
+    <span
+      onClick={(e) => AddToWishlistClickHandler(e)}
+      className="card-icon is-white"
+    >
       <i style={isRed} className="fas is-5 fa-heart" />
     </span>
   );
@@ -56,7 +59,7 @@ const RemoveFromWishlist = ({ product }) => {
 const AddToCartWishlist = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
 
-  const clickHandler = () => {
+  const addToWishlistClickHandler = () => {
     if (checkInList(cartState.cart, product.id)) {
       cartDispatch({ type: "INCREASE_QUANTITY", value: product.id });
     } else {
@@ -70,7 +73,7 @@ const AddToCartWishlist = ({ product }) => {
     <button
       onClick={(e) => {
         e.stopPropagation();
-        clickHandler();
+        addToWishlistClickHandler();
       }}
       className="btn-primary width-100 btn-w-icon btn-small"
     >

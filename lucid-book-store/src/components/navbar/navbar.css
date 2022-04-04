@@ -15,7 +15,7 @@
   width: 100%;
   z-index: 2;
 }
-.search-result {
+.search-result-p {
   background-color: var(--background-white);
   width: 100%;
 }

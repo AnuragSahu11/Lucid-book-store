@@ -13,6 +13,7 @@ import { getProductsData } from "./utility/api-call";
 import "./App.css";
 import { useFilter } from "./context/filter-context";
 import { SingleProductPage } from "./components/single-product-page/single-product-page";
+import { SearchResult } from "./components/navbar/search-results";
 
 function App() {
   const { filterState, dispatch } = useFilter();
@@ -32,6 +33,7 @@ function App() {
           element={<SingleProductPage />}
         />
         <Route path="/mock" element={<Mockman />} />
+        <Route path="/search/:searchText" element={<SearchResult />} />
       </Routes>
       <Footer />
     </div>

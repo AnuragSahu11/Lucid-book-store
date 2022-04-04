@@ -39,7 +39,7 @@ export const products = [
   {
     _id: uuid(),
     id: "stock3",
-    title: "Think and Grow Rich",
+    title: "The Beginner's Stock",
     author: "Akash Patel ",
     price: "99",
     originalPrice: "140",
