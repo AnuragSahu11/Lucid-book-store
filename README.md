@@ -15,6 +15,7 @@ Checkout the live website [here](https://lucid-bookstore.netlify.app/)
 - Product Listing with filters
 - Wishlist management
 - Cart management
+- Single product page
 - Login/Signup pages
 
 ### Misc Features
