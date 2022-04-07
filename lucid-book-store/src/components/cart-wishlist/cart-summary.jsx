@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useCart } from "../../context/cart-wishlist-context";
+import { changeTitle } from "../../utility";
 
 const CartSummary = () => {
   const { cartState } = useCart();
@@ -14,6 +15,7 @@ const CartSummary = () => {
   const productPrice = (price, quantity) => {
     return price * quantity;
   };
+  useEffect(() => changeTitle(`Cart - ${cartState.cart.length} items`), []);
   return (
     <div className="cart-summary p-x-3 p-dw-3 p-up-3 width-70 elevated li-shadow br-3 center-x">
       <div className="textbox">

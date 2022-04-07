@@ -14,6 +14,7 @@ import "./App.css";
 import { useFilter } from "./context/filter-context";
 import { SingleProductPage } from "./components/single-product-page/single-product-page";
 import { SearchResult } from "./components/navbar/search-results";
+import { Login, Signup } from "./components/Auth";
 
 function App() {
   const { filterState, dispatch } = useFilter();
@@ -34,6 +35,8 @@ function App() {
         />
         <Route path="/mock" element={<Mockman />} />
         <Route path="/search/:searchText" element={<SearchResult />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
       <Footer />
     </div>

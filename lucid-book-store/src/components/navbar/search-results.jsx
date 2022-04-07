@@ -1,11 +1,13 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useFilter } from "../../context/filter-context";
+import { changeTitle } from "../../utility";
 import { ProductCard } from "../product-listing/product-card";
 
 const SearchResult = () => {
   const { searchText } = useParams();
   const { filterState } = useFilter();
-
+  useEffect(() => changeTitle(`Search result for "${searchText}"`));
   const matchingProducts = filterState.products.filter(({ title }) =>
     title.toLowerCase().includes(searchText.toLocaleLowerCase())
   );

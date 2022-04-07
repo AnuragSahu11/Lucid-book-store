@@ -2,11 +2,21 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AddToCartWishlist, RemoveFromWishlist } from "./wishlist-operations";
 import { showRatingStars, ratingStarColor } from "../../utility/rating";
+import { discountPercentageCalc } from "../../utility";
 
 const WishlistCard = ({ product }) => {
   const navigate = useNavigate();
-  const { title, price, image, categoryName, author, rating, badge, id } =
-    product;
+  const {
+    title,
+    price,
+    originalPrice,
+    image,
+    categoryName,
+    author,
+    rating,
+    badge,
+    id,
+  } = product;
   const goToProductPage = () => {
     navigate(`/productListing/${id}`);
   };
@@ -41,7 +51,10 @@ const WishlistCard = ({ product }) => {
         <div className="textbox">
           <p className="text semibold m-y-0">Author - {author}</p>
           <p className="CTA-text is-4 semibold">
-            ${price} <span className="is-3 m-l-1 is-green">50% off</span>
+            ${price}{" "}
+            <span className="is-3 m-l-1 is-green">
+              {discountPercentageCalc(price, originalPrice)}% off off
+            </span>
           </p>
         </div>
         <div className="btn-vertical">

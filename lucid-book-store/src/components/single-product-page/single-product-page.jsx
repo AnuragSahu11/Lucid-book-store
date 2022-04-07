@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useFilter } from "../../context/filter-context";
-import { discountPercentateCalc } from "../../utility/discount-calculator";
+import { discountPercentageCalc } from "../../utility/discount-calculator";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistLarge } from "../cart-wishlist/wishlist-operations";
+import { ratingStarColor, showRatingStars } from "../../utility/rating";
+import { useEffect } from "react";
+import { changeTitle } from "../../utility";
 
 const SingleProductPage = () => {
   const { filterState } = useFilter();
@@ -13,6 +16,8 @@ const SingleProductPage = () => {
   const productData = findProductData(productId);
   const { title, author, price, originalPrice, rating, image, description } =
     findProductData(productId);
+
+  useEffect(() => changeTitle(title), []);
 
   return (
     <div className="product p-x-2 p-y-6 br-3 elevated li-shadow elevate-1 m-up-6 width-80 center-x grid-30-70">
@@ -40,7 +45,7 @@ const SingleProductPage = () => {
               ₹{originalPrice}
             </span>
             <span className="is-blue m-l-1 is-3">
-              ({discountPercentateCalc(price, originalPrice)}% off)
+              ({discountPercentageCalc(price, originalPrice)}% off)
             </span>
           </div>
           <p className="text m-y-0">

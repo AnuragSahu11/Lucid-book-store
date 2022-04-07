@@ -6,3 +6,5 @@ export {
   filterByRating,
 } from "./filter-product";
 export { getProductsData } from "./api-call";
+export { changeTitle } from "./change-title";
+export { discountPercentageCalc } from "./discount-calculator";
