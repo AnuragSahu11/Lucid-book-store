@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/cart-wishlist-context";
 import { SwitchTheme } from "../../utility/switch-theme";
 import { Search } from "./search";
@@ -26,6 +26,7 @@ const NavbarCartButton = ({ cartNotification }) => (
 
 const Navbar = () => {
   const { cartState } = useCart();
+  const navigate = useNavigate();
   const [showNav, setShowNav] = useState("navbar li-shadow");
   const hamburgerClickHandler = () => {
     if (showNav === "navbar li-shadow")
@@ -70,22 +71,27 @@ const Navbar = () => {
             />
           </Link>
 
-          <a href="/Wishlist" className="">
-            <button className="btn-icon nav-icons m-x-1">
-              <i className="fas is-dark fa-sign-out-alt" />
-            </button>
-          </a>
-          <a href="pages/profile.html" className="">
-            <button className="btn-icon nav-icons m-x-1">
-              <i className="fa-solid is-dark fa-user" />
-            </button>
-          </a>
-          <a href="pages/sign-up.html">
-            <button className="btn-secondary nav-btn btn-small">Sign up</button>
-          </a>
-          <a href="pages/login.html">
-            <button className="btn-primary nav-btn btn-small">Log in</button>
-          </a>
+          <button className="btn-icon nav-icons m-x-1">
+            <i className="fas is-dark fa-sign-out-alt" />
+          </button>
+
+          <button className="btn-icon nav-icons m-x-1">
+            <i className="fa-solid is-dark fa-user" />
+          </button>
+
+          <button
+            onClick={() => navigate("/signup")}
+            className="btn-secondary nav-btn btn-small"
+          >
+            Sign up
+          </button>
+
+          <button
+            onClick={() => navigate("/login")}
+            className="btn-primary nav-btn btn-small"
+          >
+            Log in
+          </button>
         </div>
       </div>
     </nav>

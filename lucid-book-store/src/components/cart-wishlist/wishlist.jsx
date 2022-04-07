@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useCart } from "../../context/cart-wishlist-context";
+import { changeTitle } from "../../utility";
 import { WishlistCard } from "./wishlist-card";
 
 const Wishlist = () => {
+  useEffect(
+    () => changeTitle(`Wishlist -${cartState.wishlist.length} items`),
+    []
+  );
   const { cartState } = useCart();
   return (
     <div className="wishlist p-x-3">

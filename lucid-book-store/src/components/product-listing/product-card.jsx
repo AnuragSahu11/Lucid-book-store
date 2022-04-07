@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { discountPercentateCalc } from "../../utility/discount-calculator";
+import { discountPercentageCalc } from "../../utility/discount-calculator";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistSmall } from "../cart-wishlist/wishlist-operations";
 import { ratingStarColor, showRatingStars } from "../../utility/rating";
@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
           <p className="CTA-text is-4 semibold">
             ${price}{" "}
             <span className="is-3 m-l-1 is-green">
-              {discountPercentateCalc(price, originalPrice)}% off
+              {discountPercentageCalc(price, originalPrice)}% off
             </span>
           </p>
         </div>

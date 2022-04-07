@@ -6,10 +6,20 @@ import {
   RemoveFromCart,
 } from "./cart-operations";
 import { AddToWishlistLarge } from "./wishlist-operations";
+import { discountPercentageCalc } from "../../utility";
 
 const CartCard = ({ product }) => {
   const navigate = useNavigate();
-  const { title, price, image, id, quantity, categoryName, author } = product;
+  const {
+    title,
+    price,
+    originalPrice,
+    image,
+    id,
+    quantity,
+    categoryName,
+    author,
+  } = product;
   const goToProductPage = () => {
     navigate(`/productListing/${id}`);
   };
@@ -46,7 +56,10 @@ const CartCard = ({ product }) => {
             <IncreaseProductQuantity id={id} />
           </div>
           <p className="CTA-text m-up-1 is-4 semibold">
-            ${price} <span className="is-3 m-l-1 is-green">50% off</span>
+            ${price}{" "}
+            <span className="is-3 m-l-1 is-green">
+              {discountPercentageCalc(price, originalPrice)}% off
+            </span>
           </p>
         </div>
         <div className="btn-vertical width-90 m-dw-1">
