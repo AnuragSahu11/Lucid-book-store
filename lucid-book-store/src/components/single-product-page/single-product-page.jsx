@@ -3,6 +3,7 @@ import { useFilter } from "../../context/filter-context";
 import { discountPercentateCalc } from "../../utility/discount-calculator";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistLarge } from "../cart-wishlist/wishlist-operations";
+import { ratingStarColor, showRatingStars } from "../../utility/rating";
 
 const SingleProductPage = () => {
   const { filterState } = useFilter();
