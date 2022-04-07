@@ -8,7 +8,7 @@ E commerce site for financial market books made using Lucid Ui
 
 ### Live Deployment
 
-Checkout the live website [here]()
+Checkout the live website [here](https://lucid-bookstore.netlify.app/)
 
 ### Features
 - Homepage
