@@ -2,7 +2,10 @@ import { useParams } from "react-router-dom";
 import { useFilter } from "../../context/filter-context";
 import { discountPercentageCalc } from "../../utility/discount-calculator";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
-import { AddToWishlistLarge } from "../cart-wishlist/wishlist-operations";
+import {
+  AddToWishlistLarge,
+  AddToWishlistSingleProductPage,
+} from "../cart-wishlist/wishlist-operations";
 import { ratingStarColor, showRatingStars } from "../../utility/rating";
 import { useEffect } from "react";
 import { changeTitle } from "../../utility";
@@ -65,10 +68,7 @@ const SingleProductPage = () => {
               classes={"btn-primary m-r-2 width-50 btn-w-icon btn-medium"}
               product={productData}
             />
-            <AddToWishlistLarge
-              classes={"btn-secondary width-50 btn-medium"}
-              product={productData}
-            />
+            <AddToWishlistSingleProductPage product={productData} />
           </div>
         </div>
       </div>

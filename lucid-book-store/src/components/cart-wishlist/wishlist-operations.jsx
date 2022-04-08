@@ -1,7 +1,7 @@
 import { useCart } from "../../context/cart-wishlist-context";
 import { checkInList } from "../../utility/check-in-list";
 
-const AddToWishlistLarge = ({ product, classes }) => {
+const AddToWishlistLarge = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
   const addToWishlistClickHandler = () => {
     if (!checkInList(cartState.wishlist, product.id)) {
@@ -15,12 +15,33 @@ const AddToWishlistLarge = ({ product, classes }) => {
         e.stopPropagation();
         addToWishlistClickHandler();
       }}
-      className={classes ? classes : "btn-secondary btn-small"}
+      className={"btn-secondary btn-small"}
     >
       Move to wishlist
     </button>
   );
 };
+
+const AddToWishlistSingleProductPage = ({ product }) => {
+  const { cartState, cartDispatch } = useCart();
+  const addToWishlistClickHandler = () => {
+    if (!checkInList(cartState.wishlist, product.id)) {
+      cartDispatch({ type: "ADD_TO_WISHLIST", value: product });
+    }
+  };
+  return (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        addToWishlistClickHandler();
+      }}
+      className={"btn-secondary width-50 btn-medium"}
+    >
+      Add to Wishlist
+    </button>
+  );
+};
+
 const AddToWishlistSmall = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
   const AddToWishlistClickHandler = () => {
@@ -88,4 +109,5 @@ export {
   AddToWishlistSmall,
   RemoveFromWishlist,
   AddToCartWishlist,
+  AddToWishlistSingleProductPage,
 };
