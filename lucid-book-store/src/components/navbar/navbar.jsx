@@ -24,6 +24,7 @@ const NavbarCartButton = ({ cartNotification }) => (
   </button>
 );
 
+
 const Navbar = () => {
   const { cartState } = useCart();
   const navigate = useNavigate();
