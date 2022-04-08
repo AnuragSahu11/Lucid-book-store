@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/cart-wishlist-context";
-import { checkInList } from "../../utility/check-in-list";
+import { checkInList } from "../../utility";
 
 const AddToCartProductListing = ({ product, classes }) => {
   const { cartState, cartDispatch } = useCart();

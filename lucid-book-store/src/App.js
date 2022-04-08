@@ -7,14 +7,15 @@ import {
   ProductListing,
   Cart,
   Wishlist,
+  SingleProductPage,
+  SearchResult,
+  Login,
+  Signup,
 } from "./components/components";
 import { Route, Routes } from "react-router-dom";
-import { getProductsData } from "./utility/api-call";
+import { getProductsData } from "./utility";
 import "./App.css";
 import { useFilter } from "./context/filter-context";
-import { SingleProductPage } from "./components/single-product-page/single-product-page";
-import { SearchResult } from "./components/navbar/search-results";
-import { Login, Signup } from "./components/Auth";
 
 function App() {
   const { filterState, dispatch } = useFilter();

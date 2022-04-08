@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/cart-wishlist-context";
-import { SwitchTheme } from "../../utility/switch-theme";
+import { SwitchTheme } from "../../utility";
 import { Search } from "./search";
 import "./navbar.css";
 
@@ -23,7 +23,6 @@ const NavbarCartButton = ({ cartNotification }) => (
     </i>
   </button>
 );
-
 
 const Navbar = () => {
   const { cartState } = useCart();

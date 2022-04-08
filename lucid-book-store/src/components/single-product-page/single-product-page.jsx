@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useFilter } from "../../context/filter-context";
-import { discountPercentageCalc } from "../../utility/discount-calculator";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
-import {
-  AddToWishlistLarge,
-  AddToWishlistSingleProductPage,
-} from "../cart-wishlist/wishlist-operations";
-import { ratingStarColor, showRatingStars } from "../../utility/rating";
+import { AddToWishlistSingleProductPage } from "../cart-wishlist/wishlist-operations";
 import { useEffect } from "react";
-import { changeTitle } from "../../utility";
+import {
+  changeTitle,
+  discountPercentageCalc,
+  ratingStarColor,
+  showRatingStars,
+} from "../../utility";
 
 const SingleProductPage = () => {
   const { filterState } = useFilter();

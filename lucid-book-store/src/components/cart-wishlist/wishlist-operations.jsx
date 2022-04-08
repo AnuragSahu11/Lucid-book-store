@@ -1,5 +1,5 @@
 import { useCart } from "../../context/cart-wishlist-context";
-import { checkInList } from "../../utility/check-in-list";
+import { checkInList } from "../../utility";
 
 const AddToWishlistLarge = ({ product }) => {
   const { cartState, cartDispatch } = useCart();

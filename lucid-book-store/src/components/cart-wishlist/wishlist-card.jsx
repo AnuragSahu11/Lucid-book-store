@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AddToCartWishlist, RemoveFromWishlist } from "./wishlist-operations";
-import { showRatingStars, ratingStarColor } from "../../utility/rating";
+import { showRatingStars, ratingStarColor } from "../../utility";
 import { discountPercentageCalc } from "../../utility";
 
 const WishlistCard = ({ product }) => {
