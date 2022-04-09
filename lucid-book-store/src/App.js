@@ -13,7 +13,7 @@ import {
   Signup,
 } from "./components/components";
 import { Route, Routes } from "react-router-dom";
-import { getProductsData } from "./utility";
+import { getProductsData, Loader } from "./utility";
 import "./App.css";
 import { useFilter } from "./context/filter-context";
 

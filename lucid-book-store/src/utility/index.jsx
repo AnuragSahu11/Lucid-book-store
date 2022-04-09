@@ -11,3 +11,4 @@ export { discountPercentageCalc } from "./discount-calculator";
 export { showRatingStars, ratingStarColor } from "./rating";
 export { SwitchTheme } from "./switch-theme";
 export { checkInList } from "./check-in-list";
+export { Loader } from "./loader/loader";
