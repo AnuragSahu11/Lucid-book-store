@@ -7,6 +7,7 @@ import { discountPercentageCalc } from "../../utility";
 const WishlistCard = ({ product }) => {
   const navigate = useNavigate();
   const {
+    _id,
     title,
     price,
     originalPrice,
@@ -24,7 +25,7 @@ const WishlistCard = ({ product }) => {
   return (
     <div className="card product-card m-x-3 elevated m-dw-5 li-shadow">
       <div className="card-head">
-        <RemoveFromWishlist product={product} />
+        <RemoveFromWishlist id={_id} />
         <span className="card-badge">{badge}</span>
         <div onClick={goToProductPage} className="card-image">
           <img

@@ -6,6 +6,8 @@ const FilterContext = createContext();
 const useFilter = () => useContext(FilterContext);
 
 const initialReducerObject = {
+  cart: [],
+  wishlist: [],
   filters: {
     sort: "",
     category: [],

@@ -42,6 +42,10 @@ const filterReducer = (filterState, action) => {
           rating: 0,
         },
       };
+    case "UPDATE_CART":
+      return { ...filterState, cart: [...action.value] };
+    case "UPDATE_WISHLIST":
+      return { ...filterState, wishlist: [...action.value] };
     default:
       return { ...filterState };
   }

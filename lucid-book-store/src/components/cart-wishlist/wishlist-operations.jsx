@@ -1,12 +1,24 @@
-import axios from "axios";
 import { useAuth } from "../../context/auth-context";
 import { useCart } from "../../context/cart-wishlist-context";
-import { checkInList, getHeader } from "../../utility";
-import { AddToWishlistApiMethod } from "../Auth/auth-methods";
+import { useFilter } from "../../context/filter-context";
+import { checkInList } from "../../utility";
+import {
+  AddToWishlistApiMethod,
+  increaseQtyApiMethod,
+  removeFromWishlistApiMethod,
+  AddToCartApiMethod,
+  removeFromCartApiMethod,
+} from "../Auth/auth-methods";
 
 const AddToWishlistLarge = ({ product }) => {
+  const { filterState, dispatch } = useFilter();
   const { token } = useAuth();
-  const addToWishlistClickHandler = () => {};
+  const addToWishlistClickHandler = () => {
+    if (!checkInList(filterState.wishlist, product.id)) {
+      AddToWishlistApiMethod(product, token, dispatch);
+    }
+    removeFromCartApiMethod(product._id, token, dispatch);
+  };
   return (
     <button
       onClick={(e) => {
@@ -21,10 +33,11 @@ const AddToWishlistLarge = ({ product }) => {
 };
 
 const AddToWishlistSingleProductPage = ({ product }) => {
-  const { cartState, cartDispatch } = useCart();
+  const { filterState, dispatch } = useFilter();
+  const { token } = useAuth();
   const addToWishlistClickHandler = () => {
-    if (!checkInList(cartState.wishlist, product.id)) {
-      cartDispatch({ type: "ADD_TO_WISHLIST", value: product });
+    if (!checkInList(filterState.wishlist, product.id)) {
+      AddToWishlistApiMethod(product, token, dispatch);
     }
   };
   return (
@@ -41,12 +54,16 @@ const AddToWishlistSingleProductPage = ({ product }) => {
 };
 
 const AddToWishlistSmall = ({ product }) => {
-  const { cartState, cartDispatch } = useCart();
+  const { filterState, dispatch } = useFilter();
   const { token } = useAuth();
   const AddToWishlistClickHandler = async () => {
-    AddToWishlistApiMethod(product, token);
+    if (checkInList(filterState.wishlist, product.id)) {
+      removeFromWishlistApiMethod(product._id, token, dispatch);
+    } else {
+      AddToWishlistApiMethod(product, token, dispatch);
+    }
   };
-  const isRed = checkInList(cartState.wishlist, product.id)
+  const isRed = checkInList(filterState.wishlist, product.id)
     ? { color: "red" }
     : {};
   return (
@@ -58,13 +75,12 @@ const AddToWishlistSmall = ({ product }) => {
     </span>
   );
 };
-const RemoveFromWishlist = ({ product }) => {
-  const { cartDispatch } = useCart();
+const RemoveFromWishlist = ({ id }) => {
+  const { dispatch } = useFilter();
+  const { token } = useAuth();
   return (
     <button
-      onClick={() =>
-        cartDispatch({ type: "REMOVE_FROM_WISHLIST", value: product.id })
-      }
+      onClick={() => removeFromWishlistApiMethod(id, token, dispatch)}
       className="card-cross btn-close is-medium"
     >
       <i className="fas fa-times" />
@@ -72,16 +88,14 @@ const RemoveFromWishlist = ({ product }) => {
   );
 };
 const AddToCartWishlist = ({ product }) => {
-  const { cartState, cartDispatch } = useCart();
-
+  const { filterState, dispatch } = useFilter();
+  const { token } = useAuth();
+  const { _id } = product;
   const addToWishlistClickHandler = () => {
-    if (checkInList(cartState.cart, product.id)) {
-      cartDispatch({ type: "INCREASE_QUANTITY", value: product.id });
+    if (checkInList(filterState.cart, product.id)) {
+      increaseQtyApiMethod(_id, token, dispatch);
     } else {
-      cartDispatch({
-        type: "ADD_TO_CART",
-        value: { ...product, quantity: 1 },
-      });
+      AddToCartApiMethod(product, token, dispatch);
     }
   };
   return (

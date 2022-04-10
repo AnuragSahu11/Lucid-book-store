@@ -1,20 +1,34 @@
-import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
-import { useCart } from "../../context/cart-wishlist-context";
+import { useFilter } from "../../context/filter-context";
 import { checkInList } from "../../utility";
 import {
   AddToCartApiMethod,
+  decreaseQtyApiMethod,
+  increaseQtyApiMethod,
   removeFromCartApiMethod,
 } from "../Auth/auth-methods";
 
 const AddToCartProductListing = ({ product, classes }) => {
   const { token } = useAuth();
-  const [buttonText, setButtonText] = useState("Add to Cart");
+  const navigate = useNavigate();
+  const { filterState, dispatch } = useFilter();
+  const [buttonText, setButtonText] = useState(null);
   const addToCartclickHandler = async () => {
-    AddToCartApiMethod(product, token);
+    if (!checkInList(filterState.cart, product.id)) {
+      AddToCartApiMethod(product, token, dispatch);
+    } else {
+      navigate("/cart");
+    }
   };
+
+  useEffect(() => {
+    checkInList(filterState.cart, product.id)
+      ? setButtonText("Go to Cart")
+      : setButtonText("Add to Cart");
+  }, [filterState.cart]);
+
   return (
     <button
       onClick={(e) => {
@@ -30,12 +44,13 @@ const AddToCartProductListing = ({ product, classes }) => {
 };
 
 const IncreaseProductQuantity = ({ id }) => {
-  const { cartDispatch } = useCart();
+  const { token } = useAuth();
+  const { dispatch } = useFilter();
   return (
     <button
       onClick={(e) => {
         e.stopPropagation();
-        cartDispatch({ type: "INCREASE_QUANTITY", value: id });
+        increaseQtyApiMethod(id, token, dispatch);
       }}
       className="btn-counter is-3 semibold"
     >
@@ -45,9 +60,10 @@ const IncreaseProductQuantity = ({ id }) => {
 };
 
 const DecreaseProductQuantity = ({ id, quantity }) => {
-  const { cartDispatch } = useCart();
+  const { token } = useAuth();
+  const { dispatch } = useFilter();
   const decreaseQtyclickHandler = () => {
-    quantity > 1 && cartDispatch({ type: "DECREASE_QUANTITY", value: id });
+    decreaseQtyApiMethod(id, token, dispatch);
   };
   return (
     <button
@@ -63,12 +79,13 @@ const DecreaseProductQuantity = ({ id, quantity }) => {
 };
 
 const RemoveFromCart = ({ id }) => {
+  const { dispatch } = useFilter();
   const { token } = useAuth();
   return (
     <button
       onClick={(e) => {
         e.stopPropagation();
-        removeFromCartApiMethod(id, token);
+        removeFromCartApiMethod(id, token, dispatch);
       }}
       className="btn-grey btn-small btn-w-icon"
     >

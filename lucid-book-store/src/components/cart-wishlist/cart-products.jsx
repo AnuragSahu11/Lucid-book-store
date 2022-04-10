@@ -4,19 +4,13 @@ import axios from "axios";
 import { useAuth } from "../../context/auth-context";
 import { useEffect, useState } from "react";
 import { getHeader } from "../../utility";
+import { useFilter } from "../../context/filter-context";
 
 const CartProducts = () => {
-  const [products, setProducts] = useState(null);
-  const { token } = useAuth();
-  const getCartProducts = async () => {
-    const response = await axios.get("api/user/cart", getHeader(token));
-    setProducts(response.data.cart);
-  };
-  useEffect(() => {
-    getCartProducts();
-  }, []);
-  return products ? (
-    products.map((item) => <CartCard key={item.id} product={item} />)
+  const { filterState } = useFilter();
+
+  return filterState.cart.length > 0 ? (
+    filterState.cart.map((item) => <CartCard key={item.id} product={item} />)
   ) : (
     <>loading</>
   );

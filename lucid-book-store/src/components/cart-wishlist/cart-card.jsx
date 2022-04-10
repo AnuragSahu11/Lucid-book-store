@@ -17,7 +17,7 @@ const CartCard = ({ product }) => {
     originalPrice,
     image,
     id,
-    quantity,
+    qty,
     categoryName,
     author,
   } = product;
@@ -47,14 +47,14 @@ const CartCard = ({ product }) => {
         </div>
         <div className="textbox">
           <div className="counter-btn-div flex-row align-center">
-            <DecreaseProductQuantity id={id} quantity={quantity} />
+            <DecreaseProductQuantity id={_id} />
             <input
-              value={quantity}
+              value={qty}
               className="input-counter m-x-1 is-2 p-y-0"
               type="number"
               readOnly
             />
-            <IncreaseProductQuantity id={id} />
+            <IncreaseProductQuantity id={_id} />
           </div>
           <p className="CTA-text m-up-1 is-4 semibold">
             ${price}{" "}
