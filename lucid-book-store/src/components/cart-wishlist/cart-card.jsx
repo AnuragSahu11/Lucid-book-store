@@ -11,6 +11,7 @@ import { discountPercentageCalc } from "../../utility";
 const CartCard = ({ product }) => {
   const navigate = useNavigate();
   const {
+    _id,
     title,
     price,
     originalPrice,
@@ -63,7 +64,7 @@ const CartCard = ({ product }) => {
           </p>
         </div>
         <div className="btn-vertical width-90 m-dw-1">
-          <RemoveFromCart id={id} />
+          <RemoveFromCart id={_id} />
           <AddToWishlistLarge product={product} />
         </div>
       </div>

@@ -1,6 +1,9 @@
+import { useAuth } from "../../context/auth-context";
 import "./login.css";
 
 const Signup = () => {
+  const { signupHandler, loginHandler } = useAuth();
+
   return (
     <section className="signup-section p-x-1">
       <div className="signup br-3 elevated center-x m-y-6 shadow p-y-2 p-x-4">
@@ -50,10 +53,13 @@ const Signup = () => {
           Accept all terms and conditions
         </label>
         <div className="btn-vertical m-up-3 center-text">
-          <button className="btn-primary m-dw-1 btn-small">
+          <button
+            onClick={signupHandler}
+            className="btn-primary m-dw-1 btn-small"
+          >
             Create new Account
           </button>
-          <a href="" className="is-2 link">
+          <a onClick={loginHandler} className="is-2 link">
             Already have an account
           </a>
         </div>

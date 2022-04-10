@@ -28,16 +28,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/productListing" element={<ProductListing />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
         <Route
           path="/productListing/:productId"
           element={<SingleProductPage />}
         />
-        <Route path="/mock" element={<Mockman />} />
         <Route path="/search/:searchText" element={<SearchResult />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/mock" element={<Mockman />} />
       </Routes>
       <Footer />
     </div>

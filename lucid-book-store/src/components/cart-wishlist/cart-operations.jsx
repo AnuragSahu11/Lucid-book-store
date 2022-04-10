@@ -1,22 +1,19 @@
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
 import { useCart } from "../../context/cart-wishlist-context";
 import { checkInList } from "../../utility";
+import {
+  AddToCartApiMethod,
+  removeFromCartApiMethod,
+} from "../Auth/auth-methods";
 
 const AddToCartProductListing = ({ product, classes }) => {
-  const { cartState, cartDispatch } = useCart();
-  const navigate = useNavigate();
+  const { token } = useAuth();
   const [buttonText, setButtonText] = useState("Add to Cart");
-  const addToCartclickHandler = () => {
-    if (checkInList(cartState.cart, product.id)) {
-      navigate("/cart");
-    } else {
-      cartDispatch({
-        type: "ADD_TO_CART",
-        value: { ...product, quantity: 1 },
-      });
-      setButtonText("Go to Cart");
-    }
+  const addToCartclickHandler = async () => {
+    AddToCartApiMethod(product, token);
   };
   return (
     <button
@@ -66,12 +63,12 @@ const DecreaseProductQuantity = ({ id, quantity }) => {
 };
 
 const RemoveFromCart = ({ id }) => {
-  const { cartDispatch } = useCart();
+  const { token } = useAuth();
   return (
     <button
       onClick={(e) => {
         e.stopPropagation();
-        cartDispatch({ type: "REMOVE_FROM_CART", value: id });
+        removeFromCartApiMethod(id, token);
       }}
       className="btn-grey btn-small btn-w-icon"
     >
