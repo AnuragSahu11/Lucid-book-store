@@ -6,7 +6,6 @@ const AuthContext = createContext();
 const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const { dispatch } = useData();
   const [token, setToken] = useState(null);
 

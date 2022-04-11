@@ -7,7 +7,7 @@ const Logout = ({ showLogout, toggleLogout }) => {
     logoutHandler();
     toggleLogout();
   };
-  const closeClickHandler = () => {
+  const closeLogoutModalClickHandler = () => {
     toggleLogout();
   };
   return (
@@ -15,7 +15,7 @@ const Logout = ({ showLogout, toggleLogout }) => {
       <div className="logout m-up-6">
         <div className="modal center-x elevated center-y shadow">
           <button
-            onClick={closeClickHandler}
+            onClick={closeLogoutModalClickHandler}
             className="card-cross btn-close is-medium"
           >
             <i className="fas fa-times" />
