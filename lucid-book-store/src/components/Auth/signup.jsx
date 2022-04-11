@@ -3,14 +3,16 @@ import { useAuth } from "../../context/auth-context";
 import "./login.css";
 
 const Signup = () => {
-  const { signupHandler, loginHandler } = useAuth();
+  const { signupHandler } = useAuth();
   const [formField, setFormField] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   });
-
+  const createAccClickHandler = () => {
+    signupHandler(formField);
+  };
   return (
     <section className="signup-section p-x-1">
       <div className="signup br-3 elevated center-x m-y-6 shadow p-y-2 p-x-4">
@@ -20,6 +22,9 @@ const Signup = () => {
         <div className="form-div form-custom m-up-1">
           <p className="form-label">Name</p>
           <input
+            onChange={(e) =>
+              setFormField({ ...formField, firstName: e.target.value })
+            }
             type="text"
             className="form-input input-focused"
             placeholder="enter your name"
@@ -27,6 +32,9 @@ const Signup = () => {
           />
           <p className="form-label m-up-2">Last name</p>
           <input
+            onChange={(e) =>
+              setFormField({ ...formField, lastName: e.target.value })
+            }
             type="text"
             className="form-input input-focused"
             placeholder="enter your last name"
@@ -34,6 +42,9 @@ const Signup = () => {
           />
           <p className="form-label m-up-2">Email</p>
           <input
+            onChange={(e) =>
+              setFormField({ ...formField, email: e.target.value })
+            }
             type="email"
             className="form-input input-focused"
             placeholder="enter your email"
@@ -41,6 +52,9 @@ const Signup = () => {
           />
           <p className="form-label m-up-2">Password</p>
           <input
+            onChange={(e) =>
+              setFormField({ ...formField, password: e.target.value })
+            }
             type="password"
             className="form-input input-focused"
             placeholder="enter your password"
@@ -60,7 +74,10 @@ const Signup = () => {
           Accept all terms and conditions
         </label>
         <div className="btn-vertical m-up-3 center-text">
-          <button className="btn-primary m-dw-1 btn-small">
+          <button
+            onClick={createAccClickHandler}
+            className="btn-primary m-dw-1 btn-small"
+          >
             Create new Account
           </button>
           <a className="is-2 link">Already have an account</a>

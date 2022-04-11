@@ -3,9 +3,11 @@ import axios from "axios";
 import { useData } from "./data-context";
 
 const AuthContext = createContext();
+
 const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
+  const [isLoggedIn, setIsLogged] = useState(true);
   const { dispatch } = useData();
   const [token, setToken] = useState(null);
 
@@ -17,6 +19,7 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await axios.post(`/api/auth/signup`, credentials);
       localStorage.setItem("token", response.data.encodedToken);
+      setToken(data.encodedToken);
     } catch (error) {
       console.log(error);
     }
