@@ -48,6 +48,12 @@ const dataReducer = (dataState, action) => {
       return { ...dataState, wishlist: [...action.value] };
     case "CLEAR_CART_WISHLIST":
       return { ...dataState, wishlist: [], cart: [] };
+    case "LOGIN_API_DATA":
+      return {
+        ...dataState,
+        wishlist: [...action.value.wishlist],
+        cart: [...action.value.cart],
+      };
     default:
       return { ...dataState };
   }

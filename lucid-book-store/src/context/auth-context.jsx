@@ -30,6 +30,11 @@ const AuthProvider = ({ children }) => {
       const { data } = await axios.post(`/api/auth/login`, credentials);
       localStorage.setItem("token", data.encodedToken);
       setToken(data.encodedToken);
+      console.log(data.foundUser);
+      dispatch({
+        type: "LOGIN_API_DATA",
+        value: { cart: data.foundUser.cart, wishlist: data.foundUser.wishlist },
+      });
     } catch (error) {
       console.log(error);
     }
