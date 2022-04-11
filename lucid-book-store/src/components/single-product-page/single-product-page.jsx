@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useFilter } from "../../context/filter-context";
+import { useData } from "../../context";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistSingleProductPage } from "../cart-wishlist/wishlist-operations";
 import { useEffect } from "react";
@@ -11,10 +11,10 @@ import {
 } from "../../utility";
 
 const SingleProductPage = () => {
-  const { filterState } = useFilter();
+  const { dataState } = useData();
   let { productId } = useParams();
   const findProductData = (productId) => {
-    return filterState.products.find(({ id }) => productId === id);
+    return dataState.products.find(({ id }) => productId === id);
   };
   const productData = findProductData(productId);
   const { title, author, price, originalPrice, rating, image, description } =

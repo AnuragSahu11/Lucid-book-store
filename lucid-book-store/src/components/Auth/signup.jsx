@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { useAuth } from "../../context/auth-context";
 import "./login.css";
 
 const Signup = () => {
   const { signupHandler, loginHandler } = useAuth();
+  const [formField, setFormField] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
 
   return (
     <section className="signup-section p-x-1">
@@ -10,7 +17,7 @@ const Signup = () => {
         <div className="textbox">
           <div className="title">Sign Up</div>
         </div>
-        <div className="form-div m-up-1">
+        <div className="form-div form-custom m-up-1">
           <p className="form-label">Name</p>
           <input
             type="text"
@@ -53,15 +60,10 @@ const Signup = () => {
           Accept all terms and conditions
         </label>
         <div className="btn-vertical m-up-3 center-text">
-          <button
-            onClick={signupHandler}
-            className="btn-primary m-dw-1 btn-small"
-          >
+          <button className="btn-primary m-dw-1 btn-small">
             Create new Account
           </button>
-          <a onClick={loginHandler} className="is-2 link">
-            Already have an account
-          </a>
+          <a className="is-2 link">Already have an account</a>
         </div>
       </div>
     </section>

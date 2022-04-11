@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useFilter } from "../../context/filter-context";
+import { useData } from "../../context";
 
 const Filters = () => {
-  const { filterState, dispatch } = useFilter();
+  const { dataState, dispatch } = useData();
   const [filterStyle, setFilterStyle] = useState("");
   const showFilterClickHandler = () => {
     setFilterStyle(filterStyle === "" ? "hide-filter-menu" : "");
@@ -37,7 +37,7 @@ const Filters = () => {
           max={2000}
           className="slider"
           list="tickmarks"
-          value={filterState.filters.range}
+          value={dataState.filters.range}
           onChange={(e) =>
             filterClickHandler({
               type: "RANGE",
@@ -65,7 +65,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
-                checked={filterState.filters.category.includes("Stocks")}
+                checked={dataState.filters.category.includes("Stocks")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: "CATEGORY_STOCKS",
@@ -80,7 +80,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
-                checked={filterState.filters.category.includes("Forex")}
+                checked={dataState.filters.category.includes("Forex")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: "CATEGORY_FOREX",
@@ -95,7 +95,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
-                checked={filterState.filters.category.includes("Crypto")}
+                checked={dataState.filters.category.includes("Crypto")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: "CATEGORY_CRYPTO",
@@ -110,7 +110,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
-                checked={filterState.filters.category.includes("Charting")}
+                checked={dataState.filters.category.includes("Charting")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: "CATEGORY_CHARTING",
@@ -125,7 +125,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
-                checked={filterState.filters.category.includes("Investment")}
+                checked={dataState.filters.category.includes("Investment")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: "CATEGORY_INVESTMENT",
@@ -145,7 +145,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
-                checked={filterState.filters.rating === 4}
+                checked={dataState.filters.rating === 4}
                 onChange={() =>
                   filterClickHandler({ type: "RATING", value: 4 })
                 }
@@ -161,7 +161,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
-                checked={filterState.filters.rating === 3}
+                checked={dataState.filters.rating === 3}
                 onChange={() =>
                   filterClickHandler({ type: "RATING", value: 3 })
                 }
@@ -177,7 +177,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
-                checked={filterState.filters.rating === 2}
+                checked={dataState.filters.rating === 2}
                 onChange={() =>
                   filterClickHandler({ type: "RATING", value: 2 })
                 }
@@ -193,7 +193,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
-                checked={filterState.filters.rating === 1}
+                checked={dataState.filters.rating === 1}
                 onChange={() =>
                   filterClickHandler({ type: "RATING", value: 1 })
                 }
@@ -215,7 +215,7 @@ const Filters = () => {
               <input
                 type="radio"
                 name="sort"
-                checked={filterState.filters.sort === "LOW_TO_HIGH"}
+                checked={dataState.filters.sort === "LOW_TO_HIGH"}
                 onChange={() => filterClickHandler({ type: "LOW_TO_HIGH" })}
               />
               <i />
@@ -229,7 +229,7 @@ const Filters = () => {
               <input
                 type="radio"
                 name="sort"
-                checked={filterState.filters.sort === "HIGH_TO_LOW"}
+                checked={dataState.filters.sort === "HIGH_TO_LOW"}
                 onChange={() => filterClickHandler({ type: "HIGH_TO_LOW" })}
               />
               <i />

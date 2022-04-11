@@ -1,21 +1,24 @@
-import { useAuth } from "../../context/auth-context";
-import { useCart } from "../../context/cart-wishlist-context";
-import { useFilter } from "../../context/filter-context";
+import { useData, useAuth } from "../../context";
 import { checkInList } from "../../utility";
+import { useNavigate } from "react-router-dom";
 import {
-  AddToWishlistApiMethod,
+  addToWishlistApiMethod,
   increaseQtyApiMethod,
   removeFromWishlistApiMethod,
-  AddToCartApiMethod,
+  addToCartApiMethod,
   removeFromCartApiMethod,
-} from "../Auth/auth-methods";
+} from "../Auth/api-methods";
 
 const AddToWishlistLarge = ({ product }) => {
-  const { filterState, dispatch } = useFilter();
+  const { dataState, dispatch } = useData();
   const { token } = useAuth();
+  const navigate = useNavigate();
   const addToWishlistClickHandler = () => {
-    if (!checkInList(filterState.wishlist, product.id)) {
-      AddToWishlistApiMethod(product, token, dispatch);
+    if (!token) {
+      navigate("/login");
+    }
+    if (token && !checkInList(dataState.wishlist, product.id)) {
+      addToWishlistApiMethod(product, token, dispatch);
     }
     removeFromCartApiMethod(product._id, token, dispatch);
   };
@@ -33,11 +36,15 @@ const AddToWishlistLarge = ({ product }) => {
 };
 
 const AddToWishlistSingleProductPage = ({ product }) => {
-  const { filterState, dispatch } = useFilter();
+  const { dataState, dispatch } = useData();
   const { token } = useAuth();
+  const navigate = useNavigate();
   const addToWishlistClickHandler = () => {
-    if (!checkInList(filterState.wishlist, product.id)) {
-      AddToWishlistApiMethod(product, token, dispatch);
+    if (!token) {
+      navigate("/login");
+    }
+    if (token && !checkInList(dataState.wishlist, product.id)) {
+      addToWishlistApiMethod(product, token, dispatch);
     }
   };
   return (
@@ -54,16 +61,20 @@ const AddToWishlistSingleProductPage = ({ product }) => {
 };
 
 const AddToWishlistSmall = ({ product }) => {
-  const { filterState, dispatch } = useFilter();
+  const { dataState, dispatch } = useData();
   const { token } = useAuth();
+  const navigate = useNavigate();
   const AddToWishlistClickHandler = async () => {
-    if (checkInList(filterState.wishlist, product.id)) {
+    if (!token) {
+      navigate("/login");
+    }
+    else if (checkInList(dataState.wishlist, product.id)) {
       removeFromWishlistApiMethod(product._id, token, dispatch);
-    } else {
-      AddToWishlistApiMethod(product, token, dispatch);
+    } else if(token) {
+      addToWishlistApiMethod(product, token, dispatch);
     }
   };
-  const isRed = checkInList(filterState.wishlist, product.id)
+  const isRed = checkInList(dataState.wishlist, product.id)
     ? { color: "red" }
     : {};
   return (
@@ -76,7 +87,7 @@ const AddToWishlistSmall = ({ product }) => {
   );
 };
 const RemoveFromWishlist = ({ id }) => {
-  const { dispatch } = useFilter();
+  const { dispatch } = useData();
   const { token } = useAuth();
   return (
     <button
@@ -88,14 +99,14 @@ const RemoveFromWishlist = ({ id }) => {
   );
 };
 const AddToCartWishlist = ({ product }) => {
-  const { filterState, dispatch } = useFilter();
+  const { dataState, dispatch } = useData();
   const { token } = useAuth();
   const { _id } = product;
   const addToWishlistClickHandler = () => {
-    if (checkInList(filterState.cart, product.id)) {
+    if (checkInList(dataState.cart, product.id)) {
       increaseQtyApiMethod(_id, token, dispatch);
     } else {
-      AddToCartApiMethod(product, token, dispatch);
+      addToCartApiMethod(product, token, dispatch);
     }
   };
   return (

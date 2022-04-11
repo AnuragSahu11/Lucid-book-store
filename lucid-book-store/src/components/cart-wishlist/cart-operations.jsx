@@ -1,33 +1,35 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
-import { useFilter } from "../../context/filter-context";
+import { useAuth, useData } from "../../context";
 import { checkInList } from "../../utility";
 import {
-  AddToCartApiMethod,
+  addToCartApiMethod,
   decreaseQtyApiMethod,
   increaseQtyApiMethod,
   removeFromCartApiMethod,
-} from "../Auth/auth-methods";
+} from "../Auth/api-methods";
 
 const AddToCartProductListing = ({ product, classes }) => {
   const { token } = useAuth();
   const navigate = useNavigate();
-  const { filterState, dispatch } = useFilter();
+  const { dataState, dispatch } = useData();
   const [buttonText, setButtonText] = useState(null);
   const addToCartclickHandler = async () => {
-    if (!checkInList(filterState.cart, product.id)) {
-      AddToCartApiMethod(product, token, dispatch);
+    if (!token) {
+      navigate("/login");
+    }
+    if (token && !checkInList(dataState.cart, product.id)) {
+      addToCartApiMethod(product, token, dispatch);
     } else {
       navigate("/cart");
     }
   };
 
   useEffect(() => {
-    checkInList(filterState.cart, product.id)
+    checkInList(dataState.cart, product.id)
       ? setButtonText("Go to Cart")
       : setButtonText("Add to Cart");
-  }, [filterState.cart]);
+  }, [dataState.cart]);
 
   return (
     <button
@@ -45,7 +47,7 @@ const AddToCartProductListing = ({ product, classes }) => {
 
 const IncreaseProductQuantity = ({ id }) => {
   const { token } = useAuth();
-  const { dispatch } = useFilter();
+  const { dispatch } = useData();
   return (
     <button
       onClick={(e) => {
@@ -61,7 +63,7 @@ const IncreaseProductQuantity = ({ id }) => {
 
 const DecreaseProductQuantity = ({ id, quantity }) => {
   const { token } = useAuth();
-  const { dispatch } = useFilter();
+  const { dispatch } = useData();
   const decreaseQtyclickHandler = () => {
     decreaseQtyApiMethod(id, token, dispatch);
   };
@@ -79,7 +81,7 @@ const DecreaseProductQuantity = ({ id, quantity }) => {
 };
 
 const RemoveFromCart = ({ id }) => {
-  const { dispatch } = useFilter();
+  const { dispatch } = useData();
   const { token } = useAuth();
   return (
     <button

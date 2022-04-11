@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { useCart } from "../../context/cart-wishlist-context";
+import { useData } from "../../context";
 import { changeTitle } from "../../utility";
 
 const CartSummary = () => {
-  const { cartState } = useCart();
+  const { dataState } = useData();
   let totalPrice =
-    cartState.cart.reduce(
-      (acc, curr) => (acc = acc + curr.price * curr.quantity),
+    dataState.cart.reduce(
+      (acc, curr) => (acc = acc + curr.price * curr.qty),
       0
     ) + 50;
   const cartSummaryProductName = (word) => {
@@ -15,21 +15,21 @@ const CartSummary = () => {
   const productPrice = (price, quantity) => {
     return price * quantity;
   };
-  useEffect(() => changeTitle(`Cart - ${cartState.cart.length} items`), []);
+  useEffect(() => changeTitle(`Cart - ${dataState.cart.length} items`), []);
   return (
     <div className="cart-summary p-x-3 p-dw-3 p-up-3 width-70 elevated li-shadow br-3 center-x">
       <div className="textbox">
         <div className="title m-dw-2">Your Order</div>
         <hr />
-        {cartState.cart.map((item) => (
+        {dataState.cart.map((item) => (
           <div
             key={item.id}
             className="subtitle m-up-1 width-100 flex-row regular space-between"
           >
             <p className="m-y-0">
-              {cartSummaryProductName(item.title) + "..."}({item.quantity} x)
+              {cartSummaryProductName(item.title) + "..."}({item.qty} x)
             </p>
-            <p className="m-y-0">${productPrice(item.price, item.quantity)}</p>
+            <p className="m-y-0">${productPrice(item.price, item.qty)}</p>
           </div>
         ))}
 
@@ -39,7 +39,7 @@ const CartSummary = () => {
         </div>
         <hr />
         <div className="subtitle width-100 flex-row space-between is-3 m-y-1 is-dark">
-          <p className="m-y-0">Total {cartState.cart.length} items</p>
+          <p className="m-y-0">Total {dataState.cart.length} items</p>
           <p className="m-y-0">{totalPrice}</p>
         </div>
         <hr />

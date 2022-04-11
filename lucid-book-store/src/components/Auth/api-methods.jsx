@@ -1,7 +1,7 @@
 import { getHeader } from "../../utility";
 import axios from "axios";
 
-const AddToWishlistApiMethod = async (product, token, dispatch) => {
+const addToWishlistApiMethod = async (product, token, dispatch) => {
   const response = await axios.post(
     "/api/user/wishlist",
     { product: product },
@@ -10,7 +10,7 @@ const AddToWishlistApiMethod = async (product, token, dispatch) => {
   dispatch({ type: "UPDATE_WISHLIST", value: response.data.wishlist });
 };
 
-const AddToCartApiMethod = async (product, token, dispatch) => {
+const addToCartApiMethod = async (product, token, dispatch) => {
   const response = await axios.post(
     "/api/user/cart",
     { product: product },
@@ -56,8 +56,8 @@ const decreaseQtyApiMethod = async (id, token, dispatch) => {
 };
 
 export {
-  AddToWishlistApiMethod,
-  AddToCartApiMethod,
+  addToWishlistApiMethod,
+  addToCartApiMethod,
   removeFromCartApiMethod,
   removeFromWishlistApiMethod,
   increaseQtyApiMethod,

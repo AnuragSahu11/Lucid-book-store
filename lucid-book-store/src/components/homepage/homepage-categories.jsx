@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useFilter } from "../../context/filter-context";
+import { useData } from "../../context";
 
 const HomepageCategories = () => {
-  const { filterState, dispatch } = useFilter();
+  const { dataState, dispatch } = useData();
   let navigate = useNavigate();
   const categoryClickHandler = (category) => {
     dispatch({

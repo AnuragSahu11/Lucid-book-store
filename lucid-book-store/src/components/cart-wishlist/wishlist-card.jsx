@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AddToCartWishlist, RemoveFromWishlist } from "./wishlist-operations";
-import { showRatingStars, ratingStarColor } from "../../utility";
-import { discountPercentageCalc } from "../../utility";
+import { showRatingStars, ratingStarColor, discountPercentageCalc  } from "../../utility";
 
 const WishlistCard = ({ product }) => {
   const navigate = useNavigate();

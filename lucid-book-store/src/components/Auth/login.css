@@ -5,3 +5,15 @@
 .view-password {
   cursor: pointer;
 }
+.form-custom .form-input {
+  width: 100%;
+}
+.logout-wrapper {
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  position: fixed;
+}
+.logout .modal {
+  background-color: var(--background-white);
+}

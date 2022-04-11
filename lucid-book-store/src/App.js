@@ -15,13 +15,10 @@ import {
 import { Route, Routes } from "react-router-dom";
 import { getProductsData, Loader } from "./utility";
 import "./App.css";
-import { useFilter } from "./context/filter-context";
+import { useData } from "./context/data-context";
 
 function App() {
-  const { filterState, dispatch } = useFilter();
-  useEffect(() => {
-    getProductsData(dispatch);
-  }, []);
+  const { dataState, dispatch } = useData();
   return (
     <div className="App">
       <Navbar />
