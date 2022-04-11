@@ -1,13 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useData } from "./data-context";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLogged] = useState(true);
+  const navigate = useNavigate();
   const { dispatch } = useData();
   const [token, setToken] = useState(null);
 
@@ -44,11 +45,12 @@ const AuthProvider = ({ children }) => {
     localStorage.clear();
     setToken(null);
     dispatch({ type: "CLEAR_CART_WISHLIST" });
+    navigate("/");
   };
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, signupHandler, loginHandler, logoutHandler, token }}
+      value={{ signupHandler, loginHandler, logoutHandler, token }}
     >
       {children}
     </AuthContext.Provider>
