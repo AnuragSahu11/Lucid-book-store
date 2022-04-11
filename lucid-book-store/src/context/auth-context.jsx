@@ -33,7 +33,6 @@ const AuthProvider = ({ children }) => {
   };
 
   const logoutHandler = async () => {
-    console.log("he");
     localStorage.clear();
     setToken(null);
     dispatch({ type: "CLEAR_CART_WISHLIST" });
