@@ -40,7 +40,6 @@ const increaseQtyApiMethod = async (id, token, dispatch) => {
     },
     getHeader(token)
   );
-  console.log(response);
   dispatch({ type: "UPDATE_CART", value: response.data.cart });
 };
 

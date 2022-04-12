@@ -13,3 +13,4 @@ export { SwitchTheme } from "./switch-theme";
 export { checkInList } from "./check-in-list";
 export { Loader } from "./loader/loader";
 export { getHeader } from "./request-header";
+export { Alerts } from "./alerts/alerts";
