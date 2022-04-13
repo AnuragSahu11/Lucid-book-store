@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { SwitchTheme } from "../../utility";
+import { Loader, SwitchTheme } from "../../utility";
 import { Search } from "./search";
 import { useAuth, useData } from "../../context";
 import { Logout } from "../Auth";
@@ -66,6 +66,7 @@ const Navbar = () => {
   };
   return (
     <div className="">
+      <Loader />
       <nav className={showNav}>
         <div className="nav-head">
           <div className="nav-brand">

@@ -11,6 +11,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const { dispatch } = useData();
   const [token, setToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -50,7 +51,14 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ signupHandler, loginHandler, logoutHandler, token }}
+      value={{
+        signupHandler,
+        loginHandler,
+        logoutHandler,
+        token,
+        isLoading,
+        setIsLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>

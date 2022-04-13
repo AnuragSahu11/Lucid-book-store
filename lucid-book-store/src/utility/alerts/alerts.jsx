@@ -4,7 +4,7 @@ import "./alert.css";
 const Alerts = ({ setAlertData, alertData }) => {
   const { showAlert, alertMsg, alertType } = alertData;
   const [timeOutId, setTimeoutId] = useState();
-
+  const alertRef = useRef(null);
   const toggleAlert = () => {
     setAlertData({ ...alertData, showAlert: false });
   };
@@ -22,8 +22,9 @@ const Alerts = ({ setAlertData, alertData }) => {
 
   return (
     <div
+      ref={alertRef}
       style={showAlert ? {} : { display: "none" }}
-      className={`toast-custom toast-${alertType} br-3`}
+      className={`li-shadow fade-in-right toast-custom toast-${alertType} br-3`}
     >
       {alertMsg}
     </div>

@@ -47,7 +47,7 @@ const CartCard = ({ product }) => {
         </div>
         <div className="textbox">
           <div className="counter-btn-div flex-row align-center">
-            <DecreaseProductQuantity id={_id} />
+            <DecreaseProductQuantity id={_id} qty={qty} />
             <input
               value={qty}
               className="input-counter m-x-1 is-2 p-y-0"

@@ -12,25 +12,28 @@ import { useState } from "react";
 
 const AddToWishlistLarge = ({ product }) => {
   const { dataState, dispatch } = useData();
-  const { token } = useAuth();
+  const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
   const [alertData, setAlertData] = useState({
     showAlert: false,
     alertMsg: "",
     alertType: "",
   });
-  const addToWishlistClickHandler = () => {
+  const addToWishlistClickHandler = async () => {
     if (!token) {
       navigate("/login");
     }
     if (token && !checkInList(dataState.wishlist, product.id)) {
-      addToWishlistApiMethod(product, token, dispatch);
+      setIsLoading(true);
+      await addToWishlistApiMethod(product, token, dispatch);
+      setIsLoading(false);
       setAlertData({
         showAlert: true,
         alertMsg: "Moved to wishlist",
         alertType: "primary",
       });
     }
+
     removeFromCartApiMethod(product._id, token, dispatch);
   };
   return (
@@ -51,19 +54,21 @@ const AddToWishlistLarge = ({ product }) => {
 
 const AddToWishlistSingleProductPage = ({ product }) => {
   const { dataState, dispatch } = useData();
-  const { token } = useAuth();
+  const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
   const [alertData, setAlertData] = useState({
     showAlert: false,
     alertMsg: "",
     alertType: "",
   });
-  const addToWishlistClickHandler = () => {
+  const addToWishlistClickHandler = async () => {
     if (!token) {
       navigate("/login");
     }
     if (token && !checkInList(dataState.wishlist, product.id)) {
-      addToWishlistApiMethod(product, token, dispatch);
+      setIsLoading(true);
+      await addToWishlistApiMethod(product, token, dispatch);
+      setIsLoading(false);
       setAlertData({
         showAlert: true,
         alertMsg: "Moved to wishlist",
@@ -89,7 +94,7 @@ const AddToWishlistSingleProductPage = ({ product }) => {
 
 const AddToWishlistSmall = ({ product }) => {
   const { dataState, dispatch } = useData();
-  const { token } = useAuth();
+  const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
   const [alertData, setAlertData] = useState({
     showAlert: false,
@@ -100,19 +105,23 @@ const AddToWishlistSmall = ({ product }) => {
     if (!token) {
       navigate("/login");
     } else if (checkInList(dataState.wishlist, product.id)) {
+      setIsLoading(true);
       await removeFromWishlistApiMethod(product._id, token, dispatch);
       setAlertData({
         showAlert: true,
         alertMsg: "Removed from wishlist",
         alertType: "primary",
       });
+      setIsLoading(false);
     } else if (token) {
+      setIsLoading(true);
       await addToWishlistApiMethod(product, token, dispatch);
       setAlertData({
         showAlert: true,
         alertMsg: "Added to wishlist",
         alertType: "success",
       });
+      setIsLoading(false);
     }
   };
   const isRed = checkInList(dataState.wishlist, product.id)
@@ -133,40 +142,67 @@ const AddToWishlistSmall = ({ product }) => {
 
 const RemoveFromWishlist = ({ id }) => {
   const { dispatch } = useData();
-  const { token } = useAuth();
+  const { token, setIsLoading } = useAuth();
+  const [alertData, setAlertData] = useState({
+    showAlert: false,
+    alertMsg: "",
+    alertType: "",
+  });
+  const removeButtonClick = async () => {
+    try {
+      setIsLoading(true);
+      await removeFromWishlistApiMethod(id, token, dispatch);
+      setIsLoading(false);
+    } catch {}
+  };
   return (
-    <button
-      onClick={() => removeFromWishlistApiMethod(id, token, dispatch)}
-      className="card-cross btn-close is-medium"
-    >
-      <i className="fas fa-times" />
-    </button>
+    <>
+      <Alerts alertData={alertData} setAlertData={setAlertData} />
+      <button
+        onClick={() => {
+          removeButtonClick;
+          setAlertData({
+            showAlert: true,
+            alertMsg: "Removed from wishlist",
+            alertType: "primary",
+          });
+        }}
+        className="card-cross btn-close is-medium"
+      >
+        <i className="fas fa-times" />
+      </button>
+    </>
   );
 };
+
 const AddToCartWishlist = ({ product }) => {
   const { dataState, dispatch } = useData();
-  const { token } = useAuth();
+  const { token, setIsLoading } = useAuth();
   const { _id } = product;
   const [alertData, setAlertData] = useState({
     showAlert: false,
     alertMsg: "",
     alertType: "",
   });
-  const addToWishlistClickHandler = () => {
+  const addToWishlistClickHandler = async () => {
     if (checkInList(dataState.cart, product.id)) {
-      increaseQtyApiMethod(_id, token, dispatch);
+      setIsLoading(true);
+      await increaseQtyApiMethod(_id, token, dispatch);
       setAlertData({
         showAlert: true,
         alertMsg: "Increased quantity",
         alertType: "success",
       });
+      setIsLoading(false);
     } else {
-      addToCartApiMethod(product, token, dispatch);
+      setIsLoading(true);
+      await addToCartApiMethod(product, token, dispatch);
       setAlertData({
         showAlert: true,
         alertMsg: "Moved to Cart",
         alertType: "primary",
       });
+      setIsLoading(false);
     }
   };
 

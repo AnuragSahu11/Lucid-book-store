@@ -12,7 +12,7 @@ import {
 
 const AddToCartProductListing = ({ product, classes }) => {
   const navigate = useNavigate();
-  const { token } = useAuth();
+  const { token, setIsLoading } = useAuth();
   const { dataState, dispatch } = useData();
   const [alertData, setAlertData] = useState({
     showAlert: false,
@@ -26,12 +26,14 @@ const AddToCartProductListing = ({ product, classes }) => {
       navigate("/login");
     }
     if (token && !checkInList(dataState.cart, product.id)) {
+      setIsLoading(true);
       await addToCartApiMethod(product, token, dispatch);
       setAlertData({
         showAlert: true,
         alertMsg: "Added to Cart",
         alertType: "success",
       });
+      setIsLoading(false);
     } else {
       navigate("/cart");
     }
@@ -61,25 +63,30 @@ const AddToCartProductListing = ({ product, classes }) => {
 };
 
 const IncreaseProductQuantity = ({ id }) => {
-  const { token } = useAuth();
+  const { token, setIsLoading } = useAuth();
   const { dispatch } = useData();
   const [alertData, setAlertData] = useState({
     showAlert: false,
     alertMsg: "",
     alertType: "",
   });
+  const increaseQtyButton = async () => {
+    setIsLoading(true);
+    await increaseQtyApiMethod(id, token, dispatch);
+    setAlertData({
+      showAlert: true,
+      alertMsg: "Increased quantity",
+      alertType: "success",
+    });
+    setIsLoading(false);
+  };
   return (
     <>
       <Alerts alertData={alertData} setAlertData={setAlertData} />
       <button
         onClick={(e) => {
           e.stopPropagation();
-          increaseQtyApiMethod(id, token, dispatch);
-          setAlertData({
-            showAlert: true,
-            alertMsg: "Increased quantity",
-            alertType: "success",
-          });
+          increaseQtyButton();
         }}
         className="btn-counter is-3 semibold"
       >
@@ -89,26 +96,29 @@ const IncreaseProductQuantity = ({ id }) => {
   );
 };
 
-const DecreaseProductQuantity = ({ id, quantity }) => {
-  const { token } = useAuth();
+const DecreaseProductQuantity = ({ id, qty }) => {
+  const { token, setIsLoading } = useAuth();
   const { dispatch } = useData();
   const [alertData, setAlertData] = useState({
     showAlert: false,
     alertMsg: "",
     alertType: "",
   });
-  const decreaseQtyclickHandler = () => {
-    decreaseQtyApiMethod(id, token, dispatch);
+  const decreaseQtyclickHandler = async () => {
+    setIsLoading(true);
+    await decreaseQtyApiMethod(id, token, dispatch);
     setAlertData({
       showAlert: true,
       alertMsg: "Decreased quantity",
       alertType: "primary",
     });
+    setIsLoading(false);
   };
   return (
     <>
       <Alerts alertData={alertData} setAlertData={setAlertData} />
       <button
+        disabled={qty === 1}
         onClick={(e) => {
           e.stopPropagation();
           decreaseQtyclickHandler();
@@ -123,19 +133,16 @@ const DecreaseProductQuantity = ({ id, quantity }) => {
 
 const RemoveFromCart = ({ id }) => {
   const { dispatch } = useData();
-  const { token } = useAuth();
+  const { token, setIsLoading } = useAuth();
   const [alertData, setAlertData] = useState({
     showAlert: false,
     alertMsg: "",
     alertType: "",
   });
-  const removeClickHandler = () => {
-    removeFromCartApiMethod(id, token, dispatch);
-    setAlertData({
-      showAlert: true,
-      alertMsg: "Removed from Cart",
-      alertType: "primary",
-    });
+  const removeClickHandler = async () => {
+    setIsLoading(true);
+    await removeFromCartApiMethod(id, token, dispatch);
+    setIsLoading(false);
   };
   return (
     <>
@@ -144,6 +151,11 @@ const RemoveFromCart = ({ id }) => {
         onClick={(e) => {
           e.stopPropagation();
           removeClickHandler();
+          setAlertData({
+            showAlert: true,
+            alertMsg: "Removed from Cart",
+            alertType: "primary",
+          });
         }}
         className="btn-grey btn-small btn-w-icon"
       >

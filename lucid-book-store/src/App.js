@@ -13,12 +13,10 @@ import {
   Signup,
 } from "./components/components";
 import { Route, Routes } from "react-router-dom";
-import { getProductsData, Loader } from "./utility";
 import "./App.css";
 import { useData } from "./context/data-context";
 
 function App() {
-  const { dataState, dispatch } = useData();
   return (
     <div className="App">
       <Navbar />
