@@ -149,18 +149,16 @@ const RemoveFromWishlist = ({ id }) => {
     alertType: "",
   });
   const removeButtonClick = async () => {
-    try {
-      setIsLoading(true);
-      await removeFromWishlistApiMethod(id, token, dispatch);
-      setIsLoading(false);
-    } catch {}
+    setIsLoading(true);
+    await removeFromWishlistApiMethod(id, token, dispatch);
+    setIsLoading(false);
   };
   return (
     <>
       <Alerts alertData={alertData} setAlertData={setAlertData} />
       <button
         onClick={() => {
-          removeButtonClick;
+          removeButtonClick();
           setAlertData({
             showAlert: true,
             alertMsg: "Removed from wishlist",

@@ -7,7 +7,11 @@ const CartProducts = () => {
   return dataState.cart.length > 0 ? (
     dataState.cart.map((item) => <CartCard key={item.id} product={item} />)
   ) : (
-    <>loading</>
+    <div className="empty-cart-image width-100">
+      <div className="cart-image-wrapper center-x">
+        <img className="width-100" src="./images/empty-cart.svg" alt="" />
+      </div>
+    </div>
   );
 };
 
