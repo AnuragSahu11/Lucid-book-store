@@ -1,17 +1,20 @@
 import { useParams } from "react-router-dom";
-import { useFilter } from "../../context/filter-context";
-import { discountPercentageCalc } from "../../utility/discount-calculator";
+import { useData } from "../../context";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
-import { AddToWishlistLarge } from "../cart-wishlist/wishlist-operations";
-import { ratingStarColor, showRatingStars } from "../../utility/rating";
+import { AddToWishlistSingleProductPage } from "../cart-wishlist/wishlist-operations";
 import { useEffect } from "react";
-import { changeTitle } from "../../utility";
+import {
+  changeTitle,
+  discountPercentageCalc,
+  ratingStarColor,
+  showRatingStars,
+} from "../../utility";
 
 const SingleProductPage = () => {
-  const { filterState } = useFilter();
+  const { dataState } = useData();
   let { productId } = useParams();
   const findProductData = (productId) => {
-    return filterState.products.find(({ id }) => productId === id);
+    return dataState.products.find(({ id }) => productId === id);
   };
   const productData = findProductData(productId);
   const { title, author, price, originalPrice, rating, image, description } =
@@ -65,10 +68,7 @@ const SingleProductPage = () => {
               classes={"btn-primary m-r-2 width-50 btn-w-icon btn-medium"}
               product={productData}
             />
-            <AddToWishlistLarge
-              classes={"btn-secondary width-50 btn-medium"}
-              product={productData}
-            />
+            <AddToWishlistSingleProductPage product={productData} />
           </div>
         </div>
       </div>

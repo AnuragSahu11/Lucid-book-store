@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../../context";
 import { CartProducts } from "./cart-products";
 import { CartSummary } from "./cart-summary";
 import "./cart.css";
 
 const Cart = () => {
-  return (
+  const { token } = useAuth();
+  return token ? (
     <>
       <div className="title text-center m-up-4 is-5">My Cart</div>
       <div className="cart m-y-6 p-x-2 grid-2">
@@ -14,6 +17,8 @@ const Cart = () => {
         <CartSummary />
       </div>
     </>
+  ) : (
+    <Navigate to={"/login"} />
   );
 };
 

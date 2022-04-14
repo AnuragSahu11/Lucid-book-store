@@ -1,23 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../context/cart-wishlist-context";
-import { checkInList } from "../../utility/check-in-list";
+import { useAuth, useData } from "../../context";
+import { checkInList } from "../../utility";
+import {
+  addToCartApiMethod,
+  decreaseQtyApiMethod,
+  increaseQtyApiMethod,
+  removeFromCartApiMethod,
+} from "../Auth/api-methods";
 
 const AddToCartProductListing = ({ product, classes }) => {
-  const { cartState, cartDispatch } = useCart();
+  const { token } = useAuth();
   const navigate = useNavigate();
-  const [buttonText, setButtonText] = useState("Add to Cart");
-  const addToCartclickHandler = () => {
-    if (checkInList(cartState.cart, product.id)) {
-      navigate("/cart");
+  const { dataState, dispatch } = useData();
+  const [buttonText, setButtonText] = useState(null);
+  const addToCartclickHandler = async () => {
+    if (!token) {
+      navigate("/login");
+    }
+    if (token && !checkInList(dataState.cart, product.id)) {
+      addToCartApiMethod(product, token, dispatch);
     } else {
-      cartDispatch({
-        type: "ADD_TO_CART",
-        value: { ...product, quantity: 1 },
-      });
-      setButtonText("Go to Cart");
+      navigate("/cart");
     }
   };
+
+  useEffect(() => {
+    checkInList(dataState.cart, product.id)
+      ? setButtonText("Go to Cart")
+      : setButtonText("Add to Cart");
+  }, [dataState.cart]);
+
   return (
     <button
       onClick={(e) => {
@@ -33,12 +46,13 @@ const AddToCartProductListing = ({ product, classes }) => {
 };
 
 const IncreaseProductQuantity = ({ id }) => {
-  const { cartDispatch } = useCart();
+  const { token } = useAuth();
+  const { dispatch } = useData();
   return (
     <button
       onClick={(e) => {
         e.stopPropagation();
-        cartDispatch({ type: "INCREASE_QUANTITY", value: id });
+        increaseQtyApiMethod(id, token, dispatch);
       }}
       className="btn-counter is-3 semibold"
     >
@@ -48,9 +62,10 @@ const IncreaseProductQuantity = ({ id }) => {
 };
 
 const DecreaseProductQuantity = ({ id, quantity }) => {
-  const { cartDispatch } = useCart();
+  const { token } = useAuth();
+  const { dispatch } = useData();
   const decreaseQtyclickHandler = () => {
-    quantity > 1 && cartDispatch({ type: "DECREASE_QUANTITY", value: id });
+    decreaseQtyApiMethod(id, token, dispatch);
   };
   return (
     <button
@@ -66,12 +81,13 @@ const DecreaseProductQuantity = ({ id, quantity }) => {
 };
 
 const RemoveFromCart = ({ id }) => {
-  const { cartDispatch } = useCart();
+  const { dispatch } = useData();
+  const { token } = useAuth();
   return (
     <button
       onClick={(e) => {
         e.stopPropagation();
-        cartDispatch({ type: "REMOVE_FROM_CART", value: id });
+        removeFromCartApiMethod(id, token, dispatch);
       }}
       className="btn-grey btn-small btn-w-icon"
     >

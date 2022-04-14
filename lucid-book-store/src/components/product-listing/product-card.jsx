@@ -1,9 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { discountPercentageCalc } from "../../utility/discount-calculator";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistSmall } from "../cart-wishlist/wishlist-operations";
-import { ratingStarColor, showRatingStars } from "../../utility/rating";
+import {
+  discountPercentageCalc,
+  ratingStarColor,
+  showRatingStars,
+} from "../../utility";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();

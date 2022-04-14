@@ -7,36 +7,34 @@ import {
   ProductListing,
   Cart,
   Wishlist,
+  SingleProductPage,
+  SearchResult,
+  Login,
+  Signup,
 } from "./components/components";
 import { Route, Routes } from "react-router-dom";
-import { getProductsData } from "./utility/api-call";
+import { getProductsData, Loader } from "./utility";
 import "./App.css";
-import { useFilter } from "./context/filter-context";
-import { SingleProductPage } from "./components/single-product-page/single-product-page";
-import { SearchResult } from "./components/navbar/search-results";
-import { Login, Signup } from "./components/Auth";
+import { useData } from "./context/data-context";
 
 function App() {
-  const { filterState, dispatch } = useFilter();
-  useEffect(() => {
-    getProductsData(dispatch);
-  }, []);
+  const { dataState, dispatch } = useData();
   return (
     <div className="App">
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/productListing" element={<ProductListing />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
         <Route
           path="/productListing/:productId"
           element={<SingleProductPage />}
         />
-        <Route path="/mock" element={<Mockman />} />
         <Route path="/search/:searchText" element={<SearchResult />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/mock" element={<Mockman />} />
       </Routes>
       <Footer />
     </div>

@@ -1,10 +1,9 @@
-@import url("https://lucid-ui.netlify.app/main.css");
-
 body {
   font-family: "Poppins", sans-serif;
 }
 
 .App {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;

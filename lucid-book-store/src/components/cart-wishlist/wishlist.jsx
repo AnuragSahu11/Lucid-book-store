@@ -1,22 +1,24 @@
 import React, { useEffect } from "react";
-import { useCart } from "../../context/cart-wishlist-context";
+import { Navigate } from "react-router-dom";
+import { useAuth, useData } from "../../context";
 import { changeTitle } from "../../utility";
 import { WishlistCard } from "./wishlist-card";
 
 const Wishlist = () => {
-  useEffect(
-    () => changeTitle(`Wishlist -${cartState.wishlist.length} items`),
-    []
-  );
-  const { cartState } = useCart();
-  return (
+  const { dataState } = useData();
+  const { token } = useAuth();
+  useEffect(() => {
+    changeTitle(`Wishlist -${dataState.wishlist.length} items`);
+  }, []);
+
+  return token ? (
     <div className="wishlist p-x-3">
       <div className="textbox m-y-3">
         <div className="title bold is-5 center-text">Wishlist</div>
       </div>
       <div className="wishlist-cards flex-r-w space-evenly">
-        {cartState.wishlist.length > 0 ? (
-          cartState.wishlist.map((item) => (
+        {dataState.wishlist.length > 0 ? (
+          dataState.wishlist.map((item) => (
             <WishlistCard key={item.id} product={item} />
           ))
         ) : (
@@ -24,6 +26,8 @@ const Wishlist = () => {
         )}
       </div>
     </div>
+  ) : (
+    <Navigate to={"/login"} />
   );
 };
 
