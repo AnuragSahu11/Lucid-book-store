@@ -1,28 +1,41 @@
 import { useParams } from "react-router-dom";
-import { useData } from "../../context";
+import { useAuth, useData } from "../../context";
 import { AddToCartProductListing } from "../cart-wishlist/cart-operations";
 import { AddToWishlistSingleProductPage } from "../cart-wishlist/wishlist-operations";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   changeTitle,
   discountPercentageCalc,
   ratingStarColor,
   showRatingStars,
 } from "../../utility";
+import axios from "axios";
 
 const SingleProductPage = () => {
-  const { dataState } = useData();
+  const { isLoading, setIsLoading } = useAuth();
+  const [productData, setProductData] = useState([]);
   let { productId } = useParams();
-  const findProductData = (productId) => {
-    return dataState.products.find(({ id }) => productId === id);
+  const findProductData = (productId, data) => {
+    return data.products.find(({ id }) => productId === id);
   };
-  const productData = findProductData(productId);
+
+  const getProductData = async () => {
+    setIsLoading(true);
+    const { data } = await axios.get("/api/products");
+    setProductData(findProductData(productId, data));
+    changeTitle(findProductData(productId, data).title);
+    setIsLoading(false);
+  };
+  useEffect(() => {
+    getProductData();
+  }, []);
+
   const { title, author, price, originalPrice, rating, image, description } =
-    findProductData(productId);
+    productData;
 
-  useEffect(() => changeTitle(title), []);
-
-  return (
+  return !title ? (
+    <></>
+  ) : (
     <div className="product p-x-2 p-y-6 br-3 elevated li-shadow elevate-1 m-up-6 width-80 center-x grid-30-70">
       <div className="product-image width-80 center-x m-l-">
         <img src={image} alt="" className="img-responsive" />

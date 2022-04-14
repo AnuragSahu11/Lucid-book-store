@@ -4,6 +4,7 @@ import { Loader, SwitchTheme } from "../../utility";
 import { Search } from "./search";
 import { useAuth, useData } from "../../context";
 import { Logout } from "../Auth";
+import logo from "./logo.png";
 import "./navbar.css";
 
 const NavbarWishlistButton = ({ wishlistNotification }) => (
@@ -71,11 +72,7 @@ const Navbar = () => {
         <div className="nav-head">
           <div className="nav-brand">
             <a href="" className="logo-a">
-              <img
-                className="logo-s"
-                src="images/02 - Colorful - Icon Only.png"
-                alt="Lucid logo"
-              />
+              <img className="logo-s" src={logo} alt="logo" />
             </a>
           </div>
           <div onClick={hamburgerClickHandler} className="nav-hamburger">
