@@ -1,5 +1,5 @@
 import { useData, useAuth } from "../../context";
-import { checkInList, Alerts } from "../../utility";
+import { checkInList } from "../../utility";
 import { useNavigate } from "react-router-dom";
 import {
   addToWishlistApiMethod,
@@ -10,15 +10,10 @@ import {
 } from "../Auth/api-methods";
 import { useState } from "react";
 
-const AddToWishlistLarge = ({ product }) => {
+const AddToWishlistLarge = ({ product, setAlertData }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
-  const [alertData, setAlertData] = useState({
-    showAlert: false,
-    alertMsg: "",
-    alertType: "",
-  });
   const addToWishlistClickHandler = async () => {
     if (!token) {
       navigate("/login");
@@ -38,7 +33,6 @@ const AddToWishlistLarge = ({ product }) => {
   };
   return (
     <>
-      <Alerts alertData={alertData} setAlertData={setAlertData} />
       <button
         onClick={(e) => {
           e.stopPropagation();
@@ -52,15 +46,10 @@ const AddToWishlistLarge = ({ product }) => {
   );
 };
 
-const AddToWishlistSingleProductPage = ({ product }) => {
+const AddToWishlistSingleProductPage = ({ product, setAlertData }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
-  const [alertData, setAlertData] = useState({
-    showAlert: false,
-    alertMsg: "",
-    alertType: "",
-  });
   const addToWishlistClickHandler = async () => {
     if (!token) {
       navigate("/login");
@@ -78,7 +67,6 @@ const AddToWishlistSingleProductPage = ({ product }) => {
   };
   return (
     <>
-      <Alerts alertData={alertData} setAlertData={setAlertData} />
       <button
         onClick={(e) => {
           e.stopPropagation();
@@ -92,15 +80,10 @@ const AddToWishlistSingleProductPage = ({ product }) => {
   );
 };
 
-const AddToWishlistSmall = ({ product }) => {
+const AddToWishlistSmall = ({ product, setAlertData }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
-  const [alertData, setAlertData] = useState({
-    showAlert: false,
-    alertMsg: "",
-    alertType: "",
-  });
   const AddToWishlistClickHandler = async () => {
     if (!token) {
       navigate("/login");
@@ -129,7 +112,6 @@ const AddToWishlistSmall = ({ product }) => {
     : {};
   return (
     <>
-      <Alerts alertData={alertData} setAlertData={setAlertData} />
       <span
         onClick={(e) => AddToWishlistClickHandler(e)}
         className="card-icon is-white"
@@ -140,14 +122,9 @@ const AddToWishlistSmall = ({ product }) => {
   );
 };
 
-const RemoveFromWishlist = ({ id }) => {
+const RemoveFromWishlist = ({ id, setAlertData }) => {
   const { dispatch } = useData();
   const { token, setIsLoading } = useAuth();
-  const [alertData, setAlertData] = useState({
-    showAlert: false,
-    alertMsg: "",
-    alertType: "",
-  });
   const removeButtonClick = async () => {
     setIsLoading(true);
     await removeFromWishlistApiMethod(id, token, dispatch);
@@ -155,7 +132,6 @@ const RemoveFromWishlist = ({ id }) => {
   };
   return (
     <>
-      <Alerts alertData={alertData} setAlertData={setAlertData} />
       <button
         onClick={() => {
           removeButtonClick();
@@ -173,15 +149,10 @@ const RemoveFromWishlist = ({ id }) => {
   );
 };
 
-const AddToCartWishlist = ({ product }) => {
+const AddToCartWishlist = ({ product, setAlertData }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const { _id } = product;
-  const [alertData, setAlertData] = useState({
-    showAlert: false,
-    alertMsg: "",
-    alertType: "",
-  });
   const addToWishlistClickHandler = async () => {
     if (checkInList(dataState.cart, product.id)) {
       setIsLoading(true);
@@ -206,7 +177,6 @@ const AddToCartWishlist = ({ product }) => {
 
   return (
     <>
-      <Alerts alertData={alertData} setAlertData={setAlertData} />
       <button
         onClick={(e) => {
           e.stopPropagation();

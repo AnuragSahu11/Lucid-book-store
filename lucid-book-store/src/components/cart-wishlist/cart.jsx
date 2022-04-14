@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../context";
 import { CartProducts } from "./cart-products";

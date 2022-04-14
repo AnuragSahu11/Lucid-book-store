@@ -11,13 +11,15 @@ const Alerts = ({ setAlertData, alertData }) => {
 
   useEffect(() => {
     if (showAlert && !timeOutId) {
-      setTimeoutId(setTimeout(toggleAlert, 1500));
+      setTimeoutId(setTimeout(toggleAlert, 1000));
     }
+    return () => clearTimeout(timeOutId);
   });
 
   useEffect(() => {
     timeOutId && clearTimeout(timeOutId);
-    setTimeoutId(setTimeout(toggleAlert, 1500));
+    setTimeoutId(setTimeout(toggleAlert, 1000));
+    return () => clearTimeout(timeOutId);
   }, [alertMsg]);
 
   return (
