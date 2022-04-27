@@ -9,6 +9,7 @@ const CartProducts = () => {
   ) : (
     <div className="empty-cart-image width-100">
       <div className="cart-image-wrapper center-x">
+        <p className="is-4 is-light text-center">Your cart is empty</p>
         <img className="width-100" src="./images/empty-cart.svg" alt="" />
       </div>
     </div>

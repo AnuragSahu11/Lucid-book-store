@@ -38,9 +38,6 @@ const CartCard = ({ product }) => {
         className="card cart-card width-80 center-x card-horizontal elevated shadow"
       >
         <div className="card-head">
-          <span className="card-icon">
-            <i className="fas fa-heart" />
-          </span>
           <div className="card-image">
             <img src={image} alt="card image" className="card-image-img" />
           </div>

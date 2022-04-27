@@ -34,7 +34,7 @@ const CartSummary = () => {
         ))}
 
         <div className="subtitle width-100 flex-row regular space-between">
-          <p className="m-y-0">Dilivery Charge</p>
+          <p className="m-y-0">Delivery Charge</p>
           <p className="m-y-0">$50</p>
         </div>
         <hr />
