@@ -24,11 +24,15 @@ const Wishlist = () => {
       </div>
       {dataState.wishlist.length === 0 && (
         <div className="empty-wishlist width-100">
-          <div className="empty-wishlist-wrapper center-x">
-            <p className="is-4 regular text-center is-light">
+          <div className="empty-wishlist-wrapper center-x width-100">
+            <p className="is-4 has-grey br-1 center-x regular text-center width-70 is-light">
               Your wishlist is empty{" "}
             </p>
-            <img src="./images/empty-wishlist.svg" alt="" />
+            <img
+              className="empty-image"
+              src="./images/empty-wishlist.svg"
+              alt=""
+            />
           </div>
         </div>
       )}

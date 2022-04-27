@@ -1,22 +1,6 @@
 .cart-summary {
   height: min-content;
 }
-@media only screen and (max-width: 768px) {
-  .cart-summary {
-    width: 80%;
-  }
-  .cart-image-wrapper {
-    width: 200px;
-  }
-}
-@media only screen and (max-width: 1124px) {
-  .cart-card {
-    width: 100%;
-  }
-}
-hr {
-  border-top: 1px solid var(--grey);
-}
 .btn-counter {
   cursor: pointer;
   height: var(--m);
@@ -34,5 +18,29 @@ hr {
   width: 35vw;
 }
 .empty-wishlist-wrapper {
-  width: 25vw;
+  width: 35vw;
+}
+hr {
+  border-top: 1px solid var(--grey);
+}
+
+@media only screen and (max-width: 554px) {
+  .empty-wishlist-wrapper {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cart-summary {
+    width: 80%;
+  }
+  .cart-image-wrapper {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1124px) {
+  .cart-card {
+    width: 100%;
+  }
 }
