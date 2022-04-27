@@ -11,7 +11,8 @@ import {
   SearchResult,
   Login,
   Signup,
-} from "./components/components";
+  ErrorPage,
+} from "./components";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { useData } from "./context/data-context";
@@ -33,6 +34,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/mock" element={<Mockman />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
     </div>

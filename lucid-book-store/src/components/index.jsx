@@ -7,3 +7,4 @@ export { Wishlist } from "./cart-wishlist/wishlist";
 export { Login, Signup } from "./Auth";
 export { SearchResult } from "./navbar/search-results";
 export { SingleProductPage } from "./single-product-page/single-product-page";
+export { ErrorPage } from "./error-page/error-page";

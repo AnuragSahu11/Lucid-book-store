@@ -9,6 +9,9 @@
   position: relative;
   text-align: center;
 }
+.nav-search input {
+  width: 280px;
+}
 .search-results {
   background-color: var(--background-white);
   position: absolute;
@@ -36,7 +39,9 @@
   flex-direction: column;
   display: block;
 }
-
+.nav-end input {
+  /* width: 500px; */
+}
 .custom-nav .nav-start {
   display: none;
 }
@@ -62,6 +67,9 @@
     align-items: center;
   }
   @media only screen and (max-width: 768px) {
+    .nav-end input {
+      width: 80vw;
+    }
     .custom-nav .nav-btn {
       display: block;
       margin-top: 10px;
