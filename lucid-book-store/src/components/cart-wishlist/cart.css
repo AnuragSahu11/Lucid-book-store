@@ -15,11 +15,17 @@
 }
 .cart-image-wrapper {
   margin-top: -30px;
-  width: 35vw;
+  width: 20vw;
+}
+.empty-wishlist-image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
 }
 .empty-wishlist-wrapper {
-  width: 35vw;
+  width: 40vw;
 }
+
 hr {
   border-top: 1px solid var(--grey);
 }
