@@ -1,21 +1,30 @@
 import React, { useEffect } from "react";
 import { useData } from "../../context";
-import { changeTitle } from "../../utility";
+import { changeTitle, payment } from "../../utility";
 
 const CartSummary = () => {
   const { dataState } = useData();
+
   let totalPrice =
     dataState.cart.reduce(
       (acc, curr) => (acc = acc + curr.price * curr.qty),
       0
     ) + 50;
+
   const cartSummaryProductName = (word) => {
     return word.split("").slice(0, 15).join("");
   };
+
   const productPrice = (price, quantity) => {
     return price * quantity;
   };
+
+  const initialisePayment = () => {
+    payment();
+  };
+
   useEffect(() => changeTitle(`Cart - ${dataState.cart.length} items`), []);
+
   return (
     <div className="cart-summary p-x-3 p-dw-3 p-up-3 width-70 elevated li-shadow br-3 center-x">
       <div className="textbox">
@@ -47,7 +56,10 @@ const CartSummary = () => {
           <p className="m-y-0">You will save $150 on this order</p>
         </div>
       </div>
-      <button className="btn-primary btn-small m-up-1 width-100 has-green">
+      <button
+        onClick={initialisePayment}
+        className="btn-primary btn-small m-up-1 width-100 has-green"
+      >
         Place order
       </button>
     </div>

@@ -14,3 +14,4 @@ export { checkInList } from "./check-in-list";
 export { Loader } from "./loader/loader";
 export { getHeader } from "./request-header";
 export { Alerts } from "./alerts/alerts";
+export { payment } from "./payment-integration";
