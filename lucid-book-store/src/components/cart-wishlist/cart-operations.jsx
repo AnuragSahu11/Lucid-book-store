@@ -16,7 +16,7 @@ const AddToCartProductListing = ({ product, classes, setAlertData }) => {
   const { dataState, dispatch } = useData();
   const [buttonText, setButtonText] = useState(null);
 
-  const addToCartclickHandler = async () => {
+  const addToCartclick = async () => {
     if (!token) {
       navigate("/login");
     }
@@ -45,7 +45,7 @@ const AddToCartProductListing = ({ product, classes, setAlertData }) => {
       <button
         onClick={(e) => {
           e.stopPropagation();
-          addToCartclickHandler();
+          addToCartclick();
         }}
         className={classes}
       >
@@ -88,7 +88,7 @@ const DecreaseProductQuantity = ({ id, qty, setAlertData }) => {
   const { token, setIsLoading } = useAuth();
   const { dispatch } = useData();
 
-  const decreaseQtyclickHandler = async () => {
+  const decreaseQtyclick = async () => {
     setIsLoading(true);
     await decreaseQtyApiMethod(id, token, dispatch);
     setAlertData({
@@ -104,7 +104,7 @@ const DecreaseProductQuantity = ({ id, qty, setAlertData }) => {
         disabled={qty === 1}
         onClick={(e) => {
           e.stopPropagation();
-          decreaseQtyclickHandler();
+          decreaseQtyclick();
         }}
         className="btn-counter is-3 bold"
       >
@@ -117,7 +117,7 @@ const DecreaseProductQuantity = ({ id, qty, setAlertData }) => {
 const RemoveFromCart = ({ id, setAlertData }) => {
   const { dispatch } = useData();
   const { token, setIsLoading } = useAuth();
-  const removeClickHandler = async () => {
+  const removeItemClick = async () => {
     setIsLoading(true);
     await removeFromCartApiMethod(id, token, dispatch);
     setIsLoading(false);
@@ -127,7 +127,7 @@ const RemoveFromCart = ({ id, setAlertData }) => {
       <button
         onClick={(e) => {
           e.stopPropagation();
-          removeClickHandler();
+          removeItemClick();
           setAlertData({
             showAlert: true,
             alertMsg: "Removed from Cart",

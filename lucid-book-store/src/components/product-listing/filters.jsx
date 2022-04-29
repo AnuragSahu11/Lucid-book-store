@@ -4,7 +4,7 @@ import { useData } from "../../context";
 const Filters = () => {
   const { dataState, dispatch } = useData();
   const [filterStyle, setFilterStyle] = useState("");
-  const showFilterClickHandler = () => {
+  const showFilterClick = () => {
     setFilterStyle(filterStyle === "" ? "hide-filter-menu" : "");
   };
   const filterClickHandler = (dispatchArguments) => {
@@ -16,7 +16,7 @@ const Filters = () => {
   return (
     <div className={`filter-menu ${filterStyle} p-x-4 p-up-2  dk-shadow`}>
       <div className="filter-menu-responsive flex-row align-center space-between">
-        <div onClick={showFilterClickHandler} className="title is-dark">
+        <div onClick={showFilterClick} className="title is-dark">
           Filters
         </div>
         <p onClick={clearFilters} className="link-secondary m-up-1 is-2">

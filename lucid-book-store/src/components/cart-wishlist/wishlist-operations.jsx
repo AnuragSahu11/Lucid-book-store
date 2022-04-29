@@ -14,7 +14,7 @@ const AddToWishlistLarge = ({ product, setAlertData }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
-  const addToWishlistClickHandler = async () => {
+  const addToWishlistClick = async () => {
     if (!token) {
       navigate("/login");
     }
@@ -36,7 +36,7 @@ const AddToWishlistLarge = ({ product, setAlertData }) => {
       <button
         onClick={(e) => {
           e.stopPropagation();
-          addToWishlistClickHandler();
+          addToWishlistClick();
         }}
         className={"btn-secondary btn-small"}
       >
@@ -50,7 +50,7 @@ const AddToWishlistSingleProductPage = ({ product, setAlertData }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
-  const addToWishlistClickHandler = async () => {
+  const addToWishlistClick = async () => {
     if (!token) {
       navigate("/login");
     }
@@ -70,7 +70,7 @@ const AddToWishlistSingleProductPage = ({ product, setAlertData }) => {
       <button
         onClick={(e) => {
           e.stopPropagation();
-          addToWishlistClickHandler();
+          addToWishlistClick();
         }}
         className={"btn-secondary width-50 btn-medium"}
       >
@@ -84,7 +84,7 @@ const AddToWishlistSmall = ({ product, setAlertData }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
-  const AddToWishlistClickHandler = async () => {
+  const AddToWishlistClick = async () => {
     if (!token) {
       navigate("/login");
     } else if (checkInList(dataState.wishlist, product.id)) {
@@ -113,7 +113,7 @@ const AddToWishlistSmall = ({ product, setAlertData }) => {
   return (
     <>
       <span
-        onClick={(e) => AddToWishlistClickHandler(e)}
+        onClick={(e) => AddToWishlistClick(e)}
         className="card-icon is-white"
       >
         <i style={isRed} className="fas is-5 fa-heart" />
@@ -153,7 +153,7 @@ const AddToCartWishlist = ({ product, setAlertData }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const { _id } = product;
-  const addToWishlistClickHandler = async () => {
+  const addToWishlistClick = async () => {
     if (checkInList(dataState.cart, product.id)) {
       setIsLoading(true);
       await increaseQtyApiMethod(_id, token, dispatch);
@@ -180,7 +180,7 @@ const AddToCartWishlist = ({ product, setAlertData }) => {
       <button
         onClick={(e) => {
           e.stopPropagation();
-          addToWishlistClickHandler();
+          addToWishlistClick();
         }}
         className="btn-primary width-100 btn-w-icon btn-small"
       >

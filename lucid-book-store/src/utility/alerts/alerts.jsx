@@ -25,7 +25,7 @@ const Alerts = ({ setAlertData, alertData }) => {
   return (
     <div
       ref={alertRef}
-      style={showAlert ? {} : { display: "none" }}
+      style={{ display: !showAlert && "none" }}
       className={`li-shadow fade-in-right toast-custom toast-${alertType} br-3`}
     >
       {alertMsg}
