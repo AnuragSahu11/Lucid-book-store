@@ -10,7 +10,7 @@
   text-align: center;
 }
 .nav-search input {
-  width: 280px;
+  width: 280rem;
 }
 .search-results {
   background-color: var(--background-white);
@@ -38,9 +38,6 @@
 .custom-nav .nav-menu {
   flex-direction: column;
   display: block;
-}
-.nav-end input {
-  /* width: 500px; */
 }
 .custom-nav .nav-start {
   display: none;
