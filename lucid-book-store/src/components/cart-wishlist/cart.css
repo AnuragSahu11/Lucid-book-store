@@ -5,6 +5,9 @@
   .cart-summary {
     width: 80%;
   }
+  .cart-image-wrapper {
+    width: 200px;
+  }
 }
 @media only screen and (max-width: 1124px) {
   .cart-card {
@@ -25,4 +28,11 @@ hr {
   text-align: center;
   width: 2rem;
   height: 1.7rem;
+}
+.cart-image-wrapper {
+  margin-top: -30px;
+  width: 35vw;
+}
+.empty-wishlist-wrapper {
+  width: 25vw;
 }

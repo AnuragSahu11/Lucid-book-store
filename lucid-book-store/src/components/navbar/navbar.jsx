@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { SwitchTheme } from "../../utility";
+import { Loader, SwitchTheme } from "../../utility";
 import { Search } from "./search";
-import { useData } from "../../context";
+import { useAuth, useData } from "../../context";
 import { Logout } from "../Auth";
+import logo from "./logo.png";
 import "./navbar.css";
 
 const NavbarWishlistButton = ({ wishlistNotification }) => (
@@ -25,7 +26,31 @@ const NavbarCartButton = ({ cartNotification }) => (
   </button>
 );
 
+const NavbarLoginButton = ({ token, toggleLogoutModal }) => {
+  const navigate = useNavigate();
+  if (token) {
+    return (
+      <button
+        onClick={toggleLogoutModal}
+        className="btn-primary nav-btn btn-small"
+      >
+        Log out
+      </button>
+    );
+  } else {
+    return (
+      <button
+        onClick={() => navigate("/login")}
+        className="btn-primary nav-btn btn-small"
+      >
+        Log In
+      </button>
+    );
+  }
+};
+
 const Navbar = () => {
+  const { token } = useAuth();
   const { dataState } = useData();
   const navigate = useNavigate();
   const [showNav, setShowNav] = useState("navbar li-shadow");
@@ -42,15 +67,12 @@ const Navbar = () => {
   };
   return (
     <div className="">
+      <Loader />
       <nav className={showNav}>
         <div className="nav-head">
           <div className="nav-brand">
             <a href="" className="logo-a">
-              <img
-                className="logo-s"
-                src="images/02 - Colorful - Icon Only.png"
-                alt="Lucid logo"
-              />
+              <img className="logo-s" src={logo} alt="logo" />
             </a>
           </div>
           <div onClick={hamburgerClickHandler} className="nav-hamburger">
@@ -77,13 +99,6 @@ const Navbar = () => {
               />
             </Link>
 
-            <button
-              onClick={toggleLogoutModal}
-              className="btn-icon nav-icons m-x-1"
-            >
-              <i className="fas is-dark fa-sign-out-alt" />
-            </button>
-
             <button className="btn-icon nav-icons m-x-1">
               <i className="fa-solid is-dark fa-user" />
             </button>
@@ -91,16 +106,15 @@ const Navbar = () => {
             <button
               onClick={() => navigate("/signup")}
               className="btn-secondary nav-btn btn-small"
+              style={token ? { display: "none" } : {}}
             >
               Sign up
             </button>
 
-            <button
-              onClick={() => navigate("/login")}
-              className="btn-primary nav-btn btn-small"
-            >
-              Log in
-            </button>
+            <NavbarLoginButton
+              token={token}
+              toggleLogoutModal={toggleLogoutModal}
+            />
           </div>
         </div>
       </nav>
