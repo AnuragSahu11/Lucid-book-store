@@ -8,9 +8,8 @@ import {
   addToCartApiMethod,
   removeFromCartApiMethod,
 } from "../../server-requests/server-requests";
-import { useState } from "react";
 
-const AddToWishlistLarge = ({ product, setAlertData }) => {
+const AddToWishlistLarge = ({ product }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
@@ -22,11 +21,6 @@ const AddToWishlistLarge = ({ product, setAlertData }) => {
       setIsLoading(true);
       await addToWishlistApiMethod(product, token, dispatch);
       setIsLoading(false);
-      setAlertData({
-        showAlert: true,
-        alertMsg: "Moved to wishlist",
-        alertType: "primary",
-      });
     }
 
     removeFromCartApiMethod(product._id, token, dispatch);
@@ -46,7 +40,7 @@ const AddToWishlistLarge = ({ product, setAlertData }) => {
   );
 };
 
-const AddToWishlistSingleProductPage = ({ product, setAlertData }) => {
+const AddToWishlistSingleProductPage = ({ product }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
@@ -58,11 +52,6 @@ const AddToWishlistSingleProductPage = ({ product, setAlertData }) => {
       setIsLoading(true);
       await addToWishlistApiMethod(product, token, dispatch);
       setIsLoading(false);
-      setAlertData({
-        showAlert: true,
-        alertMsg: "Moved to wishlist",
-        alertType: "primary",
-      });
     }
   };
   return (
@@ -80,7 +69,7 @@ const AddToWishlistSingleProductPage = ({ product, setAlertData }) => {
   );
 };
 
-const AddToWishlistSmall = ({ product, setAlertData }) => {
+const AddToWishlistSmall = ({ product }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const navigate = useNavigate();
@@ -90,20 +79,10 @@ const AddToWishlistSmall = ({ product, setAlertData }) => {
     } else if (checkInList(dataState.wishlist, product.id)) {
       setIsLoading(true);
       await removeFromWishlistApiMethod(product._id, token, dispatch);
-      setAlertData({
-        showAlert: true,
-        alertMsg: "Removed from wishlist",
-        alertType: "primary",
-      });
       setIsLoading(false);
     } else if (token) {
       setIsLoading(true);
       await addToWishlistApiMethod(product, token, dispatch);
-      setAlertData({
-        showAlert: true,
-        alertMsg: "Added to wishlist",
-        alertType: "success",
-      });
       setIsLoading(false);
     }
   };
@@ -122,7 +101,7 @@ const AddToWishlistSmall = ({ product, setAlertData }) => {
   );
 };
 
-const RemoveFromWishlist = ({ id, setAlertData }) => {
+const RemoveFromWishlist = ({ id }) => {
   const { dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const removeButtonClick = async () => {
@@ -135,11 +114,6 @@ const RemoveFromWishlist = ({ id, setAlertData }) => {
       <button
         onClick={() => {
           removeButtonClick();
-          setAlertData({
-            showAlert: true,
-            alertMsg: "Removed from wishlist",
-            alertType: "primary",
-          });
         }}
         className="card-cross btn-close is-medium"
       >
@@ -149,7 +123,7 @@ const RemoveFromWishlist = ({ id, setAlertData }) => {
   );
 };
 
-const AddToCartWishlist = ({ product, setAlertData }) => {
+const AddToCartWishlist = ({ product }) => {
   const { dataState, dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const { _id } = product;
@@ -157,20 +131,10 @@ const AddToCartWishlist = ({ product, setAlertData }) => {
     if (checkInList(dataState.cart, product.id)) {
       setIsLoading(true);
       await increaseQtyApiMethod(_id, token, dispatch);
-      setAlertData({
-        showAlert: true,
-        alertMsg: "Increased quantity",
-        alertType: "success",
-      });
       setIsLoading(false);
     } else {
       setIsLoading(true);
       await addToCartApiMethod(product, token, dispatch);
-      setAlertData({
-        showAlert: true,
-        alertMsg: "Moved to Cart",
-        alertType: "primary",
-      });
       setIsLoading(false);
     }
   };

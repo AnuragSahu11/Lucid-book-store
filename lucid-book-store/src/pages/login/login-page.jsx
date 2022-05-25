@@ -1,17 +1,11 @@
 import { useState } from "react";
 import { useAuth } from "../../context/auth-context";
-import { Alerts } from "../../utility";
 import "./login.css";
 
 const LoginPage = () => {
   const [formField, setFormField] = useState({ email: "", password: "" });
   const { loginHandler, setIsLoading } = useAuth();
 
-  const [alertData, setAlertData] = useState({
-    showAlert: false,
-    alertMsg: "",
-    alertType: "",
-  });
   const demoCredentialsLoginHandler = async () => {
     setIsLoading(true);
     setFormField({
@@ -42,7 +36,6 @@ const LoginPage = () => {
   };
   return (
     <>
-      <Alerts alertData={alertData} setAlertData={setAlertData} />
       <section className="login-section p-x-1">
         <div className="login br-3 center-x m-up-6 elevated shadow p-y-2 p-x-4">
           <div className="textbox">

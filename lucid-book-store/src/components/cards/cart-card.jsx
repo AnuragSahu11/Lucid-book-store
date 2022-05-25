@@ -7,7 +7,7 @@ import {
   RemoveFromCart,
 } from "../buttons/cart-buttons";
 import { AddToWishlistLarge } from "../buttons/wishlist-buttons";
-import { discountPercentageCalc, Alerts } from "../../utility";
+import { discountPercentageCalc } from "../../utility";
 
 const CartCard = ({ product }) => {
   const navigate = useNavigate();
@@ -32,7 +32,6 @@ const CartCard = ({ product }) => {
   };
   return (
     <>
-      {<Alerts setAlertData={setAlertData} alertData={alertData} />}
       <div
         onClick={goToProductPage}
         className="card cart-card width-80 center-x card-horizontal elevated shadow"
@@ -55,7 +54,6 @@ const CartCard = ({ product }) => {
               <DecreaseProductQuantity
                 id={_id}
                 qty={qty}
-                setAlertData={setAlertData}
               />
               <input
                 value={qty}
@@ -63,7 +61,7 @@ const CartCard = ({ product }) => {
                 type="number"
                 readOnly
               />
-              <IncreaseProductQuantity id={_id} setAlertData={setAlertData} />
+              <IncreaseProductQuantity id={_id} />
             </div>
             <p className="CTA-text m-up-1 is-4 semibold">
               ${price}{" "}
@@ -74,7 +72,7 @@ const CartCard = ({ product }) => {
           </div>
           <div className="btn-vertical width-90 m-dw-1">
             <RemoveFromCart id={_id} setAlertData={setAlertData} />
-            <AddToWishlistLarge product={product} setAlertData={setAlertData} />
+            <AddToWishlistLarge product={product} />
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { changeTitle, Loader } from "../../utility";
+import { changeTitle } from "../../utility";
 import { Filters } from "./components/filters";
 import { ProductList } from "./components/product-list";
 import "./product-listing.css";

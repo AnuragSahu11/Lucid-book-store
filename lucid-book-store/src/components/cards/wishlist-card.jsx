@@ -5,7 +5,6 @@ import {
   showRatingStars,
   ratingStarColor,
   discountPercentageCalc,
-  Alerts,
 } from "../../utility";
 import {
   AddToCartWishlist,
@@ -14,11 +13,6 @@ import {
 
 const WishlistCard = ({ product }) => {
   const navigate = useNavigate();
-  const [alertData, setAlertData] = useState({
-    showAlert: false,
-    alertMsg: "",
-    alertType: "",
-  });
   const {
     _id,
     title,
@@ -37,10 +31,9 @@ const WishlistCard = ({ product }) => {
 
   return (
     <>
-      {<Alerts setAlertData={setAlertData} alertData={alertData} />}
       <div className="card product-card m-x-3 elevated m-dw-5 li-shadow">
         <div className="card-head">
-          <RemoveFromWishlist id={_id} setAlertData={setAlertData} />
+          <RemoveFromWishlist id={_id} />
           <span className="card-badge">{badge}</span>
           <div onClick={goToProductPage} className="card-image">
             <img
@@ -74,7 +67,7 @@ const WishlistCard = ({ product }) => {
             </p>
           </div>
           <div className="btn-vertical">
-            <AddToCartWishlist product={product} setAlertData={setAlertData} />
+            <AddToCartWishlist product={product} />
           </div>
         </div>
       </div>

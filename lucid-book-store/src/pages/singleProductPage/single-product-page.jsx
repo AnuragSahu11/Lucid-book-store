@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useAuth, useData } from "../../context";
 import { useEffect, useState } from "react";
 import {
-  Alerts,
   changeTitle,
   discountPercentageCalc,
   ratingStarColor,
@@ -18,11 +17,6 @@ const SingleProductPage = () => {
   const { setIsLoading } = useAuth();
   const [productData, setProductData] = useState([]);
   let { productId } = useParams();
-  const [alertData, setAlertData] = useState({
-    showAlert: false,
-    alertMsg: "",
-    alertType: "",
-  });
   const findProductData = (productId, data) => {
     return data.products.find(({ id }) => productId === id);
   };
@@ -45,7 +39,6 @@ const SingleProductPage = () => {
     <></>
   ) : (
     <>
-      <Alerts setAlertData={setAlertData} alertData={alertData} />
       <div className="product p-x-2 p-y-6 br-3 elevated li-shadow elevate-1 m-up-6 width-80 center-x grid-30-70">
         <div className="product-image width-80 center-x m-l-">
           <img src={image} alt="" className="img-responsive" />
@@ -90,10 +83,8 @@ const SingleProductPage = () => {
               <AddToCartProductListing
                 classes={"btn-primary m-r-2 width-50 btn-w-icon btn-medium"}
                 product={productData}
-                setAlertData={setAlertData}
               />
               <AddToWishlistSingleProductPage
-                setAlertData={setAlertData}
                 product={productData}
               />
             </div>

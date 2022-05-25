@@ -8,9 +8,8 @@ import {
   removeFromCartApiMethod,
 } from "../../server-requests/server-requests";
 import { checkInList } from "../../utility";
-import { Alerts } from "../../utility/alerts/alerts";
 
-const AddToCartProductListing = ({ product, classes, setAlertData }) => {
+const AddToCartProductListing = ({ product, classes }) => {
   const navigate = useNavigate();
   const { token, setIsLoading } = useAuth();
   const { dataState, dispatch } = useData();
@@ -23,11 +22,6 @@ const AddToCartProductListing = ({ product, classes, setAlertData }) => {
     if (token && !checkInList(dataState.cart, product.id)) {
       setIsLoading(true);
       await addToCartApiMethod(product, token, dispatch);
-      setAlertData({
-        showAlert: true,
-        alertMsg: "Added to Cart",
-        alertType: "success",
-      });
       setIsLoading(false);
     } else {
       navigate("/cart");
@@ -56,17 +50,12 @@ const AddToCartProductListing = ({ product, classes, setAlertData }) => {
   );
 };
 
-const IncreaseProductQuantity = ({ id, setAlertData }) => {
+const IncreaseProductQuantity = ({ id }) => {
   const { token, setIsLoading } = useAuth();
   const { dispatch } = useData();
   const increaseQtyButton = async () => {
     setIsLoading(true);
     await increaseQtyApiMethod(id, token, dispatch);
-    setAlertData({
-      showAlert: true,
-      alertMsg: "Increased quantity",
-      alertType: "success",
-    });
     setIsLoading(false);
   };
   return (
@@ -84,18 +73,13 @@ const IncreaseProductQuantity = ({ id, setAlertData }) => {
   );
 };
 
-const DecreaseProductQuantity = ({ id, qty, setAlertData }) => {
+const DecreaseProductQuantity = ({ id, qty}) => {
   const { token, setIsLoading } = useAuth();
   const { dispatch } = useData();
 
   const decreaseQtyclick = async () => {
     setIsLoading(true);
     await decreaseQtyApiMethod(id, token, dispatch);
-    setAlertData({
-      showAlert: true,
-      alertMsg: "Decreased quantity",
-      alertType: "primary",
-    });
     setIsLoading(false);
   };
   return (
@@ -114,7 +98,7 @@ const DecreaseProductQuantity = ({ id, qty, setAlertData }) => {
   );
 };
 
-const RemoveFromCart = ({ id, setAlertData }) => {
+const RemoveFromCart = ({ id }) => {
   const { dispatch } = useData();
   const { token, setIsLoading } = useAuth();
   const removeItemClick = async () => {
@@ -128,11 +112,6 @@ const RemoveFromCart = ({ id, setAlertData }) => {
         onClick={(e) => {
           e.stopPropagation();
           removeItemClick();
-          setAlertData({
-            showAlert: true,
-            alertMsg: "Removed from Cart",
-            alertType: "primary",
-          });
         }}
         className="btn-grey btn-small btn-w-icon"
       >

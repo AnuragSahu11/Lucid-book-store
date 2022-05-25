@@ -1,22 +1,15 @@
 import React from "react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   discountPercentageCalc,
   ratingStarColor,
   showRatingStars,
-  Alerts,
 } from "../../utility";
 import { AddToCartProductListing } from "../buttons/cart-buttons";
 import { AddToWishlistSmall } from "../buttons/wishlist-buttons";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
-  const [alertData, setAlertData] = useState({
-    showAlert: false,
-    alertMsg: "",
-    alertType: "",
-  });
   const {
     title,
     price,
@@ -35,10 +28,9 @@ const ProductCard = ({ product }) => {
 
   return (
     <>
-      {<Alerts setAlertData={setAlertData} alertData={alertData} />}
       <div className="card product-card m-x-3 elevated m-dw-5 li-shadow">
         <div className="card-head">
-          <AddToWishlistSmall product={product} setAlertData={setAlertData} />
+          <AddToWishlistSmall product={product}  />
           <span className="card-badge">{badge}</span>
           <div onClick={cardImageHandler} className="card-image">
             <img
@@ -75,7 +67,6 @@ const ProductCard = ({ product }) => {
             <AddToCartProductListing
               classes={"btn-primary width-100 btn-w-icon btn-small"}
               product={product}
-              setAlertData={setAlertData}
             />
           </div>
         </div>
