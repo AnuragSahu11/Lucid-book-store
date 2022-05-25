@@ -1,0 +1,10 @@
+.login,
+.signup {
+  width: fit-content;
+}
+.view-password {
+  cursor: pointer;
+}
+.form-custom .form-input {
+  width: 100%;
+}

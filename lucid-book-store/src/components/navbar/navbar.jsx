@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Loader, SwitchTheme } from "../../utility";
 import { Search } from "./search";
 import { useAuth, useData } from "../../context";
-import { Logout } from "../Auth";
 import logo from "./logo.png";
 import "./navbar.css";
+import { Logout } from "../modal/logout";
 
 const NavbarWishlistButton = ({ wishlistNotification }) => (
   <button className="btn-icon nav-icons">
