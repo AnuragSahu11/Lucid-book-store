@@ -11,11 +11,6 @@ import { discountPercentageCalc } from "../../utility";
 
 const CartCard = ({ product }) => {
   const navigate = useNavigate();
-  const [alertData, setAlertData] = useState({
-    showAlert: false,
-    alertMsg: "",
-    alertType: "",
-  });
   const {
     _id,
     title,
@@ -71,7 +66,7 @@ const CartCard = ({ product }) => {
             </p>
           </div>
           <div className="btn-vertical width-90 m-dw-1">
-            <RemoveFromCart id={_id} setAlertData={setAlertData} />
+            <RemoveFromCart id={_id} />
             <AddToWishlistLarge product={product} />
           </div>
         </div>

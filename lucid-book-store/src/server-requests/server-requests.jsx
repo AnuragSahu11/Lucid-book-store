@@ -1,5 +1,6 @@
 import { getHeader } from "../utility";
 import axios from "axios";
+import { reducerAction } from "../utility/constants";
 
 const addToWishlistApiMethod = async (product, token, dispatch) => {
   const response = await axios.post(
@@ -7,7 +8,7 @@ const addToWishlistApiMethod = async (product, token, dispatch) => {
     { product: product },
     getHeader(token)
   );
-  dispatch({ type: "UPDATE_WISHLIST", value: response.data.wishlist });
+  dispatch({ type: reducerAction.updateWishlist, value: response.data.wishlist });
 };
 
 const addToCartApiMethod = async (product, token, dispatch) => {
@@ -16,7 +17,7 @@ const addToCartApiMethod = async (product, token, dispatch) => {
     { product: product },
     getHeader(token)
   );
-  dispatch({ type: "UPDATE_CART", value: response.data.cart });
+  dispatch({ type: reducerAction.updateCart, value: response.data.cart });
 };
 
 const removeFromWishlistApiMethod = async (id, token, dispatch) => {
@@ -24,12 +25,12 @@ const removeFromWishlistApiMethod = async (id, token, dispatch) => {
     `/api/user/wishlist/${id}`,
     getHeader(token)
   );
-  dispatch({ type: "UPDATE_WISHLIST", value: response.data.wishlist });
+  dispatch({ type: reducerAction.updateWishlist, value: response.data.wishlist });
 };
 
 const removeFromCartApiMethod = async (id, token, dispatch) => {
   const response = await axios.delete(`/api/user/cart/${id}`, getHeader(token));
-  dispatch({ type: "UPDATE_CART", value: response.data.cart });
+  dispatch({ type: reducerAction.updateCart, value: response.data.cart });
 };
 
 const increaseQtyApiMethod = async (id, token, dispatch) => {
@@ -40,7 +41,7 @@ const increaseQtyApiMethod = async (id, token, dispatch) => {
     },
     getHeader(token)
   );
-  dispatch({ type: "UPDATE_CART", value: response.data.cart });
+  dispatch({ type: reducerAction.updateCart, value: response.data.cart });
 };
 
 const decreaseQtyApiMethod = async (id, token, dispatch) => {
@@ -51,7 +52,16 @@ const decreaseQtyApiMethod = async (id, token, dispatch) => {
     },
     getHeader(token)
   );
-  dispatch({ type: "UPDATE_CART", value: response.data.cart });
+  dispatch({ type: reducerAction.updateCart, value: response.data.cart });
+};
+
+const getProductsData = async (dispatch) => {
+  try {
+    const response = await axios.get("/api/products");
+    dispatch({ type: reducerAction.apiData, value: response.data.products });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export {
@@ -61,4 +71,5 @@ export {
   removeFromWishlistApiMethod,
   increaseQtyApiMethod,
   decreaseQtyApiMethod,
+  getProductsData
 };

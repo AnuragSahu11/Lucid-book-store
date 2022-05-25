@@ -1,38 +1,40 @@
+import { reducerAction } from "../utility/constants";
+
 const dataReducer = (dataState, action) => {
   switch (action.type) {
-    case "API_DATA":
+    case reducerAction.apiData:
       return { ...dataState, products: action.value };
-    case "LOW_TO_HIGH":
+    case reducerAction.sortLowToHigh:
       return {
         ...dataState,
         filters: { ...dataState.filters, sort: "LOW_TO_HIGH" },
       };
-    case "HIGH_TO_LOW":
+    case reducerAction.sortHighToLow:
       return {
         ...dataState,
         filters: { ...dataState.filters, sort: "HIGH_TO_LOW" },
       };
-    case "CATEGORY_STOCKS":
+    case reducerAction.categoryStocks:
       return categoryFilter(action.value, dataState, "Stocks");
-    case "CATEGORY_FOREX":
+    case reducerAction.categoryForex:
       return categoryFilter(action.value, dataState, "Forex");
-    case "CATEGORY_CRYPTO":
+    case reducerAction.categoryCrypto:
       return categoryFilter(action.value, dataState, "Crypto");
-    case "CATEGORY_CHARTING":
+    case reducerAction.categoryCharting:
       return categoryFilter(action.value, dataState, "Charting");
-    case "CATEGORY_INVESTMENT":
+    case reducerAction.categoryInvestment:
       return categoryFilter(action.value, dataState, "Investment");
-    case "RANGE":
+    case reducerAction.selectRange:
       return {
         ...dataState,
         filters: { ...dataState.filters, range: action.value },
       };
-    case "RATING":
+    case reducerAction.selectRating:
       return {
         ...dataState,
         filters: { ...dataState.filters, rating: action.value },
       };
-    case "CLEAR_FILTER":
+    case reducerAction.clearFilter:
       return {
         ...dataState,
         filters: {
@@ -42,13 +44,13 @@ const dataReducer = (dataState, action) => {
           rating: 0,
         },
       };
-    case "UPDATE_CART":
+    case reducerAction.updateCart:
       return { ...dataState, cart: [...action.value] };
-    case "UPDATE_WISHLIST":
+    case reducerAction.updateWishlist:
       return { ...dataState, wishlist: [...action.value] };
-    case "CLEAR_CART_WISHLIST":
+    case reducerAction.clearCartWishlist:
       return { ...dataState, wishlist: [], cart: [] };
-    case "LOGIN_API_DATA":
+    case reducerAction.cartAndWishlistData:
       return {
         ...dataState,
         wishlist: [...action.value.wishlist],

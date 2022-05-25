@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../context/auth-context";
+import { demoCredentials } from "../../utility/constants";
 import "./login.css";
 
 const LoginPage = () => {
@@ -8,31 +9,15 @@ const LoginPage = () => {
 
   const demoCredentialsLoginHandler = async () => {
     setIsLoading(true);
-    setFormField({
-      email: "anurag@gmail.com",
-      password: "anurag",
-    });
+    setFormField(demoCredentials);
 
-    await loginHandler({
-      email: "anurag@gmail.com",
-      password: "anurag",
-    });
+    await loginHandler(demoCredentials);
     setIsLoading(false);
-    setAlertData({
-      showAlert: true,
-      alertMsg: "Login successful",
-      alertType: "success",
-    });
   };
   const loginClickHandler = async () => {
     setIsLoading(true);
     loginHandler(formField);
     setIsLoading(false);
-    setAlertData({
-      showAlert: true,
-      alertMsg: "Login successful",
-      alertType: "success",
-    });
   };
   return (
     <>
