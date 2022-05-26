@@ -18,7 +18,6 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const signupHandler = async (credentials) => {
-    console.log(credentials);
     try {
       const { data } = await axios.post(`/api/auth/signup`, credentials);
       localStorage.setItem("token", data.encodedToken);

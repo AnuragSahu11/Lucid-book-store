@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
-import Mockman from "mockman-js";
-import {
-  Homepage,
-  Navbar,
-  Footer,
-  ProductListing,
-  Cart,
-  Wishlist,
-  SingleProductPage,
-  SearchResult,
-  Login,
-  Signup,
-} from "./components/components";
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
+import { Footer, Navbar } from "./components/index";
+import {
+  CartPage,
+  ErrorPage,
+  Homepage,
+  LoginPage,
+  ProductListingPage,
+  SearchResultPage,
+  SignupPage,
+  WishlistPage,
+  SingleProductPage,
+} from "./pages";
 import { useData } from "./context/data-context";
+import "./App.css";
 
 function App() {
   return (
@@ -22,17 +21,17 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/productListing" element={<ProductListing />} />
+        <Route path="/productListing" element={<ProductListingPage />} />
         <Route
           path="/productListing/:productId"
           element={<SingleProductPage />}
         />
-        <Route path="/search/:searchText" element={<SearchResult />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/mock" element={<Mockman />} />
+        <Route path="/search/:searchText" element={<SearchResultPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/wishlist" element={<WishlistPage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
     </div>

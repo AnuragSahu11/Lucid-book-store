@@ -85,6 +85,7 @@ export function makeServer({ environment = "development" } = {}) {
         "/user/wishlist/:productId",
         removeItemFromWishlistHandler.bind(this)
       );
+      this.passthrough("https://checkout.razorpay.com/v1/checkout.js");
     },
   });
 }

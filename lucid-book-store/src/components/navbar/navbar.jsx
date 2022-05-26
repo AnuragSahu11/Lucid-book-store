@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Loader, SwitchTheme } from "../../utility";
 import { Search } from "./search";
 import { useAuth, useData } from "../../context";
-import { Logout } from "../Auth";
 import logo from "./logo.png";
 import "./navbar.css";
+import { Logout } from "../modal/logout";
 
 const NavbarWishlistButton = ({ wishlistNotification }) => (
   <button className="btn-icon nav-icons">
@@ -28,25 +28,14 @@ const NavbarCartButton = ({ cartNotification }) => (
 
 const NavbarLoginButton = ({ token, toggleLogoutModal }) => {
   const navigate = useNavigate();
-  if (token) {
-    return (
-      <button
-        onClick={toggleLogoutModal}
-        className="btn-primary nav-btn btn-small"
-      >
-        Log out
-      </button>
-    );
-  } else {
-    return (
-      <button
-        onClick={() => navigate("/login")}
-        className="btn-primary nav-btn btn-small"
-      >
-        Log In
-      </button>
-    );
-  }
+  const authButtonClick = () => {
+    token ? toggleLogoutModal() : navigate("/login");
+  };
+  return (
+    <button onClick={authButtonClick} className="btn-primary nav-btn btn-small">
+      {token ? "Logout" : "Log in"}
+    </button>
+  );
 };
 
 const Navbar = () => {
