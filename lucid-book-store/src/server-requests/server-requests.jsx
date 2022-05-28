@@ -8,7 +8,10 @@ const addToWishlistApiMethod = async (product, token, dispatch) => {
     { product: product },
     getHeader(token)
   );
-  dispatch({ type: reducerAction.updateWishlist, value: response.data.wishlist });
+  dispatch({
+    type: reducerAction.UPDATE_WISHLIST,
+    value: response.data.wishlist,
+  });
 };
 
 const addToCartApiMethod = async (product, token, dispatch) => {
@@ -17,7 +20,7 @@ const addToCartApiMethod = async (product, token, dispatch) => {
     { product: product },
     getHeader(token)
   );
-  dispatch({ type: reducerAction.updateCart, value: response.data.cart });
+  dispatch({ type: reducerAction.UPDATE_CART, value: response.data.cart });
 };
 
 const removeFromWishlistApiMethod = async (id, token, dispatch) => {
@@ -25,12 +28,15 @@ const removeFromWishlistApiMethod = async (id, token, dispatch) => {
     `/api/user/wishlist/${id}`,
     getHeader(token)
   );
-  dispatch({ type: reducerAction.updateWishlist, value: response.data.wishlist });
+  dispatch({
+    type: reducerAction.UPDATE_WISHLIST,
+    value: response.data.wishlist,
+  });
 };
 
 const removeFromCartApiMethod = async (id, token, dispatch) => {
   const response = await axios.delete(`/api/user/cart/${id}`, getHeader(token));
-  dispatch({ type: reducerAction.updateCart, value: response.data.cart });
+  dispatch({ type: reducerAction.UPDATE_CART, value: response.data.cart });
 };
 
 const increaseQtyApiMethod = async (id, token, dispatch) => {
@@ -41,7 +47,7 @@ const increaseQtyApiMethod = async (id, token, dispatch) => {
     },
     getHeader(token)
   );
-  dispatch({ type: reducerAction.updateCart, value: response.data.cart });
+  dispatch({ type: reducerAction.UPDATE_CART, value: response.data.cart });
 };
 
 const decreaseQtyApiMethod = async (id, token, dispatch) => {
@@ -52,16 +58,51 @@ const decreaseQtyApiMethod = async (id, token, dispatch) => {
     },
     getHeader(token)
   );
-  dispatch({ type: reducerAction.updateCart, value: response.data.cart });
+  dispatch({ type: reducerAction.UPDATE_CART, value: response.data.cart });
 };
 
 const getProductsData = async (dispatch) => {
   try {
     const response = await axios.get("/api/products");
-    dispatch({ type: reducerAction.apiData, value: response.data.products });
+    dispatch({ type: reducerAction.API_DATA, value: response.data.products });
   } catch (err) {
     console.log(err);
   }
+};
+
+const getUserAddress = async (token, dispatch) => {
+  try {
+    const { data } = await axios.get("/api/user/address", getHeader(token));
+    console.log(data.address);
+    dispatch({ type: reducerAction.UPDATE_ADDRESS, value: data.address });
+  } catch (err) {}
+};
+
+const addAddress = async (addressData, token, dispatch) => {
+  try {
+    const { data } = await axios.post(
+      "/api/user/address",
+      {
+        address: addressData,
+      },
+      getHeader(token)
+    );
+    console.log(data.address);
+    dispatch({ type: reducerAction.UPDATE_ADDRESS, value: data.address });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const deleteAddress = async (addressID) => {
+  try {
+    const response = await axios.delete(`api/user/address${addressID}`);
+  } catch (err) {}
+};
+
+const updateAddress = async () => {
+  try {
+  } catch (err) {}
 };
 
 export {
@@ -71,5 +112,9 @@ export {
   removeFromWishlistApiMethod,
   increaseQtyApiMethod,
   decreaseQtyApiMethod,
-  getProductsData
+  getProductsData,
+  getUserAddress,
+  addAddress,
+  deleteAddress,
+  updateAddress,
 };

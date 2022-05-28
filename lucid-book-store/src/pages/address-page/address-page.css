@@ -1,0 +1,22 @@
+.address {
+  gap: 2rem;
+}
+.address-blocks {
+  height: 26.6rem;
+  width: 32rem;
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.add-address {
+  height: 26.6rem;
+  width: 32rem;
+  border: 2px dashed var(--font-light);
+}
+.address-blocks i {
+  cursor: pointer;
+}
+.address-blocks i:hover {
+  color: var(--red);
+}

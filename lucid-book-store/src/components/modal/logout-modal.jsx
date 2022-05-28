@@ -1,7 +1,7 @@
 import { useAuth } from "../../context";
 import "./modal.css";
 
-const Logout = ({ showLogout, toggleLogout }) => {
+const LogoutModal = ({ showLogout, toggleLogout }) => {
   const { logoutHandler } = useAuth();
   const logoutClickHandler = () => {
     logoutHandler();
@@ -41,4 +41,4 @@ const Logout = ({ showLogout, toggleLogout }) => {
   );
 };
 
-export { Logout };
+export { LogoutModal };

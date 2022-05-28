@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { demoCredentials } from "../../utility/constants";
 import "./login.css";
@@ -6,6 +7,10 @@ import "./login.css";
 const LoginPage = () => {
   const [formField, setFormField] = useState({ email: "", password: "" });
   const { loginHandler, setIsLoading } = useAuth();
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const demoCredentialsLoginHandler = async () => {
     setIsLoading(true);
@@ -13,11 +18,13 @@ const LoginPage = () => {
 
     await loginHandler(demoCredentials);
     setIsLoading(false);
+    navigate(from);
   };
   const loginClickHandler = async () => {
     setIsLoading(true);
     loginHandler(formField);
     setIsLoading(false);
+    navigate(from);
   };
   return (
     <>

@@ -11,8 +11,8 @@ const Filters = () => {
   const filterClickHandler = (dispatchArguments) => {
     dispatch(dispatchArguments);
   };
-  const clearFilters = () => {
-    dispatch({ type: reducerAction.clearFilter });
+  const CLEAR_FILTERs = () => {
+    dispatch({ type: reducerAction.CLEAR_FILTER });
   };
   return (
     <div className={`filter-menu ${filterStyle} p-x-4 p-up-2  dk-shadow`}>
@@ -20,7 +20,7 @@ const Filters = () => {
         <div onClick={showFilterClick} className="title is-dark">
           Filters
         </div>
-        <p onClick={clearFilters} className="link-secondary m-up-1 is-2">
+        <p onClick={CLEAR_FILTERs} className="link-secondary m-up-1 is-2">
           Clear all
         </p>
       </div>
@@ -41,7 +41,7 @@ const Filters = () => {
           value={dataState.filters.range}
           onChange={(e) =>
             filterClickHandler({
-              type: reducerAction.selectRange,
+              type: reducerAction.SELECT_RANGE,
               value: Number(e.target.value),
             })
           }
@@ -69,7 +69,7 @@ const Filters = () => {
                 checked={dataState.filters.category.includes("Stocks")}
                 onChange={(e) =>
                   filterClickHandler({
-                    type: reducerAction.categoryStocks,
+                    type: reducerAction.CATEGORY_STOCKS,
                     value: e.target.checked,
                   })
                 }
@@ -84,7 +84,7 @@ const Filters = () => {
                 checked={dataState.filters.category.includes("Forex")}
                 onChange={(e) =>
                   filterClickHandler({
-                    type: reducerAction.categoryForex,
+                    type: reducerAction.CATEGORY_FOREX,
                     value: e.target.checked,
                   })
                 }
@@ -99,7 +99,7 @@ const Filters = () => {
                 checked={dataState.filters.category.includes("Crypto")}
                 onChange={(e) =>
                   filterClickHandler({
-                    type: reducerAction.categoryCrypto,
+                    type: reducerAction.CATEGORY_CRYPTO,
                     value: e.target.checked,
                   })
                 }
@@ -114,7 +114,7 @@ const Filters = () => {
                 checked={dataState.filters.category.includes("Charting")}
                 onChange={(e) =>
                   filterClickHandler({
-                    type: reducerAction.categoryCharting,
+                    type: reducerAction.CATEGORY_CHARTING,
                     value: e.target.checked,
                   })
                 }
@@ -129,7 +129,7 @@ const Filters = () => {
                 checked={dataState.filters.category.includes("Investment")}
                 onChange={(e) =>
                   filterClickHandler({
-                    type: reducerAction.categoryInvestment,
+                    type: reducerAction.CATEGORY_INVESTMENT,
                     value: e.target.checked,
                   })
                 }
@@ -149,7 +149,7 @@ const Filters = () => {
                 checked={dataState.filters.rating === 4}
                 onChange={() =>
                   filterClickHandler({
-                    type: reducerAction.selectRating,
+                    type: reducerAction.SELECT_RATING,
                     value: 4,
                   })
                 }
@@ -168,7 +168,7 @@ const Filters = () => {
                 checked={dataState.filters.rating === 3}
                 onChange={() =>
                   filterClickHandler({
-                    type: reducerAction.selectRating,
+                    type: reducerAction.SELECT_RATING,
                     value: 3,
                   })
                 }
@@ -187,7 +187,7 @@ const Filters = () => {
                 checked={dataState.filters.rating === 2}
                 onChange={() =>
                   filterClickHandler({
-                    type: reducerAction.selectRating,
+                    type: reducerAction.SELECT_RATING,
                     value: 2,
                   })
                 }
@@ -206,7 +206,7 @@ const Filters = () => {
                 checked={dataState.filters.rating === 1}
                 onChange={() =>
                   filterClickHandler({
-                    type: reducerAction.selectRating,
+                    type: reducerAction.SELECT_RATING,
                     value: 1,
                   })
                 }
@@ -228,9 +228,11 @@ const Filters = () => {
               <input
                 type="radio"
                 name="sort"
-                checked={dataState.filters.sort === reducerAction.sortLowToHigh}
+                checked={
+                  dataState.filters.sort === reducerAction.SORT_LOW_TO_HIGH
+                }
                 onChange={() =>
-                  filterClickHandler({ type: reducerAction.sortLowToHigh })
+                  filterClickHandler({ type: reducerAction.SORT_LOW_TO_HIGH })
                 }
               />
               <i />
@@ -244,9 +246,11 @@ const Filters = () => {
               <input
                 type="radio"
                 name="sort"
-                checked={dataState.filters.sort === reducerAction.sortHighToLow}
+                checked={
+                  dataState.filters.sort === reducerAction.SORT_HIGH_TO_LOW
+                }
                 onChange={() =>
-                  filterClickHandler({ type: reducerAction.sortHighToLow })
+                  filterClickHandler({ type: reducerAction.SORT_HIGH_TO_LOW })
                 }
               />
               <i />

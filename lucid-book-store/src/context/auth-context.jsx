@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useData } from "./data-context";
 import { useNavigate } from "react-router-dom";
+import { reducerAction } from "../utility/constants";
 
 const AuthContext = createContext();
 
@@ -10,12 +11,8 @@ const useAuth = () => useContext(AuthContext);
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const { dispatch } = useData();
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setToken(localStorage.getItem("token"));
-  }, []);
 
   const signupHandler = async (credentials) => {
     try {
@@ -33,8 +30,12 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("token", data.encodedToken);
       setToken(data.encodedToken);
       dispatch({
-        type: "LOGIN_API_DATA",
-        value: { cart: data.foundUser.cart, wishlist: data.foundUser.wishlist },
+        type: reducerAction.LOGIN_USER_DATA,
+        value: {
+          cart: data.foundUser.cart,
+          wishlist: data.foundUser.wishlist,
+          address: data.foundUser.address,
+        },
       });
     } catch (error) {
       console.log(error);

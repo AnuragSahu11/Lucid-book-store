@@ -7,3 +7,5 @@ export { SearchResultPage } from "./searchResult/search-results";
 export { SignupPage } from "./signUp/signup-page";
 export { SingleProductPage } from "./singleProductPage/single-product-page";
 export { WishlistPage } from "./wishlist/wishlist-page";
+export { UserProfilePage } from "./user-profile/user-profile-page";
+export { AddressPage } from "./address-page/address-page";

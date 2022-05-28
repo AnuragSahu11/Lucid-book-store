@@ -5,7 +5,7 @@ import { Search } from "./search";
 import { useAuth, useData } from "../../context";
 import logo from "./logo.png";
 import "./navbar.css";
-import { Logout } from "../modal/logout";
+import { LogoutModal } from "../modal/logout-modal";
 
 const NavbarWishlistButton = ({ wishlistNotification }) => (
   <button className="btn-icon nav-icons">
@@ -88,7 +88,10 @@ const Navbar = () => {
               />
             </Link>
 
-            <button className="btn-icon nav-icons m-x-1">
+            <button
+              onClick={() => navigate("/userpage")}
+              className="btn-icon nav-icons m-x-1"
+            >
               <i className="fa-solid is-dark fa-user" />
             </button>
 
@@ -107,7 +110,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <Logout showLogout={showLogout} toggleLogout={toggleLogoutModal} />
+      <LogoutModal showLogout={showLogout} toggleLogout={toggleLogoutModal} />
     </div>
   );
 };

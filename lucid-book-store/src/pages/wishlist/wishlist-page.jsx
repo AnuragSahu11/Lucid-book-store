@@ -6,12 +6,11 @@ import { changeTitle } from "../../utility";
 
 const WishlistPage = () => {
   const { dataState } = useData();
-  const { token } = useAuth();
   useEffect(() => {
     changeTitle(`Wishlist -${dataState.wishlist.length} items`);
   }, []);
 
-  return token ? (
+  return (
     <div className="wishlist p-x-3">
       <div className="textbox m-y-3">
         <div className="title bold is-5 center-text">Wishlist</div>
@@ -35,8 +34,6 @@ const WishlistPage = () => {
         </div>
       )}
     </div>
-  ) : (
-    <Navigate to={"/login"} />
   );
 };
 

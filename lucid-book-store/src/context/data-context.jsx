@@ -16,6 +16,7 @@ const initialReducerObject = {
     rating: 0,
   },
   products: [],
+  address: [],
 };
 
 const DataProvider = ({ children }) => {

@@ -2,39 +2,39 @@ import { reducerAction } from "../utility/constants";
 
 const dataReducer = (dataState, action) => {
   switch (action.type) {
-    case reducerAction.apiData:
+    case reducerAction.API_DATA:
       return { ...dataState, products: action.value };
-    case reducerAction.sortLowToHigh:
+    case reducerAction.SORT_LOW_TO_HIGH:
       return {
         ...dataState,
         filters: { ...dataState.filters, sort: "LOW_TO_HIGH" },
       };
-    case reducerAction.sortHighToLow:
+    case reducerAction.SORT_HIGH_TO_LOW:
       return {
         ...dataState,
         filters: { ...dataState.filters, sort: "HIGH_TO_LOW" },
       };
-    case reducerAction.categoryStocks:
+    case reducerAction.CATEGORY_STOCKS:
       return categoryFilter(action.value, dataState, "Stocks");
-    case reducerAction.categoryForex:
+    case reducerAction.CATEGORY_FOREX:
       return categoryFilter(action.value, dataState, "Forex");
-    case reducerAction.categoryCrypto:
+    case reducerAction.CATEGORY_CRYPTO:
       return categoryFilter(action.value, dataState, "Crypto");
-    case reducerAction.categoryCharting:
+    case reducerAction.CATEGORY_CHARTING:
       return categoryFilter(action.value, dataState, "Charting");
-    case reducerAction.categoryInvestment:
+    case reducerAction.CATEGORY_INVESTMENT:
       return categoryFilter(action.value, dataState, "Investment");
-    case reducerAction.selectRange:
+    case reducerAction.SELECT_RANGE:
       return {
         ...dataState,
         filters: { ...dataState.filters, range: action.value },
       };
-    case reducerAction.selectRating:
+    case reducerAction.SELECT_RATING:
       return {
         ...dataState,
         filters: { ...dataState.filters, rating: action.value },
       };
-    case reducerAction.clearFilter:
+    case reducerAction.CLEAR_FILTER:
       return {
         ...dataState,
         filters: {
@@ -44,17 +44,23 @@ const dataReducer = (dataState, action) => {
           rating: 0,
         },
       };
-    case reducerAction.updateCart:
+    case reducerAction.UPDATE_CART:
       return { ...dataState, cart: [...action.value] };
-    case reducerAction.updateWishlist:
+    case reducerAction.UPDATE_WISHLIST:
       return { ...dataState, wishlist: [...action.value] };
-    case reducerAction.clearCartWishlist:
+    case reducerAction.CLEAR_CART_WISHLIST:
       return { ...dataState, wishlist: [], cart: [] };
-    case reducerAction.cartAndWishlistData:
+    case reducerAction.LOGIN_USER_DATA:
       return {
         ...dataState,
         wishlist: [...action.value.wishlist],
         cart: [...action.value.cart],
+        address: [...action.value.address],
+      };
+    case reducerAction.UPDATE_ADDRESS:
+      return {
+        ...dataState,
+        address: [...action.value],
       };
     default:
       return { ...dataState };

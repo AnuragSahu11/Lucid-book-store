@@ -1,4 +1,4 @@
-import { demoCredentials } from "./constants";
+export { demoCredentials } from "./constants";
 export { compose } from "./composition-function";
 export { sortProducts } from "./sort-product";
 export {
