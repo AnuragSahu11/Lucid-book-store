@@ -1,32 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth, useData } from "../../context";
-import { addAddress } from "../../server-requests/server-requests";
+import {
+  addAddress,
+  updateAddress,
+} from "../../server-requests/server-requests";
 
-const AddAddressModal = ({ toggleAddressModal, addressModal }) => {
+const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
   const { token } = useAuth();
-  const { dispatch } = useData();
+  const { dataState, dispatch } = useData();
 
-  const [inputField, setInputField] = useState({
+  const initialInputFields = {
     street: "",
     city: "",
     state: "",
-    zipcode: "",
+    zipCode: "",
+    country: "India",
     name: "",
-  });
+  };
+  const [inputField, setInputField] = useState(initialInputFields);
 
   const clickAdd = () => {
-    addAddress(inputField, token, dispatch);
+    editAddressID
+      ? updateAddress(editAddressID, inputField, token, dispatch)
+      : addAddress(inputField, token, dispatch);
+    setInputField(initialInputFields);
   };
+
+  useEffect(() => {
+    if (editAddressID) {
+      const editAddress = dataState?.address?.filter(
+        (item) => item._id === editAddressID
+      )[0];
+      setInputField(editAddress);
+    }
+  }, [editAddressID]);
 
   return (
     <div
-      style={{ display: addressModal ? "block" : "none" }}
+      style={{ display: addressModal || editAddressID ? "block" : "none" }}
       className="modal-wrapper"
     >
       <div className="address-modal">
         <div className="modal center-x elevated center-y shadow">
           <button
-            onClick={toggleAddressModal}
+            onClick={() => {
+              setInputField(initialInputFields);
+              hideAddressModal();
+            }}
             className="card-cross btn-close is-medium"
           >
             <i className="fas fa-times" />
@@ -45,6 +65,7 @@ const AddAddressModal = ({ toggleAddressModal, addressModal }) => {
               type="text"
               className="form-input"
               placeholder="Full Name"
+              value={inputField.name}
             />
           </div>
           <div className="form-div align-left m-up-2">
@@ -57,6 +78,7 @@ const AddAddressModal = ({ toggleAddressModal, addressModal }) => {
               type="text"
               className="form-input"
               placeholder="House, street"
+              value={inputField.street}
             />
           </div>
           <div className="form-div align-left m-up-2">
@@ -69,6 +91,7 @@ const AddAddressModal = ({ toggleAddressModal, addressModal }) => {
               type="text"
               className="form-input"
               placeholder="City"
+              value={inputField.city}
             />
           </div>
           <div className="form-div align-left m-up-2">
@@ -81,6 +104,7 @@ const AddAddressModal = ({ toggleAddressModal, addressModal }) => {
               type="text"
               className="form-input"
               placeholder="State"
+              value={inputField.state}
             />
           </div>
           <div className="form-div align-left m-up-2">
@@ -93,6 +117,7 @@ const AddAddressModal = ({ toggleAddressModal, addressModal }) => {
               type="number"
               className="form-input"
               placeholder="zip code"
+              value={inputField.zipcode}
             />
           </div>
           <div className="form-div align-left m-up-2">
@@ -100,7 +125,7 @@ const AddAddressModal = ({ toggleAddressModal, addressModal }) => {
             <i className="fas fa-phone"></i>{" "}
             <input
               onChange={(e) =>
-                setInputField({ ...inputField, zipcode: e.target.value })
+                setInputField({ ...inputField, mobile: e.target.value })
               }
               type="number"
               className="form-input"
@@ -114,7 +139,7 @@ const AddAddressModal = ({ toggleAddressModal, addressModal }) => {
               className="btn-primary width-70 m-up-4 btn-small btn-w-icon"
             >
               <i className="fas fa-plus"></i>
-              Add
+              {editAddressID ? "Update" : "Add"}
             </button>
           </div>
         </div>

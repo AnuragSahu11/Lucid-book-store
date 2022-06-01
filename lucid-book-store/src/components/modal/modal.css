@@ -12,11 +12,14 @@
 .address-modal {
   margin-top: -50px;
 }
-.address-modal-form {
+.select-address-modal .modal {
+  width: fit-content;
 }
-
 .align-left {
   text-align: left;
+}
+.select-address-modal-para {
+  border-bottom: solid var(--grey);
 }
 
 @media only screen and (max-width: 1280px) {

@@ -29,7 +29,7 @@ const CartCard = ({ product }) => {
     <>
       <div
         onClick={goToProductPage}
-        className="card cart-card width-80 center-x card-horizontal elevated shadow"
+        className="card cart-card width-80 center-x card-horizontal elevated dk-shadow"
       >
         <div className="card-head">
           <div className="card-image">

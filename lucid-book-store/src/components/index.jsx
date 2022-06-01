@@ -17,4 +17,6 @@ export { CartCard } from "./cards/cart-card";
 export { WishlistCard } from "./cards/wishlist-card";
 export { LogoutModal } from "./modal/logout-modal";
 export { AddAddressModal } from "./modal/add-address-modal";
-export { PrivateRoute } from './private-route/private-route'
+export { PrivateRoute } from "./private-route/private-route";
+export { SelectAddressCard } from "./cards/select-address-card";
+export { SelectAddressModal } from "./modal/select-address-modal";

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useData } from "./data-context";
 import { useNavigate } from "react-router-dom";
 import { reducerAction } from "../utility/constants";
+import { getUserAddress } from "../server-requests/server-requests";
 
 const AuthContext = createContext();
 
@@ -15,6 +16,7 @@ const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const signupHandler = async (credentials) => {
+    const { dispatch } = useData();
     try {
       const { data } = await axios.post(`/api/auth/signup`, credentials);
       localStorage.setItem("token", data.encodedToken);
@@ -48,6 +50,12 @@ const AuthProvider = ({ children }) => {
     dispatch({ type: "CLEAR_CART_WISHLIST" });
     navigate("/");
   };
+
+  useEffect(() => {
+    if (token) {
+      getUserAddress(token, dispatch);
+    }
+  }, []);
 
   return (
     <AuthContext.Provider

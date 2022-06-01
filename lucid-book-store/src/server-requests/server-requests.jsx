@@ -87,21 +87,32 @@ const addAddress = async (addressData, token, dispatch) => {
       },
       getHeader(token)
     );
-    console.log(data.address);
     dispatch({ type: reducerAction.UPDATE_ADDRESS, value: data.address });
   } catch (err) {
     console.log(err);
   }
 };
 
-const deleteAddress = async (addressID) => {
+const deleteAddress = async (addressID, token, dispatch) => {
   try {
-    const response = await axios.delete(`api/user/address${addressID}`);
+    const { data } = await axios.delete(
+      `api/user/address/${addressID}`,
+      getHeader(token)
+    );
+    dispatch({ type: reducerAction.UPDATE_ADDRESS, value: data.address });
   } catch (err) {}
 };
 
-const updateAddress = async () => {
+const updateAddress = async (addressID, addressData, token, dispatch) => {
   try {
+    const { data } = await axios.post(
+      `api/user/address/${addressID}`,
+      {
+        address: addressData,
+      },
+      getHeader(token)
+    );
+    dispatch({ type: reducerAction.UPDATE_ADDRESS, value: data.address });
   } catch (err) {}
 };
 

@@ -62,6 +62,11 @@ const dataReducer = (dataState, action) => {
         ...dataState,
         address: [...action.value],
       };
+    case reducerAction.CHANGE_DEFAULT_ADDRESS:
+      return {
+        ...dataState,
+        defaultAddress: action.value,
+      };
     default:
       return { ...dataState };
   }

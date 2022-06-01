@@ -30,9 +30,12 @@ const UserProfilePage = () => {
               <i className="m-r-1 fa-solid fa-heart" />
               Wishlist
             </Link>
-            <Link to="" className="link m-l-5 semibold is-3 is-light m-up-1">
+            <Link
+              to="/cart"
+              className="link m-l-5 semibold is-3 is-light m-up-1"
+            >
               <i className="m-r-1 fa-solid fa-bag-shopping" />
-              Orders
+              Cart
             </Link>
             <a
               href="logout.html"
@@ -44,64 +47,10 @@ const UserProfilePage = () => {
           </div>
         </div>
         <div className="profile-info p-l-3 p-dw-4 elevated li-shadow br-3">
-          <div className="form">
-            <div className="subtitle semibold is-dark is-4">
-              Your account information
-            </div>
-            <div className="form-div form-readonly">
-              <p className="form-label">Name</p>
-              <input
-                type="text"
-                className="form-input input-focused"
-                placeholder="Anurag"
-                readOnly=""
-              />
-              <input
-                type="text"
-                className="form-input input-focused m-up-1"
-                placeholder="Sahu"
-                readOnly=""
-              />
-            </div>
-            <div className="form-div">
-              <p className="form-label">Email address</p>
-              <input
-                type="email"
-                className="form-input input-focused"
-                placeholder="example@123.com"
-                readOnly=""
-              />
-            </div>
-            <div className="form-radio">
-              <p className="form-label">Gender</p>
-              <div className="form-radio-div">
-                <label className="form-radio-label m-r-3">
-                  <input type="radio" name="opinion" defaultChecked="" />
-                  <i />
-                  <span className="form-radio-button-text">Male</span>
-                </label>
-                <label className="form-radio-label m-r-3">
-                  <input type="radio" name="opinion" />
-                  <i />
-                  <span className="form-radio-button-text">Female</span>
-                </label>
-                <label className="form-radio-label m-r-3">
-                  <input type="radio" name="opinion" />
-                  <i />
-                  <span className="form-radio-button-text">Non binary</span>
-                </label>
-              </div>
-            </div>
-            <div className="form-div">
-              <p className="form-label">Mobile Number</p>
-              <input
-                type="number"
-                className="form-input input-focused"
-                placeholder={123456789}
-                readOnly=""
-              />
-            </div>
+          <div className="subtitle semibold is-dark is-4 m-up-2">
+            Your Orders
           </div>
+          
         </div>
       </div>
     </main>

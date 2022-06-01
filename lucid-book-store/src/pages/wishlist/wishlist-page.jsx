@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { Navigate } from "react-router-dom";
 import { WishlistCard } from "../../components";
-import { useAuth, useData } from "../../context";
+import { useData } from "../../context";
 import { changeTitle } from "../../utility";
 
 const WishlistPage = () => {

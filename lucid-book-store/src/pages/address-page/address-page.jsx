@@ -11,14 +11,20 @@ const AddressPage = () => {
 
   const [addressList, setAddressList] = useState([]);
   const [addressModal, setAddressModal] = useState(false);
+  const [editAddressID, setEditAddressID] = useState(null);
 
-  const toggleAddressModal = () => {
-    setAddressModal((prevState) => !prevState);
+  const showAddressModal = () => {
+    setAddressModal(true);
+    setEditAddressID(null);
+  };
+
+  const hideAddressModal = () => {
+    setAddressModal(false);
+    setEditAddressID(null);
   };
 
   useEffect(() => {
     (async () => {
-      console.log("inside iffy");
       await getUserAddress(token, dispatch);
       setAddressList(
         dataState.address.map((address) => (
@@ -29,23 +35,28 @@ const AddressPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log(dataState, token);
     setAddressList(
-      dataState.address.map((address) => <AddressBlock addressData={address} />)
+      dataState.address.map((address) => (
+        <AddressBlock
+          addressData={address}
+          setEditAddressID={setEditAddressID}
+        />
+      ))
     );
   }, [dataState]);
 
   return (
     <main>
       <AddAddressModal
-        toggleAddressModal={toggleAddressModal}
+        hideAddressModal={hideAddressModal}
         addressModal={addressModal}
+        editAddressID={editAddressID}
       />
       <div className="m-x-4">
         <div className="title p-y-3 is-5">Address</div>
         <div className="address flex-r-w">
           <div
-            onClick={toggleAddressModal}
+            onClick={showAddressModal}
             className="is-light flex-c-w align-center justify-content-center add-address br-2"
           >
             <i className="fa-solid fa-plus is-6" />

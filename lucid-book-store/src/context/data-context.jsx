@@ -15,6 +15,7 @@ const initialReducerObject = {
     range: 0,
     rating: 0,
   },
+  defaultAddress: 1,
   products: [],
   address: [],
 };
