@@ -1,24 +1,16 @@
 import logo from "../components/navbar/logo.png";
 
-const payment = async () => {
+const payment = async (amount) => {
   const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
   const options = {
     key: "rzp_test_1DkvrVVAyqheiz",
-    amount: 10000,
+    amount: amount,
     currency: "INR",
     name: "Lucid Book Store",
     description: "Payment for your order",
     image: logo,
-    handler: function (response) {
-      //   const order = {
-      //     paymentId: response?.razorpay_payment_id,
-      //     orderId: uuid(),
-      //     amountPaid: totalAmount,
-      //     orderedProducts: [...productsInCart],
-      //     deliveryAddress: {},
-      //   };
-    },
+    handler: function (response) {},
     prefill: {
       name: "Gaurav Kumar",
       email: "gaurav.kumar@example.com",

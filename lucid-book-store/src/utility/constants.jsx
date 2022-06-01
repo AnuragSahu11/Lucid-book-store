@@ -1,5 +1,5 @@
 import { getYesterdaysDate } from "./check-in-list";
-const short = require('short-uuid');
+const short = require("short-uuid");
 
 export const demoCredentials = {
   email: "anurag@gmail.com",
@@ -29,9 +29,11 @@ export const reducerAction = {
 
 export const demoOrder = {
   orderID: short.generate(),
-  totalAmount: null,
+  totalAmount: 3131,
   orderProducts: [
     {
+      id: "stock3",
+      qty: 1,
       title: "The Beginner's Stock",
       author: "Akash Patel ",
       price: "99",
@@ -39,6 +41,8 @@ export const demoOrder = {
         "https://res.cloudinary.com/lucidui-cl-a/image/upload/v1648376991/Lucid%20book%20store/bookstock3_de3jig.jpg",
     },
     {
+      id: "forex2",
+      qty: 2,
       title: "Forex Trading",
       author: "Anderson Richard",
       price: "1516",

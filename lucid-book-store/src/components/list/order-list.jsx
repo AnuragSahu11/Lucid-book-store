@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
 const OrderList = ({ productData }) => {
-  const { title, author, price, image } = productData;
+  const navigate = useNavigate();
+  console.log(productData);
+  const { title, author, image, id, qty } = productData;
+  const goToProductPage = () => {
+    navigate(`/productListing/${id}`);
+  };
   return (
     <div
-      // onClick={goToProductPage}
+      onClick={goToProductPage}
       className="card cart-card order-list card-horizontal elevated "
     >
       <div className="card-head">
@@ -15,7 +22,7 @@ const OrderList = ({ productData }) => {
           <div className="title semibold is-3">{title} </div>
           <div className="subtitle m-y-0 flex-row regular space-between align-center is-2 width-100">
             <p>{author}</p>
-            <p className="semibold">Qty - 2 </p>
+            <p className="semibold">Qty - {qty} </p>
           </div>
         </div>
       </div>

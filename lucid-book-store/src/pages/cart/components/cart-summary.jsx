@@ -9,7 +9,6 @@ const CartSummary = () => {
     dataState: { cart, address, defaultAddress },
     dispatch,
   } = useData();
-
   let totalPrice =
     cart.length === 0
       ? 0
@@ -24,28 +23,19 @@ const CartSummary = () => {
   };
 
   const initialisePayment = () => {
-    console.log({
-      orderID: short.generate(),
-      totalAmount: totalPrice,
-      orderProducts: cart.map(({ title, author, price, image, qty }) => {
-        return { title, author, price, image, qty };
-      }),
-      date: getTodaysDate(),
-      address: address.filter(({ _id }) => _id === defaultAddress)[0],
-    });
     dispatch({
       type: reducerAction.ADD_ORDER,
       value: {
         orderID: short.generate(),
         totalAmount: totalPrice,
-        orderProducts: cart.map(({ title, author, price, image }) => {
-          return { title, author, price, image };
+        orderProducts: cart.map(({ title, author, price, image, id, qty }) => {
+          return { title, author, price, image, id, qty };
         }),
         date: getTodaysDate(),
         address: address.filter(({ _id }) => _id === defaultAddress)[0],
       },
     });
-    payment();
+    payment(totalPrice * 100);
   };
 
   useEffect(() => changeTitle(`Cart - ${cart.length} items`), []);
