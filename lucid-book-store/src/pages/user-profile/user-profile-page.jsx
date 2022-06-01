@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import { OrderCard } from "../../components/cards/order-card";
+import { useData } from "../../context";
 
 const UserProfilePage = () => {
+  const {
+    dataState: { orders },
+  } = useData();
+  console.log(orders);
   return (
     <main>
       <div className="profile grid-30-70 m-up-4 width-80 center-x">
@@ -47,10 +53,12 @@ const UserProfilePage = () => {
           </div>
         </div>
         <div className="profile-info p-l-3 p-dw-4 elevated li-shadow br-3">
-          <div className="subtitle semibold is-dark is-4 m-up-2">
+          <div className="subtitle semibold is-dark is-4 m-up-2 m-dw-3">
             Your Orders
           </div>
-          
+          {orders.map((order) => (
+            <OrderCard orderData={order} />
+          ))}
         </div>
       </div>
     </main>

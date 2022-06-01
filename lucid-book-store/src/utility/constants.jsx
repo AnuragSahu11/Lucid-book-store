@@ -1,3 +1,6 @@
+import { getYesterdaysDate } from "./check-in-list";
+const short = require('short-uuid');
+
 export const demoCredentials = {
   email: "anurag@gmail.com",
   password: "anurag",
@@ -21,4 +24,37 @@ export const reducerAction = {
   LOGIN_USER_DATA: "LOGIN_API_DATA",
   UPDATE_ADDRESS: "UPDATE_ADDRESS",
   CHANGE_DEFAULT_ADDRESS: "CHANGE_DEFAULT_ADDRESS",
+  ADD_ORDER: "ADD_ORDER",
+};
+
+export const demoOrder = {
+  orderID: short.generate(),
+  totalAmount: null,
+  orderProducts: [
+    {
+      title: "The Beginner's Stock",
+      author: "Akash Patel ",
+      price: "99",
+      image:
+        "https://res.cloudinary.com/lucidui-cl-a/image/upload/v1648376991/Lucid%20book%20store/bookstock3_de3jig.jpg",
+    },
+    {
+      title: "Forex Trading",
+      author: "Anderson Richard",
+      price: "1516",
+      image:
+        "https://res.cloudinary.com/lucidui-cl-a/image/upload/v1648376989/Lucid%20book%20store/bookforex2_jgdaj1.webp",
+    },
+  ],
+  date: getYesterdaysDate(),
+  address: {
+    _id: 1,
+    name: "Anurag Sahu",
+    street: "Block-7/B, street-22",
+    city: "Raipur",
+    state: "Chhattisgarh",
+    country: "India",
+    zipCode: "490002",
+    mobile: "123456789",
+  },
 };

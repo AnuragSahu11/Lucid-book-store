@@ -67,6 +67,8 @@ const dataReducer = (dataState, action) => {
         ...dataState,
         defaultAddress: action.value,
       };
+    case reducerAction.ADD_ORDER:
+      return { ...dataState, orders: [...dataState.orders, action.value] };
     default:
       return { ...dataState };
   }

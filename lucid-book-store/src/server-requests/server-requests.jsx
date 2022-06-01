@@ -73,7 +73,6 @@ const getProductsData = async (dispatch) => {
 const getUserAddress = async (token, dispatch) => {
   try {
     const { data } = await axios.get("/api/user/address", getHeader(token));
-    console.log(data.address);
     dispatch({ type: reducerAction.UPDATE_ADDRESS, value: data.address });
   } catch (err) {}
 };
