@@ -70,4 +70,5 @@ export const initialInputFieldAddAddress = {
   zipCode: "",
   country: "India",
   name: "",
+  mobile: "",
 };

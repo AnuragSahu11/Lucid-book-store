@@ -5,7 +5,7 @@ const AddressBlock = ({ addressData, setEditAddressID }) => {
   const { token } = useAuth();
   const { dispatch } = useData();
 
-  const { name, street, city, state, zipcode, _id, country, mobile } =
+  const { name, street, city, state, zipCode, _id, country, mobile } =
     addressData;
 
   const clickDelete = () => {
@@ -22,7 +22,7 @@ const AddressBlock = ({ addressData, setEditAddressID }) => {
         {name}
         <br />
         <hr />
-        {`${street}, ${city}, ${state}, ${country}, ${zipcode}`}
+        {`${street}, ${city}, ${state}, ${country}, ${zipCode}`}
         <br />
         {`Phone Number - ${mobile}`}
       </div>

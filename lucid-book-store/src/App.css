@@ -30,6 +30,12 @@ footer {
 .order-card {
   width: 50rem;
 }
+.is-lighter {
+  color: var(--font-lighter);
+}
+input {
+  color: var(--font-dark);
+}
 @media only screen and (max-width: 788px) {
   .error-image {
     width: 70vw;

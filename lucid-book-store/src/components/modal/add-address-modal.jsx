@@ -14,13 +14,31 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
   } = useData();
 
   const [inputField, setInputField] = useState(initialInputFieldAddAddress);
-  const { street, city, state, zipCode, name } = inputField;
+  const { street, city, state, zipCode, name, mobile } = inputField;
+
+  const validateForm = () => {
+    const regex = /^\d+$/;
+    return (
+      street &&
+      city &&
+      state &&
+      zipCode.length === 6 &&
+      regex.test(zipCode) &&
+      regex.test(mobile) &&
+      name &&
+      mobile.length === 10
+    );
+  };
 
   const clickAdd = () => {
-    editAddressID
-      ? updateAddress(editAddressID, inputField, token, dispatch)
-      : addAddress(inputField, token, dispatch);
-    setInputField(initialInputFieldAddAddress);
+    if (validateForm()) {
+      editAddressID
+        ? updateAddress(editAddressID, inputField, token, dispatch)
+        : addAddress(inputField, token, dispatch);
+      setInputField(initialInputFieldAddAddress);
+    } else {
+      console.log("not correct");
+    }
   };
 
   useEffect(() => {
@@ -54,7 +72,7 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
 
           <div className="form-div align-left address-modal-form">
             <p className="form-label">Full Name</p>
-            <i className="fas fa-user is-grey"></i>
+            <i className="fas fa-user is-lighter is-grey"></i>
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, name: e.target.value })
@@ -67,7 +85,7 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
           </div>
           <div className="form-div align-left m-up-2">
             <p className="form-label">Street</p>
-            <i className="fas fa-road"></i>
+            <i className="fas fa-road is-lighter"></i>
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, street: e.target.value })
@@ -80,7 +98,7 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
           </div>
           <div className="form-div align-left m-up-2">
             <p className="form-label">City</p>
-            <i className="fas fa-city"></i>
+            <i className="fas fa-city is-lighter"></i>
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, city: e.target.value })
@@ -93,7 +111,7 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
           </div>
           <div className="form-div align-left m-up-2">
             <p className="form-label">State</p>
-            <i className="fas fa-map"></i>
+            <i className="fas fa-map is-lighter"></i>
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, state: e.target.value })
@@ -106,7 +124,7 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
           </div>
           <div className="form-div align-left m-up-2">
             <p className="form-label">Pin Code</p>
-            <i className="fas fa-angle-double-right"></i>
+            <i className="fas fa-angle-double-right is-lighter"></i>
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, zipCode: e.target.value })
@@ -119,7 +137,7 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
           </div>
           <div className="form-div align-left m-up-2">
             <p className="form-label">Phone Number</p>
-            <i className="fas fa-phone"></i>{" "}
+            <i className="fas fa-phone is-lighter"></i>{" "}
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, mobile: e.target.value })

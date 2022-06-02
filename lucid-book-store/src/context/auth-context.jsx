@@ -16,11 +16,14 @@ const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const signupHandler = async (credentials) => {
-    const { dispatch } = useData();
+    const { email, password, firstName, lastName } = credentials;
     try {
-      const { data } = await axios.post(`/api/auth/signup`, credentials);
-      localStorage.setItem("token", data.encodedToken);
-      setToken(data.encodedToken);
+      const { data } = await axios.post(`/api/auth/signup`, {
+        email,
+        password,
+        firstName,
+        lastName,
+      });
     } catch (error) {
       console.log(error);
     }
