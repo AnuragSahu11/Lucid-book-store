@@ -1,9 +1,11 @@
-import { useAuth, useData } from "../../context";
-import { reducerAction } from "../../utility/constants";
+import { useData } from "../../context";
+import { SelectAddressList } from "../list/select-address-list";
 import "./modal.css";
 
 const SelectAddressModal = ({ showModal, toggleModal }) => {
-  const { dataState } = useData();
+  const {
+    dataState: { address },
+  } = useData();
 
   return (
     <div
@@ -19,34 +21,12 @@ const SelectAddressModal = ({ showModal, toggleModal }) => {
             <i className="fas fa-times" />
           </button>
           <div className="is-3 semibold m-dw-2">Select Delivery Address</div>
-          {dataState.address.map((address) => (
-            <SelectAddressSmallCard address={address} />
+          {address.map((address) => (
+            <SelectAddressList address={address} />
           ))}
         </div>
       </div>
     </div>
-  );
-};
-
-const SelectAddressSmallCard = ({ address }) => {
-  const { dispatch } = useData();
-  const clickAddress = () =>
-    dispatch({
-      type: reducerAction.CHANGE_DEFAULT_ADDRESS,
-      value: address._id,
-    });
-  return (
-    <>
-      <div
-        onClick={() => clickAddress()}
-        className="select-address-content p-y-1 p-x-1 br-1 m-l-"
-      >
-        <div className="select-address-name semibold is-3">{address.name}</div>
-        <div className="is-3 select-address-modal-para p-dw-1 p-1-r">
-          {address.street}, {address.city}, {address.state}, {address.country}
-        </div>
-      </div>
-    </>
   );
 };
 

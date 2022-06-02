@@ -4,31 +4,28 @@ import {
   addAddress,
   updateAddress,
 } from "../../server-requests/server-requests";
+import { initialInputFieldAddAddress } from "../../utility/constants";
 
 const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
   const { token } = useAuth();
-  const { dataState, dispatch } = useData();
+  const {
+    dataState: { address },
+    dispatch,
+  } = useData();
 
-  const initialInputFields = {
-    street: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    country: "India",
-    name: "",
-  };
-  const [inputField, setInputField] = useState(initialInputFields);
+  const [inputField, setInputField] = useState(initialInputFieldAddAddress);
+  const { street, city, state, zipCode, name } = inputField;
 
   const clickAdd = () => {
     editAddressID
       ? updateAddress(editAddressID, inputField, token, dispatch)
       : addAddress(inputField, token, dispatch);
-    setInputField(initialInputFields);
+    setInputField(initialInputFieldAddAddress);
   };
 
   useEffect(() => {
     if (editAddressID) {
-      const editAddress = dataState?.address?.filter(
+      const editAddress = address?.filter(
         (item) => item._id === editAddressID
       )[0];
       setInputField(editAddress);
@@ -44,7 +41,7 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
         <div className="modal center-x elevated center-y shadow">
           <button
             onClick={() => {
-              setInputField(initialInputFields);
+              setInputField(initialInputFieldAddAddress);
               hideAddressModal();
             }}
             className="card-cross btn-close is-medium"
@@ -65,7 +62,7 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
               type="text"
               className="form-input"
               placeholder="Full Name"
-              value={inputField.name}
+              value={name}
             />
           </div>
           <div className="form-div align-left m-up-2">
@@ -78,7 +75,7 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
               type="text"
               className="form-input"
               placeholder="House, street"
-              value={inputField.street}
+              value={street}
             />
           </div>
           <div className="form-div align-left m-up-2">
@@ -91,7 +88,7 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
               type="text"
               className="form-input"
               placeholder="City"
-              value={inputField.city}
+              value={city}
             />
           </div>
           <div className="form-div align-left m-up-2">
@@ -104,7 +101,7 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
               type="text"
               className="form-input"
               placeholder="State"
-              value={inputField.state}
+              value={state}
             />
           </div>
           <div className="form-div align-left m-up-2">
@@ -112,12 +109,12 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
             <i className="fas fa-angle-double-right"></i>
             <input
               onChange={(e) =>
-                setInputField({ ...inputField, zipcode: e.target.value })
+                setInputField({ ...inputField, zipCode: e.target.value })
               }
               type="number"
               className="form-input"
               placeholder="zip code"
-              value={inputField.zipcode}
+              value={zipCode}
             />
           </div>
           <div className="form-div align-left m-up-2">

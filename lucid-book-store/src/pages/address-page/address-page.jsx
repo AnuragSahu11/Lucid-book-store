@@ -6,7 +6,11 @@ import "./address-page.css";
 import { AddressBlock } from "./components/address-block";
 
 const AddressPage = () => {
-  const { dataState, dispatch } = useData();
+  const {
+    dataState,
+    dataState: { address },
+    dispatch,
+  } = useData();
   const { token } = useAuth();
 
   const [addressList, setAddressList] = useState([]);
@@ -27,16 +31,14 @@ const AddressPage = () => {
     (async () => {
       await getUserAddress(token, dispatch);
       setAddressList(
-        dataState.address.map((address) => (
-          <AddressBlock addressData={address} />
-        ))
+        address.map((address) => <AddressBlock addressData={address} />)
       );
     })();
   }, []);
 
   useEffect(() => {
     setAddressList(
-      dataState.address.map((address) => (
+      address.map((address) => (
         <AddressBlock
           addressData={address}
           setEditAddressID={setEditAddressID}

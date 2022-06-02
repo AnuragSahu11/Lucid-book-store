@@ -3,8 +3,11 @@ import { deleteAddress } from "../../../server-requests/server-requests";
 
 const AddressBlock = ({ addressData, setEditAddressID }) => {
   const { token } = useAuth();
-  const { name, street, city, state, zipcode, _id } = addressData;
   const { dispatch } = useData();
+
+  const { name, street, city, state, zipcode, _id, country, mobile } =
+    addressData;
+
   const clickDelete = () => {
     deleteAddress(_id, token, dispatch);
   };
@@ -12,15 +15,16 @@ const AddressBlock = ({ addressData, setEditAddressID }) => {
     setEditAddressID(addressData._id);
   };
   const clickDefault = () => {};
+
   return (
     <div className="address-blocks elevated br-2 li-shadow">
       <div className="textbox p-up-4 p-x-4">
         {name}
         <br />
         <hr />
-        {`${street}, ${city}, ${state}, ${zipcode}`}
+        {`${street}, ${city}, ${state}, ${country}, ${zipcode}`}
         <br />
-        Phone number: 123456789
+        {`Phone Number - ${mobile}`}
       </div>
       <div className="flex-r-w">
         <i onClick={clickEdit} className="fas fa-edit m-l-4 is-4 m-dw-3"></i>

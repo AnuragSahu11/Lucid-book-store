@@ -2,10 +2,12 @@ import { CartCard } from "../../../components";
 import { useData } from "../../../context";
 
 const CartProducts = () => {
-  const { dataState } = useData();
+  const {
+    dataState: { cart },
+  } = useData();
 
-  return dataState.cart.length > 0 ? (
-    dataState.cart.map((item) => <CartCard key={item.id} product={item} />)
+  return cart.length > 0 ? (
+    cart.map((item) => <CartCard key={item.id} product={item} />)
   ) : (
     <div className="empty-cart-image width-100">
       <div className="cart-image-wrapper center-x">

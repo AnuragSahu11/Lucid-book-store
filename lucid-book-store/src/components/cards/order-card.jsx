@@ -9,10 +9,7 @@ const OrderCard = ({ orderData }) => {
     orderProducts,
   } = orderData;
   return (
-    <div
-      // onClick={goToProductPage}
-      className="card order-card border-grey m-dw-2 center-x cart-card width-100 card-horizontal align-left elevated flex-r-w"
-    >
+    <div className="card order-card border-grey m-dw-2 center-x cart-card width-100 card-horizontal align-left elevated flex-r-w">
       <div className="order-card-status width-100 is-green semibold is-3">
         Order Successfull
       </div>

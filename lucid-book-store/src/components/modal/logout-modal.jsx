@@ -11,7 +11,10 @@ const LogoutModal = ({ showLogout, toggleLogout }) => {
     toggleLogout();
   };
   return (
-    <div style={{ display: showLogout }} className="logout-wrapper">
+    <div
+      style={{ display: showLogout ? "block" : "none" }}
+      className="logout-wrapper"
+    >
       <div className="logout m-up-6">
         <div className="modal center-x elevated center-y shadow">
           <button

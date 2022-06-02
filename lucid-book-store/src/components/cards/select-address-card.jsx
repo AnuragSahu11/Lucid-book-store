@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../context";
 import { SelectAddressModal } from "../modal/select-address-modal";
-import styles from "./card.css";
+import "./card.css";
 
 const SelectAddressCard = () => {
-  const { dataState, dispatch } = useData();
+  const {
+    dataState,
+    dataState: { address },
+  } = useData();
   const [showModal, setShowModal] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState({});
 
@@ -17,9 +20,7 @@ const SelectAddressCard = () => {
 
   useEffect(() => {
     setSelectedAddress(
-      dataState.address.filter(
-        (address) => address._id === dataState.defaultAddress
-      )[0]
+      address.filter((address) => address._id === dataState.defaultAddress)[0]
     );
   }, [dataState]);
 

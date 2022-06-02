@@ -63,7 +63,7 @@ export function makeServer({ environment = "development" } = {}) {
           wishlist: [],
           address: [
             {
-              _id: 1,
+              _id: "1",
               name: "Anurag Sahu",
               street: "Block-7/B, street-22",
               city: "Raipur",

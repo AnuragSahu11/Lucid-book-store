@@ -62,3 +62,12 @@ export const demoOrder = {
     mobile: "123456789",
   },
 };
+
+export const initialInputFieldAddAddress = {
+  street: "",
+  city: "",
+  state: "",
+  zipCode: "",
+  country: "India",
+  name: "",
+};

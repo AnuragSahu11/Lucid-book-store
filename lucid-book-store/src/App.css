@@ -24,7 +24,9 @@ footer {
   min-width: min-content;
   width: 35rem;
 }
-
+.pointer {
+  cursor: pointer;
+}
 .order-card {
   width: 50rem;
 }

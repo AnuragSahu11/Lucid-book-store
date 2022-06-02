@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 
 const OrderList = ({ productData }) => {
   const navigate = useNavigate();
-  console.log(productData);
   const { title, author, image, id, qty } = productData;
   const goToProductPage = () => {
     navigate(`/productListing/${id}`);

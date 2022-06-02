@@ -6,9 +6,11 @@ import { changeTitle } from "../../utility";
 
 const SearchResultPage = () => {
   const { searchText } = useParams();
-  const { dataState } = useData();
+  const {
+    dataState: { products },
+  } = useData();
   useEffect(() => changeTitle(`Search result for "${searchText}"`));
-  const matchingProducts = dataState.products.filter(({ title }) =>
+  const matchingProducts = products.filter(({ title }) =>
     title.toLowerCase().includes(searchText.toLocaleLowerCase())
   );
   return (

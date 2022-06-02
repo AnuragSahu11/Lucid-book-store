@@ -3,24 +3,33 @@ import { useData } from "../../../context";
 import { reducerAction } from "../../../utility/constants";
 
 const Filters = () => {
-  const { dataState, dispatch } = useData();
-  const [filterStyle, setFilterStyle] = useState("");
+  const {
+    dataState: {
+      filters: { range, category, rating, sort },
+    },
+    dispatch,
+  } = useData();
+  const [hideFilter, setHideFilter] = useState(true);
   const showFilterClick = () => {
-    setFilterStyle(filterStyle === "" ? "hide-filter-menu" : "");
+    setHideFilter((prevState) => !prevState);
   };
   const filterClickHandler = (dispatchArguments) => {
     dispatch(dispatchArguments);
   };
-  const CLEAR_FILTERs = () => {
+  const clearFilters = () => {
     dispatch({ type: reducerAction.CLEAR_FILTER });
   };
   return (
-    <div className={`filter-menu ${filterStyle} p-x-4 p-up-2  dk-shadow`}>
-      <div className="filter-menu-responsive flex-row align-center space-between">
+    <div
+      className={`filter-menu ${
+        hideFilter && "hide-filter-menu"
+      } p-x-4 p-up-2  dk-shadow`}
+    >
+      <div className="filter-menu-responsive flex-row align-center pointer space-between">
         <div onClick={showFilterClick} className="title is-dark">
           Filters
         </div>
-        <p onClick={CLEAR_FILTERs} className="link-secondary m-up-1 is-2">
+        <p onClick={clearFilters} className="link-secondary m-up-1 is-2">
           Clear all
         </p>
       </div>
@@ -38,7 +47,7 @@ const Filters = () => {
           max={2000}
           className="slider"
           list="tickmarks"
-          value={dataState.filters.range}
+          value={range}
           onChange={(e) =>
             filterClickHandler({
               type: reducerAction.SELECT_RANGE,
@@ -66,7 +75,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
-                checked={dataState.filters.category.includes("Stocks")}
+                checked={category.includes("Stocks")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: reducerAction.CATEGORY_STOCKS,
@@ -81,7 +90,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
-                checked={dataState.filters.category.includes("Forex")}
+                checked={category.includes("Forex")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: reducerAction.CATEGORY_FOREX,
@@ -96,7 +105,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
-                checked={dataState.filters.category.includes("Crypto")}
+                checked={category.includes("Crypto")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: reducerAction.CATEGORY_CRYPTO,
@@ -111,7 +120,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
-                checked={dataState.filters.category.includes("Charting")}
+                checked={category.includes("Charting")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: reducerAction.CATEGORY_CHARTING,
@@ -126,7 +135,7 @@ const Filters = () => {
             <label className="is-light form-checkbox is-2">
               <input
                 type="checkbox"
-                checked={dataState.filters.category.includes("Investment")}
+                checked={category.includes("Investment")}
                 onChange={(e) =>
                   filterClickHandler({
                     type: reducerAction.CATEGORY_INVESTMENT,
@@ -146,7 +155,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
-                checked={dataState.filters.rating === 4}
+                checked={rating === 4}
                 onChange={() =>
                   filterClickHandler({
                     type: reducerAction.SELECT_RATING,
@@ -165,7 +174,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
-                checked={dataState.filters.rating === 3}
+                checked={rating === 3}
                 onChange={() =>
                   filterClickHandler({
                     type: reducerAction.SELECT_RATING,
@@ -184,7 +193,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
-                checked={dataState.filters.rating === 2}
+                checked={rating === 2}
                 onChange={() =>
                   filterClickHandler({
                     type: reducerAction.SELECT_RATING,
@@ -203,7 +212,7 @@ const Filters = () => {
             <label className="form-radio-label">
               <input
                 type="radio"
-                checked={dataState.filters.rating === 1}
+                checked={rating === 1}
                 onChange={() =>
                   filterClickHandler({
                     type: reducerAction.SELECT_RATING,
@@ -228,9 +237,7 @@ const Filters = () => {
               <input
                 type="radio"
                 name="sort"
-                checked={
-                  dataState.filters.sort === reducerAction.SORT_LOW_TO_HIGH
-                }
+                checked={sort === reducerAction.SORT_LOW_TO_HIGH}
                 onChange={() =>
                   filterClickHandler({ type: reducerAction.SORT_LOW_TO_HIGH })
                 }
@@ -246,9 +253,7 @@ const Filters = () => {
               <input
                 type="radio"
                 name="sort"
-                checked={
-                  dataState.filters.sort === reducerAction.SORT_HIGH_TO_LOW
-                }
+                checked={sort === reducerAction.SORT_HIGH_TO_LOW}
                 onChange={() =>
                   filterClickHandler({ type: reducerAction.SORT_HIGH_TO_LOW })
                 }
