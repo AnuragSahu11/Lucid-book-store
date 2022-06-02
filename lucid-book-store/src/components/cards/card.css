@@ -12,6 +12,18 @@
 .select-address-para {
   border-bottom: solid 3px blue;
 }
+.product-card-button {
+  margin-top: auto;
+}
+.card {
+  height: auto;
+}
+.card-icon {
+  top: var(--xs);
+}
+.card-body {
+  margin-top: auto;
+}
 
 @media only screen and (max-width: 1124px) {
   .margin-left {

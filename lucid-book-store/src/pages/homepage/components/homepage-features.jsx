@@ -71,7 +71,7 @@ const HomepageFeatures = () => {
                 </div>
                 <button
                   onClick={() => categoryClickHandler("stock")}
-                  className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
+                  className="btn-primary m-dw-1 btn-small shadow btn-w-icon"
                 >
                   <i className="fas fa-shopping-cart" />
                   View Books
@@ -104,7 +104,7 @@ const HomepageFeatures = () => {
 
                 <button
                   onClick={() => categoryClickHandler("crypto")}
-                  className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
+                  className="btn-primary m-dw-1 btn-small shadow btn-w-icon"
                 >
                   <i className="fas fa-shopping-cart" />
                   View Books
@@ -136,7 +136,7 @@ const HomepageFeatures = () => {
                 </div>
                 <button
                   onClick={() => categoryClickHandler("charting")}
-                  className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
+                  className="btn-primary m-dw-1 btn-small shadow btn-w-icon"
                 >
                   <i className="fas fa-shopping-cart" />
                   View Books
@@ -168,7 +168,7 @@ const HomepageFeatures = () => {
                 </div>
                 <button
                   onClick={() => categoryClickHandler("investment")}
-                  className="btn-primary m-dw-1 btn-medium shadow btn-w-icon"
+                  className="btn-primary m-dw-1 btn-small shadow btn-w-icon"
                 >
                   <i className="fas fa-shopping-cart" />
                   View Books

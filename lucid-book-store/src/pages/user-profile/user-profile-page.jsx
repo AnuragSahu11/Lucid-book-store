@@ -1,26 +1,17 @@
 import { Link } from "react-router-dom";
 import { OrderCard } from "../../components/cards/order-card";
-import { useData } from "../../context";
+import { useAuth, useData } from "../../context";
 
 const UserProfilePage = () => {
   const {
     dataState: { orders },
   } = useData();
-  console.log(orders);
+  const { logoutHandler } = useAuth();
   return (
     <main>
       <div className="profile grid-30-70 m-up-4 width-80 center-x">
         <div className="profile-links m-r-4">
-          <div className="textbox br-2 p-y-2 p-l-2 dk-shadow elevated align-center flex-r-w">
-            <div className="avatar-m">
-              <img src="https://picsum.photos/200" alt="profile picture" />
-            </div>
-            <div className="m-l-1">
-              <div className="subtitle is-3">Hello</div>
-              <div className="m-y-0 is-3 title">Anurag Sahu</div>
-            </div>
-          </div>
-          <div className="textbox br-3 m-y-2 p-y-2 flex-col width-100 elevated li-shadow">
+          <div className="textbox br-3 p-y-2 flex-col width-100 elevated li-shadow">
             <div className="title semibold m-l-5 m-y-0">Manage Account</div>
             <Link
               to="/address"
@@ -44,8 +35,8 @@ const UserProfilePage = () => {
               Cart
             </Link>
             <a
-              href="logout.html"
-              className="link m-l-5 semibold is-3 is-red m-up-1"
+              onClick={logoutHandler}
+              className="pointer link m-l-5 semibold is-3 is-red m-up-1"
             >
               <i className="m-r-1 fa-solid fa-right-from-bracket" />
               Log out
