@@ -8,6 +8,7 @@ import {
   removeFromCartApiMethod,
 } from "../../server-requests/server-requests";
 import { checkInList } from "../../utility";
+import { toast } from "react-toastify";
 
 const AddToCartProductListing = ({ product, classes }) => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const AddToCartProductListing = ({ product, classes }) => {
   const addToCartclick = async () => {
     if (!token) {
       navigate("/login");
+      toast.info("Login required");
     }
     if (token && !checkInList(dataState.cart, product.id)) {
       setIsLoading(true);
@@ -73,7 +75,7 @@ const IncreaseProductQuantity = ({ id }) => {
   );
 };
 
-const DecreaseProductQuantity = ({ id, qty}) => {
+const DecreaseProductQuantity = ({ id, qty }) => {
   const { token, setIsLoading } = useAuth();
   const { dispatch } = useData();
 

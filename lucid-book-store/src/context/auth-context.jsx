@@ -4,6 +4,7 @@ import { useData } from "./data-context";
 import { useNavigate } from "react-router-dom";
 import { reducerAction } from "../utility/constants";
 import { getUserAddress } from "../server-requests/server-requests";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 
@@ -24,12 +25,14 @@ const AuthProvider = ({ children }) => {
         firstName,
         lastName,
       });
+      toast.success("Account created");
+      toast.info("Login new account");
     } catch (error) {
-      console.log(error);
+      toast.error("Sign up failed");
     }
   };
 
-  const loginHandler = async (credentials) => {
+  const loginHandler = async (credentials, from) => {
     try {
       const { data } = await axios.post(`/api/auth/login`, credentials);
       localStorage.setItem("token", data.encodedToken);
@@ -42,8 +45,10 @@ const AuthProvider = ({ children }) => {
           address: data.foundUser.address,
         },
       });
+      toast.success("Login successfull");
+      navigate(from);
     } catch (error) {
-      console.log(error);
+      toast.error("Login failed");
     }
   };
 
@@ -52,6 +57,7 @@ const AuthProvider = ({ children }) => {
     setToken(null);
     dispatch({ type: "CLEAR_CART_WISHLIST" });
     navigate("/");
+    toast.info("You have been Logged out");
   };
 
   useEffect(() => {

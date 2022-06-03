@@ -1,4 +1,5 @@
 import logo from "../components/navbar/logo.png";
+import { toast } from "react-toastify";
 
 const payment = async (amount) => {
   const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
@@ -10,7 +11,10 @@ const payment = async (amount) => {
     name: "Lucid Book Store",
     description: "Payment for your order",
     image: logo,
-    handler: function (response) {},
+    handler: function (response) {
+      console.log(response);
+      toast.success("Order placed");
+    },
     prefill: {
       name: "Gaurav Kumar",
       email: "gaurav.kumar@example.com",

@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { demoCredentials } from "../../utility/constants";
+import { toast } from "react-toastify";
 import "./login.css";
 
 const LoginPage = () => {
   const [formField, setFormField] = useState({ email: "", password: "" });
   const { loginHandler, setIsLoading } = useAuth();
-  const navigate = useNavigate();
 
   const { email, password } = formField;
 
@@ -17,9 +17,8 @@ const LoginPage = () => {
   const demoCredentialsLoginHandler = async () => {
     setIsLoading(true);
     setFormField(demoCredentials);
-    await loginHandler(demoCredentials);
+    await loginHandler(demoCredentials, from);
     setIsLoading(false);
-    navigate(from);
   };
 
   const validateForm = () => {
@@ -30,11 +29,10 @@ const LoginPage = () => {
   const loginClickHandler = async () => {
     if (validateForm()) {
       setIsLoading(true);
-      await loginHandler(formField);
+      await loginHandler(formField, from);
       setIsLoading(false);
-      navigate(from);
     } else {
-      console.log("correct");
+      toast.warn("Enter correct credentials");
     }
   };
   return (

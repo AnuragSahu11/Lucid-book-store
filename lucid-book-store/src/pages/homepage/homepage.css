@@ -13,6 +13,7 @@
   gap: var(--xs);
 }
 .category-product {
+  cursor: pointer;
   overflow: hidden;
   border-radius: var(--border-radius-m);
   width: 11rem;

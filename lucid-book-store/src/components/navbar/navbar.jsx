@@ -32,7 +32,7 @@ const Navbar = () => {
       <nav className={`navbar li-shadow  ${showNav && "custom-nav"}`}>
         <div className="nav-head">
           <div className="nav-brand">
-            <a href="" className="logo-a">
+            <a onClick={() => navigate("/")} className="logo-a pointer">
               <img className="logo-s" src={logo} alt="logo" />
             </a>
           </div>

@@ -32,10 +32,6 @@ const AddressBlock = ({ addressData, setEditAddressID }) => {
           onClick={clickDelete}
           className="m-l-4 is-4 m-dw-3 fa-solid fa-trash-can"
         />
-        <i
-          onClick={clickDefault}
-          className="m-l-4 is-4 m-dw-3 fas fa-check"
-        ></i>
       </div>
     </div>
   );

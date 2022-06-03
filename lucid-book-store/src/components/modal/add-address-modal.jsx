@@ -5,6 +5,7 @@ import {
   updateAddress,
 } from "../../server-requests/server-requests";
 import { initialInputFieldAddAddress } from "../../utility/constants";
+import { toast } from "react-toastify";
 
 const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
   const { token } = useAuth();
@@ -36,8 +37,9 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
         ? updateAddress(editAddressID, inputField, token, dispatch)
         : addAddress(inputField, token, dispatch);
       setInputField(initialInputFieldAddAddress);
+      hideAddressModal();
     } else {
-      console.log("not correct");
+      toast.warn("Fill correct Address");
     }
   };
 

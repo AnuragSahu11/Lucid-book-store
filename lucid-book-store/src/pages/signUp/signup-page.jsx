@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import "../login/login.css";
+import { toast } from "react-toastify";
 
 const SignupPage = () => {
   const { signupHandler } = useAuth();
@@ -38,7 +39,7 @@ const SignupPage = () => {
     if (validateForm()) {
       signupHandler(formField);
     } else {
-      console.log("plaease fill correct info");
+      toast.warn("Enter correct details");
     }
   };
 
