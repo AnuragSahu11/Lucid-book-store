@@ -8,6 +8,7 @@ import {
   addToCartApiMethod,
   removeFromCartApiMethod,
 } from "../../server-requests/server-requests";
+import { toast } from "react-toastify";
 
 const AddToWishlistLarge = ({ product }) => {
   const { dataState, dispatch } = useData();
@@ -16,6 +17,7 @@ const AddToWishlistLarge = ({ product }) => {
   const addToWishlistClick = async () => {
     if (!token) {
       navigate("/login");
+      toast.info("Login required");
     }
     if (token && !checkInList(dataState.wishlist, product.id)) {
       setIsLoading(true);
@@ -47,6 +49,7 @@ const AddToWishlistSingleProductPage = ({ product }) => {
   const addToWishlistClick = async () => {
     if (!token) {
       navigate("/login");
+      toast.info("Login required");
     }
     if (token && !checkInList(dataState.wishlist, product.id)) {
       setIsLoading(true);
@@ -76,6 +79,7 @@ const AddToWishlistSmall = ({ product }) => {
   const AddToWishlistClick = async () => {
     if (!token) {
       navigate("/login");
+      toast.info("Login required");
     } else if (checkInList(dataState.wishlist, product.id)) {
       setIsLoading(true);
       await removeFromWishlistApiMethod(product._id, token, dispatch);
