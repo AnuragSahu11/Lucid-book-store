@@ -1,15 +1,18 @@
 import React, { useEffect } from "react";
 import { useData } from "../../../context";
-import { changeTitle, payment } from "../../../utility";
+import { changeTitle, getTodaysDate, payment } from "../../../utility";
+import { reducerAction } from "../../../utility/constants";
+const short = require("short-uuid");
 
 const CartSummary = () => {
-  const { dataState } = useData();
-
+  const {
+    dataState: { cart, address, defaultAddress },
+    dispatch,
+  } = useData();
   let totalPrice =
-    dataState.cart.reduce(
-      (acc, curr) => (acc = acc + curr.price * curr.qty),
-      0
-    ) + 50;
+    cart.length === 0
+      ? 0
+      : cart.reduce((acc, curr) => (acc = acc + curr.price * curr.qty), 0) + 50;
 
   const cartSummaryProductName = (word) => {
     return word.split("").slice(0, 15).join("");
@@ -20,17 +23,29 @@ const CartSummary = () => {
   };
 
   const initialisePayment = () => {
-    payment();
+    dispatch({
+      type: reducerAction.ADD_ORDER,
+      value: {
+        orderID: short.generate(),
+        totalAmount: totalPrice,
+        orderProducts: cart.map(({ title, author, price, image, id, qty }) => {
+          return { title, author, price, image, id, qty };
+        }),
+        date: getTodaysDate(),
+        address: address.filter(({ _id }) => _id === defaultAddress)[0],
+      },
+    });
+    payment(totalPrice * 100);
   };
 
-  useEffect(() => changeTitle(`Cart - ${dataState.cart.length} items`), []);
+  useEffect(() => changeTitle(`Cart - ${cart.length} items`), []);
 
   return (
     <div className="cart-summary p-x-3 p-dw-3 p-up-3 width-70 elevated li-shadow br-3 center-x">
       <div className="textbox">
         <div className="title m-dw-2">Your Order</div>
         <hr />
-        {dataState.cart.map((item) => (
+        {cart.map((item) => (
           <div
             key={item.id}
             className="subtitle m-up-1 width-100 flex-row regular space-between"
@@ -48,7 +63,7 @@ const CartSummary = () => {
         </div>
         <hr />
         <div className="subtitle width-100 flex-row space-between is-3 m-y-1 is-dark">
-          <p className="m-y-0">Total {dataState.cart.length} items</p>
+          <p className="m-y-0">Total {cart.length} items</p>
           <p className="m-y-0">{totalPrice}</p>
         </div>
         <hr />

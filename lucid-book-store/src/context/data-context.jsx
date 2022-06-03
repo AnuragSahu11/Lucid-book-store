@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
-import { getProductsData } from "../utility";
+import { getProductsData } from "../server-requests/server-requests";
+import { demoOrder } from "../utility/constants";
 import { dataReducer } from "./data-reducer";
 
 const DataContext = createContext();
@@ -15,7 +16,10 @@ const initialReducerObject = {
     range: 0,
     rating: 0,
   },
+  defaultAddress: "1",
   products: [],
+  address: [],
+  orders: [demoOrder],
 };
 
 const DataProvider = ({ children }) => {

@@ -1,9 +1,39 @@
-.logout-wrapper {
+.modal-wrapper {
   width: 100vw;
   height: 100vh;
   z-index: 2;
   position: fixed;
 }
-.logout .modal {
+.modal-wrapper .modal {
   background-color: var(--background-white);
+  margin-top: 0px;
+  width: 30vw;
+}
+.address-modal {
+  margin-top: -50px;
+}
+.select-address-modal .modal {
+  width: fit-content;
+}
+.align-left {
+  text-align: left;
+}
+.select-address-modal-para {
+  border-bottom: solid var(--grey);
+}
+
+@media only screen and (max-width: 1280px) {
+  .address-modal .modal {
+    width: 50vw;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .address-modal .modal {
+    width: 60vw;
+  }
+}
+@media only screen and (max-width: 778px) {
+  .address-modal .modal {
+    width: 90vw;
+  }
 }

@@ -1,28 +1,26 @@
 import React, { useEffect } from "react";
-import { Navigate } from "react-router-dom";
 import { WishlistCard } from "../../components";
-import { useAuth, useData } from "../../context";
+import { useData } from "../../context";
 import { changeTitle } from "../../utility";
 
 const WishlistPage = () => {
-  const { dataState } = useData();
-  const { token } = useAuth();
+  const {
+    dataState: { wishlist },
+  } = useData();
   useEffect(() => {
-    changeTitle(`Wishlist -${dataState.wishlist.length} items`);
+    changeTitle(`Wishlist -${wishlist.length} items`);
   }, []);
 
-  return token ? (
+  return (
     <div className="wishlist p-x-3">
       <div className="textbox m-y-3">
         <div className="title bold is-5 center-text">Wishlist</div>
       </div>
       <div className="wishlist-cards flex-r-w space-evenly">
-        {dataState.wishlist.length > 0 &&
-          dataState.wishlist.map((item) => (
-            <WishlistCard key={item.id} product={item} />
-          ))}
+        {wishlist.length > 0 &&
+          wishlist.map((item) => <WishlistCard key={item.id} product={item} />)}
       </div>
-      {dataState.wishlist.length === 0 && (
+      {wishlist.length === 0 && (
         <div className="empty-wishlist width-100">
           <div className="empty-wishlist-wrapper center-x">
             <p className="is-4 has-grey br-1 center-x regular text-center width-70 is-light">
@@ -35,8 +33,6 @@ const WishlistPage = () => {
         </div>
       )}
     </div>
-  ) : (
-    <Navigate to={"/login"} />
   );
 };
 

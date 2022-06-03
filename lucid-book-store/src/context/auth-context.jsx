@@ -2,6 +2,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useData } from "./data-context";
 import { useNavigate } from "react-router-dom";
+import { reducerAction } from "../utility/constants";
+import { getUserAddress } from "../server-requests/server-requests";
 
 const AuthContext = createContext();
 
@@ -10,14 +12,11 @@ const useAuth = () => useContext(AuthContext);
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const { dispatch } = useData();
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    setToken(localStorage.getItem("token"));
-  }, []);
-
   const signupHandler = async (credentials) => {
+    const { dispatch } = useData();
     try {
       const { data } = await axios.post(`/api/auth/signup`, credentials);
       localStorage.setItem("token", data.encodedToken);
@@ -33,8 +32,12 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("token", data.encodedToken);
       setToken(data.encodedToken);
       dispatch({
-        type: "LOGIN_API_DATA",
-        value: { cart: data.foundUser.cart, wishlist: data.foundUser.wishlist },
+        type: reducerAction.LOGIN_USER_DATA,
+        value: {
+          cart: data.foundUser.cart,
+          wishlist: data.foundUser.wishlist,
+          address: data.foundUser.address,
+        },
       });
     } catch (error) {
       console.log(error);
@@ -47,6 +50,12 @@ const AuthProvider = ({ children }) => {
     dispatch({ type: "CLEAR_CART_WISHLIST" });
     navigate("/");
   };
+
+  useEffect(() => {
+    if (token) {
+      getUserAddress(token, dispatch);
+    }
+  }, []);
 
   return (
     <AuthContext.Provider

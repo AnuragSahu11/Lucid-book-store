@@ -4,7 +4,9 @@ import { useData } from "../../context";
 
 const Search = () => {
   const navigate = useNavigate();
-  const { dataState } = useData();
+  const {
+    dataState: { products },
+  } = useData();
   const [searchedProducts, setSearchedProducts] = useState();
   const [searchText, setSearchText] = useState();
 
@@ -12,7 +14,7 @@ const Search = () => {
     if (searchText === "") {
       setSearchedProducts("");
     } else {
-      let matchingProducts = dataState.products
+      let matchingProducts = products
         .filter(({ title }) =>
           title.toLowerCase().includes(searchText.toLowerCase())
         )

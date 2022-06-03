@@ -1,7 +1,7 @@
 import { useAuth } from "../../context";
 import "./modal.css";
 
-const Logout = ({ showLogout, toggleLogout }) => {
+const LogoutModal = ({ showLogout, toggleLogout }) => {
   const { logoutHandler } = useAuth();
   const logoutClickHandler = () => {
     logoutHandler();
@@ -11,7 +11,10 @@ const Logout = ({ showLogout, toggleLogout }) => {
     toggleLogout();
   };
   return (
-    <div style={{ display: showLogout }} className="logout-wrapper">
+    <div
+      style={{ display: showLogout ? "block" : "none" }}
+      className="logout-wrapper"
+    >
       <div className="logout m-up-6">
         <div className="modal center-x elevated center-y shadow">
           <button
@@ -41,4 +44,4 @@ const Logout = ({ showLogout, toggleLogout }) => {
   );
 };
 
-export { Logout };
+export { LogoutModal };

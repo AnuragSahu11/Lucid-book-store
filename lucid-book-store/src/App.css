@@ -14,6 +14,22 @@ footer {
 .error-image {
   width: 30vw;
 }
+.align-left {
+  text-align: left;
+}
+.border-grey {
+  border: solid 1px var(--grey);
+}
+.order-list {
+  min-width: min-content;
+  width: 35rem;
+}
+.pointer {
+  cursor: pointer;
+}
+.order-card {
+  width: 50rem;
+}
 @media only screen and (max-width: 788px) {
   .error-image {
     width: 70vw;

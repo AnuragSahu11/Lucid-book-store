@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Footer, Navbar } from "./components/index";
+import { Footer, Navbar, PrivateRoute } from "./components/index";
 import {
   CartPage,
   ErrorPage,
@@ -11,8 +11,9 @@ import {
   SignupPage,
   WishlistPage,
   SingleProductPage,
+  UserProfilePage,
+  AddressPage,
 } from "./pages";
-import { useData } from "./context/data-context";
 import "./App.css";
 
 function App() {
@@ -29,8 +30,38 @@ function App() {
         <Route path="/search/:searchText" element={<SearchResultPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/wishlist" element={<WishlistPage />} />
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <CartPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <PrivateRoute>
+              <WishlistPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/userpage"
+          element={
+            <PrivateRoute>
+              <UserProfilePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/address"
+          element={
+            <PrivateRoute>
+              <AddressPage />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
