@@ -100,7 +100,7 @@ const getProductsData = async (dispatch) => {
     const response = await axios.get("/api/products");
     dispatch({ type: reducerAction.API_DATA, value: response.data.products });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -133,7 +133,6 @@ const deleteAddress = async (addressID, token, dispatch) => {
       `api/user/address/${addressID}`,
       getHeader(token)
     );
-    console.log(data.address);
     dispatch({ type: reducerAction.UPDATE_ADDRESS, value: data.address });
     toast.info("Address Deleted");
   } catch (err) {
