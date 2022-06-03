@@ -28,7 +28,6 @@ const Navbar = () => {
   };
   return (
     <div className="">
-      <Loader />
       <nav className={`navbar li-shadow  ${showNav && "custom-nav"}`}>
         <div className="nav-head">
           <div className="nav-brand">
@@ -80,6 +79,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <Loader />
       <LogoutModal showLogout={showLogout} toggleLogout={toggleLogoutModal} />
     </div>
   );
