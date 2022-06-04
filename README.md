@@ -1,6 +1,6 @@
 # Lucid Book Store
 
-![Lucid logo](lucid-book-store/public/images/02%20-%20Colorful%20-%20Icon%20Only.png)
+![Lucid logo](lucid-book-store/public/images/lucid-logo.png)
 
 E commerce site for financial market books made using Lucid Ui
 
