@@ -25,6 +25,7 @@ const AuthProvider = ({ children }) => {
         firstName,
         lastName,
       });
+      navigate("/login");
       toast.success("Account created");
       toast.info("Login new account");
     } catch (error) {
