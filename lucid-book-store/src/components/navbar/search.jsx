@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useFilter } from "../../context/filter-context";
+import { useData } from "../../context";
 
 const Search = () => {
   const navigate = useNavigate();
-  const { filterState } = useFilter();
+  const {
+    dataState: { products },
+  } = useData();
   const [searchedProducts, setSearchedProducts] = useState();
   const [searchText, setSearchText] = useState();
 
@@ -12,7 +14,7 @@ const Search = () => {
     if (searchText === "") {
       setSearchedProducts("");
     } else {
-      let matchingProducts = filterState.products
+      let matchingProducts = products
         .filter(({ title }) =>
           title.toLowerCase().includes(searchText.toLowerCase())
         )

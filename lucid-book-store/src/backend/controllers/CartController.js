@@ -104,7 +104,7 @@ export const removeItemFromCartHandler = function (schema, request) {
  * body contains {action} (whose 'type' can be increment or decrement)
  * */
 
-export const updateCartItemHandler = function (schema, request) {
+export const UPDATE_CARTItemHandler = function (schema, request) {
   const productId = request.params.productId;
   const userId = requiresAuth.call(this, request);
   try {

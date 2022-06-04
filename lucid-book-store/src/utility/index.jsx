@@ -1,3 +1,4 @@
+export { demoCredentials } from "./constants";
 export { compose } from "./composition-function";
 export { sortProducts } from "./sort-product";
 export {
@@ -5,6 +6,12 @@ export {
   filterByPrice,
   filterByRating,
 } from "./filter-product";
-export { getProductsData } from "./api-call";
 export { changeTitle } from "./change-title";
 export { discountPercentageCalc } from "./discount-calculator";
+export { showRatingStars, ratingStarColor } from "./rating";
+export { SwitchTheme } from "./switch-theme";
+export { checkInList } from "./check-in-list";
+export { Loader } from "./loader/loader";
+export { getHeader } from "./request-header";
+export { payment } from "./payment-integration";
+export { getYesterdaysDate, getTodaysDate } from "./check-in-list";

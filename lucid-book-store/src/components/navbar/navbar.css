@@ -1,6 +1,6 @@
 .navbar {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   top: 0px;
   position: sticky;
   background-color: var(--background-white);
@@ -8,6 +8,9 @@
 .nav-search {
   position: relative;
   text-align: center;
+}
+.nav-search input {
+  width: 28rem;
 }
 .search-results {
   background-color: var(--background-white);
@@ -36,7 +39,6 @@
   flex-direction: column;
   display: block;
 }
-
 .custom-nav .nav-start {
   display: none;
 }
@@ -62,6 +64,9 @@
     align-items: center;
   }
   @media only screen and (max-width: 768px) {
+    .nav-end input {
+      width: 80vw;
+    }
     .custom-nav .nav-btn {
       display: block;
       margin-top: 10px;

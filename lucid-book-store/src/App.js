@@ -1,42 +1,76 @@
-import React, { useEffect } from "react";
-import Mockman from "mockman-js";
-import {
-  Homepage,
-  Navbar,
-  Footer,
-  ProductListing,
-  Cart,
-  Wishlist,
-} from "./components/components";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { getProductsData } from "./utility/api-call";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Footer, Navbar, PrivateRoute } from "./components/index";
+import {
+  CartPage,
+  ErrorPage,
+  Homepage,
+  LoginPage,
+  ProductListingPage,
+  SearchResultPage,
+  SignupPage,
+  WishlistPage,
+  SingleProductPage,
+  UserProfilePage,
+  AddressPage,
+} from "./pages";
 import "./App.css";
-import { useFilter } from "./context/filter-context";
-import { SingleProductPage } from "./components/single-product-page/single-product-page";
-import { SearchResult } from "./components/navbar/search-results";
-import { Login, Signup } from "./components/Auth";
 
 function App() {
-  const { filterState, dispatch } = useFilter();
-  useEffect(() => {
-    getProductsData(dispatch);
-  }, []);
   return (
     <div className="App">
+      <ToastContainer
+        autoClose={3000}
+        hideProgressBar={true}
+        closeOnClick={true}
+        style={{ fontSize: "1.5rem" }}
+      />
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/productListing" element={<ProductListing />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/productListing" element={<ProductListingPage />} />
         <Route
           path="/productListing/:productId"
           element={<SingleProductPage />}
         />
-        <Route path="/mock" element={<Mockman />} />
-        <Route path="/search/:searchText" element={<SearchResult />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/search/:searchText" element={<SearchResultPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <CartPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <PrivateRoute>
+              <WishlistPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/userpage"
+          element={
+            <PrivateRoute>
+              <UserProfilePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/address"
+          element={
+            <PrivateRoute>
+              <AddressPage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
     </div>

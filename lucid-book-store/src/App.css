@@ -1,20 +1,55 @@
-@import url("https://lucid-ui.netlify.app/main.css");
-
 body {
   font-family: "Poppins", sans-serif;
 }
 
 .App {
+  position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
+  z-index: 0;
 }
 footer {
   margin-top: auto;
 }
+.error-image {
+  width: 30vw;
+}
+.align-left {
+  text-align: left;
+}
+.border-grey {
+  border: solid 1px var(--grey);
+}
+.order-list {
+  min-width: min-content;
+  width: 35rem;
+}
+.pointer {
+  cursor: pointer;
+}
+.order-card {
+  width: 50rem;
+}
+.is-lighter {
+  color: var(--font-lighter);
+}
+input {
+  color: var(--font-dark);
+}
+@media only screen and (max-width: 788px) {
+  .error-image {
+    width: 70vw;
+  }
+}
+
 :root {
   --background-white: white;
 }
 .dark-theme {
   --background-white: #171717;
+  --input-grey: #2c3032;
+}
+input {
+  background-color: var(--input-grey);
 }
