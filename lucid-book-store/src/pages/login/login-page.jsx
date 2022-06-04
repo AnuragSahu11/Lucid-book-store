@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { demoCredentials } from "../../utility/constants";
+import { toast } from "react-toastify";
 import "./login.css";
 
 const LoginPage = () => {
   const [formField, setFormField] = useState({ email: "", password: "" });
   const { loginHandler, setIsLoading } = useAuth();
-  const navigate = useNavigate();
+
+  const { email, password } = formField;
 
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -15,16 +17,23 @@ const LoginPage = () => {
   const demoCredentialsLoginHandler = async () => {
     setIsLoading(true);
     setFormField(demoCredentials);
-
-    await loginHandler(demoCredentials);
+    await loginHandler(demoCredentials, from);
     setIsLoading(false);
-    navigate(from);
   };
+
+  const validateForm = () => {
+    const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return regex.test(email) && password;
+  };
+
   const loginClickHandler = async () => {
-    setIsLoading(true);
-    loginHandler(formField);
-    setIsLoading(false);
-    navigate(from);
+    if (validateForm()) {
+      setIsLoading(true);
+      await loginHandler(formField, from);
+      setIsLoading(false);
+    } else {
+      toast.warn("Enter correct credentials");
+    }
   };
   return (
     <>
@@ -35,25 +44,28 @@ const LoginPage = () => {
           </div>
           <div className="form-div form-custom m-up-1">
             <p className="form-label">Email</p>
+            <i className="fas fa-user is-lighter"></i>
             <input
               onChange={(e) =>
                 setFormField({ ...formField, email: e.target.value })
               }
               type="email"
-              value={formField.email}
+              value={formField.email || ""}
               className="form-input input-focused"
-              placeholder="enter your email id"
+              placeholder="Enter your email"
               required=""
             />
+
             <p className="form-label m-up-2">Password</p>
+            <i className="fa-solid fa-key is-lighter"></i>
             <input
               onChange={(e) =>
                 setFormField({ ...formField, password: e.target.value })
               }
               type="password"
-              value={formField.password}
+              value={formField.password || ""}
               className="form-input input-focused"
-              placeholder="enter your password"
+              placeholder="Enter your password"
               required=""
             />
           </div>
@@ -61,7 +73,6 @@ const LoginPage = () => {
             <input type="checkbox" className="" />
             Remember me
           </label>
-          <a className="link-secondary m-l-6">Forgot password</a>
           <div className="btn-vertical m-up-3 center-text">
             <button
               onClick={loginClickHandler}
@@ -75,7 +86,9 @@ const LoginPage = () => {
             >
               Login with demo credentials
             </button>
-            <a className="is- link">Create Account</a>
+            <Link to="/signup" className="is-2 link">
+              Create Account
+            </Link>
           </div>
         </div>
       </section>

@@ -7,6 +7,7 @@ import {
 } from "../../utility";
 import { AddToCartProductListing } from "../buttons/cart-buttons";
 import { AddToWishlistSmall } from "../buttons/wishlist-buttons";
+import './card.css'
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const ProductCard = ({ product }) => {
     <>
       <div className="card product-card m-x-3 elevated m-dw-5 li-shadow">
         <div className="card-head">
-          <AddToWishlistSmall product={product}  />
+          <AddToWishlistSmall product={product} />
           <span className="card-badge">{badge}</span>
           <div onClick={cardImageHandler} className="card-image">
             <img
@@ -63,7 +64,7 @@ const ProductCard = ({ product }) => {
               </span>
             </p>
           </div>
-          <div className="btn-vertical">
+          <div className="btn-vertical product-card-button">
             <AddToCartProductListing
               classes={"btn-primary width-100 btn-w-icon btn-small"}
               product={product}

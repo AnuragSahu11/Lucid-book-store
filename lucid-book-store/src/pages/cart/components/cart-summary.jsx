@@ -22,7 +22,7 @@ const CartSummary = () => {
     return price * quantity;
   };
 
-  const initialisePayment = () => {
+  const initialisePayment = async() => {
     dispatch({
       type: reducerAction.ADD_ORDER,
       value: {
@@ -35,7 +35,7 @@ const CartSummary = () => {
         address: address.filter(({ _id }) => _id === defaultAddress)[0],
       },
     });
-    payment(totalPrice * 100);
+    await payment(totalPrice * 100);
   };
 
   useEffect(() => changeTitle(`Cart - ${cart.length} items`), []);

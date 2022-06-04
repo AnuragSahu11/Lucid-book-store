@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-
 const NavbarWishlistButton = ({ wishlistNotification }) => (
-  <button className="btn-icon nav-icons">
+  <button className="btn-icon nav-icons m-x-1">
     <i className="fas is-dark fa-heart icon-badge">
       {wishlistNotification > 0 ? (
         <span className="">{wishlistNotification}</span>

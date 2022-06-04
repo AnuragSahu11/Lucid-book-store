@@ -28,11 +28,10 @@ const Navbar = () => {
   };
   return (
     <div className="">
-      <Loader />
       <nav className={`navbar li-shadow  ${showNav && "custom-nav"}`}>
         <div className="nav-head">
           <div className="nav-brand">
-            <a href="" className="logo-a">
+            <a onClick={() => navigate("/")} className="logo-a pointer">
               <img className="logo-s" src={logo} alt="logo" />
             </a>
           </div>
@@ -80,6 +79,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <Loader />
       <LogoutModal showLogout={showLogout} toggleLogout={toggleLogoutModal} />
     </div>
   );
