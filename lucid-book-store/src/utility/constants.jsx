@@ -72,3 +72,13 @@ export const initialInputFieldAddAddress = {
   name: "",
   mobile: "",
 };
+
+export const largeLoader = {
+  width: "42px",
+  height: "42px",
+};
+
+export const mediumLoader = {
+  width: "32px",
+  height: "32px",
+};

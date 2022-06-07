@@ -14,7 +14,7 @@ import {
 } from "../../components";
 
 const SingleProductPage = () => {
-  const { setIsLoading } = useAuth();
+  const { setPageLoading } = useAuth();
   const [productData, setProductData] = useState([]);
   let { productId } = useParams();
   const findProductData = (productId, data) => {
@@ -22,11 +22,11 @@ const SingleProductPage = () => {
   };
 
   const getProductData = async () => {
-    setIsLoading(true);
+    setPageLoading(true);
     const { data } = await axios.get("/api/products");
     setProductData(findProductData(productId, data));
     changeTitle(findProductData(productId, data).title);
-    setIsLoading(false);
+    setPageLoading(false);
   };
   useEffect(() => {
     getProductData();
@@ -83,10 +83,9 @@ const SingleProductPage = () => {
               <AddToCartProductListing
                 classes={"btn-primary m-r-2 width-50 btn-w-icon btn-medium"}
                 product={productData}
+                setLoading={setPageLoading}
               />
-              <AddToWishlistSingleProductPage
-                product={productData}
-              />
+              <AddToWishlistSingleProductPage product={productData} />
             </div>
           </div>
         </div>

@@ -12,7 +12,6 @@ const payment = async (amount) => {
     description: "Payment for your order",
     image: logo,
     handler: function (response) {
-      console.log(response);
       toast.success("Order placed");
     },
     prefill: {

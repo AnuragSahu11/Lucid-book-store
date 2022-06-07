@@ -22,3 +22,4 @@ export { SelectAddressCard } from "./cards/select-address-card";
 export { SelectAddressModal } from "./modal/select-address-modal";
 export { OrderCard } from "./cards/order-card";
 export { OrderList } from "./list/order-list";
+export { Loader } from "./loader/loader";

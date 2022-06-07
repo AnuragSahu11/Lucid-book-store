@@ -79,7 +79,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <Loader />
       <LogoutModal showLogout={showLogout} toggleLogout={toggleLogoutModal} />
     </div>
   );

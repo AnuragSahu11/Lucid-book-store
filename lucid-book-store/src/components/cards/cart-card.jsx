@@ -8,9 +8,11 @@ import {
 } from "../buttons/cart-buttons";
 import { AddToWishlistLarge } from "../buttons/wishlist-buttons";
 import { discountPercentageCalc } from "../../utility";
+import { Loader } from "../loader/loader";
 
 const CartCard = ({ product }) => {
   const navigate = useNavigate();
+  const [isloading, setLoading] = useState(false);
   const {
     _id,
     title,
@@ -31,6 +33,7 @@ const CartCard = ({ product }) => {
         onClick={goToProductPage}
         className="card cart-card width-80 center-x card-horizontal elevated dk-shadow"
       >
+        <Loader isLoading={isloading} />
         <div className="card-head">
           <div className="card-image">
             <img src={image} alt="card image" className="card-image-img" />
@@ -49,6 +52,7 @@ const CartCard = ({ product }) => {
               <DecreaseProductQuantity
                 id={_id}
                 qty={qty}
+                setLoading={setLoading}
               />
               <input
                 value={qty}
@@ -56,7 +60,7 @@ const CartCard = ({ product }) => {
                 type="number"
                 readOnly
               />
-              <IncreaseProductQuantity id={_id} />
+              <IncreaseProductQuantity id={_id} setLoading={setLoading} />
             </div>
             <p className="CTA-text m-up-1 is-4 semibold">
               ${price}{" "}
@@ -66,8 +70,8 @@ const CartCard = ({ product }) => {
             </p>
           </div>
           <div className="btn-vertical width-90 m-dw-1">
-            <RemoveFromCart id={_id} />
-            <AddToWishlistLarge product={product} />
+            <RemoveFromCart id={_id} setLoading={setLoading} />
+            <AddToWishlistLarge product={product} setLoading={setLoading} />
           </div>
         </div>
       </div>

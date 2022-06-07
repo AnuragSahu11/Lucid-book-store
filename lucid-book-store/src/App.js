@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Footer, Navbar, PrivateRoute } from "./components/index";
+import { Footer, Loader, Navbar, PrivateRoute } from "./components/index";
 import {
   CartPage,
   ErrorPage,
@@ -21,6 +21,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
+      <Loader size="large" />
       <ToastContainer
         autoClose={3000}
         hideProgressBar={true}

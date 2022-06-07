@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   discountPercentageCalc,
@@ -7,7 +7,8 @@ import {
 } from "../../utility";
 import { AddToCartProductListing } from "../buttons/cart-buttons";
 import { AddToWishlistSmall } from "../buttons/wishlist-buttons";
-import './card.css'
+import { Loader } from "../loader/loader";
+import "./card.css";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -26,12 +27,13 @@ const ProductCard = ({ product }) => {
   const cardImageHandler = () => {
     navigate(`/productListing/${id}`);
   };
-
+  const [isLoading, setLoading] = useState(false);
   return (
     <>
       <div className="card product-card m-x-3 elevated m-dw-5 li-shadow">
+        <Loader isLoading={isLoading} size="medium" />
         <div className="card-head">
-          <AddToWishlistSmall product={product} />
+          <AddToWishlistSmall product={product} setLoading={setLoading} />
           <span className="card-badge">{badge}</span>
           <div onClick={cardImageHandler} className="card-image">
             <img
@@ -68,6 +70,7 @@ const ProductCard = ({ product }) => {
             <AddToCartProductListing
               classes={"btn-primary width-100 btn-w-icon btn-small"}
               product={product}
+              setLoading={setLoading}
             />
           </div>
         </div>

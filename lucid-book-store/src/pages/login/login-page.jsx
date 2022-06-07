@@ -7,7 +7,7 @@ import "./login.css";
 
 const LoginPage = () => {
   const [formField, setFormField] = useState({ email: "", password: "" });
-  const { loginHandler, setIsLoading } = useAuth();
+  const { loginHandler, setPageLoading } = useAuth();
 
   const { email, password } = formField;
 
@@ -15,10 +15,10 @@ const LoginPage = () => {
   const from = location.state?.from?.pathname || "/";
 
   const demoCredentialsLoginHandler = async () => {
-    setIsLoading(true);
+    setPageLoading(true);
     setFormField(demoCredentials);
     await loginHandler(demoCredentials, from);
-    setIsLoading(false);
+    setPageLoading(false);
   };
 
   const validateForm = () => {
@@ -28,9 +28,9 @@ const LoginPage = () => {
 
   const loginClickHandler = async () => {
     if (validateForm()) {
-      setIsLoading(true);
+      setPageLoading(true);
       await loginHandler(formField, from);
-      setIsLoading(false);
+      setPageLoading(false);
     } else {
       toast.warn("Enter correct credentials");
     }

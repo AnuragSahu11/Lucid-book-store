@@ -11,7 +11,6 @@ export { discountPercentageCalc } from "./discount-calculator";
 export { showRatingStars, ratingStarColor } from "./rating";
 export { SwitchTheme } from "./switch-theme";
 export { checkInList } from "./check-in-list";
-export { Loader } from "./loader/loader";
 export { getHeader } from "./request-header";
 export { payment } from "./payment-integration";
 export { getYesterdaysDate, getTodaysDate } from "./check-in-list";
