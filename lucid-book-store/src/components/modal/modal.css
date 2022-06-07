@@ -7,7 +7,7 @@
 .modal-wrapper .modal {
   background-color: var(--background-white);
   margin-top: 0px;
-  width: 30vw;
+  width: 300px;
 }
 .address-modal {
   margin-top: -50px;
