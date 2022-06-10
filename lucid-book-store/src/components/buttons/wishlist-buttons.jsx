@@ -105,13 +105,13 @@ const AddToWishlistSmall = ({ product, setLoading }) => {
   );
 };
 
-const RemoveFromWishlist = ({ id }) => {
+const RemoveFromWishlist = ({ id, setLoading }) => {
   const { dispatch } = useData();
-  const { token, setIsLoading } = useAuth();
+  const { token } = useAuth();
   const removeButtonClick = async () => {
-    setIsLoading(true);
+    setLoading(true);
     await removeFromWishlistApiMethod(id, token, dispatch);
-    setIsLoading(false);
+    setLoading(false);
   };
   return (
     <>
@@ -127,19 +127,19 @@ const RemoveFromWishlist = ({ id }) => {
   );
 };
 
-const AddToCartWishlist = ({ product }) => {
+const AddToCartWishlist = ({ product, setLoading }) => {
   const { dataState, dispatch } = useData();
-  const { token, setIsLoading } = useAuth();
+  const { token } = useAuth();
   const { _id } = product;
   const addToWishlistClick = async () => {
     if (checkInList(dataState.cart, product.id)) {
-      setIsLoading(true);
+      setLoading(true);
       await increaseQtyApiMethod(_id, token, dispatch);
-      setIsLoading(false);
+      setLoading(false);
     } else {
-      setIsLoading(true);
+      setLoading(true);
       await addToCartApiMethod(product, token, dispatch);
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
