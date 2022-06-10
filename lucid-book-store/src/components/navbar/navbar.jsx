@@ -59,14 +59,14 @@ const Navbar = () => {
 
             <button
               onClick={() => navigate("/userpage")}
-              className="btn-icon nav-icons m-x-1"
+              className="btn-icon nav-icons nav-user-btn"
             >
               <i className="fa-solid is-dark fa-user" />
             </button>
 
             <button
               onClick={() => navigate("/signup")}
-              className="btn-secondary nav-btn btn-small"
+              className="btn-secondary nav-btn btn-small signup-btn"
               style={token && { display: "none" }}
             >
               Sign up

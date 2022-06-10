@@ -23,7 +23,7 @@ const SwitchTheme = () => {
   return (
     <button
       onClick={changeStatus}
-      className="dark-mode btn-icon is-dark nav-icons m-x-1"
+      className="dark-mode btn-icon is-dark nav-icons nav-theme-btn"
     >
       <i className="fas is-dark fa-moon" />
     </button>

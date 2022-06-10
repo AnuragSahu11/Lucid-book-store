@@ -24,7 +24,11 @@
 .card-body {
   margin-top: auto;
 }
-
+.order-card {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 5rem;
+}
 @media only screen and (max-width: 1124px) {
   .margin-left {
     margin-left: 64px;
@@ -34,7 +38,6 @@
     min-width: fit-content;
   }
 }
-
 @media only screen and (max-width: 768px) {
   .margin-left {
     margin-left: 32px;
@@ -42,6 +45,9 @@
   .select-address-content {
     width: 80vw;
     min-width: fit-content;
+  }
+  .order-card {
+    margin-right: 24px;
   }
 }
 

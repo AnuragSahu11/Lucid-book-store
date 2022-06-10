@@ -3,6 +3,7 @@
   height: 100vh;
   z-index: 2;
   position: fixed;
+  left: 0px;
 }
 .modal-wrapper .modal {
   background-color: var(--background-white);
@@ -21,7 +22,9 @@
 .select-address-modal-para {
   border-bottom: solid var(--grey);
 }
-
+.modal .select-address-content {
+  width: fit-content;
+}
 @media only screen and (max-width: 1280px) {
   .address-modal .modal {
     width: 50vw;
@@ -35,5 +38,8 @@
 @media only screen and (max-width: 778px) {
   .address-modal .modal {
     width: 90vw;
+  }
+  .select-address-modal .modal {
+    width: 250px;
   }
 }

@@ -28,9 +28,6 @@ footer {
 .pointer {
   cursor: pointer;
 }
-.order-card {
-  width: 50rem;
-}
 .is-lighter {
   color: var(--font-lighter);
 }
@@ -42,7 +39,10 @@ input {
     width: 70vw;
   }
 }
-
+.order-cart-wrapper {
+  display: flex;
+  flex-direction: column;
+}
 :root {
   --background-white: white;
   --loader-background: rgba(255, 255, 255, 0.8);
