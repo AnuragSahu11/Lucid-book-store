@@ -1,7 +1,7 @@
 import logo from "../components/navbar/logo.png";
 import { toast } from "react-toastify";
 
-const payment = async (amount) => {
+const paymentGateway = async (amount) => {
   const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
   const options = {
@@ -42,4 +42,4 @@ const loadScript = async (src) => {
   });
 };
 
-export { payment };
+export { paymentGateway };

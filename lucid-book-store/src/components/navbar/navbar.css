@@ -1,6 +1,6 @@
 .navbar {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   top: 0px;
   position: sticky;
   background-color: var(--background-white);
@@ -16,10 +16,15 @@
   background-color: var(--background-white);
   position: absolute;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
+  cursor: pointer;
 }
 .search-result-p {
   background-color: var(--background-white);
+  width: 100%;
+}
+.search-result-p:hover {
+  background-color: var(--grey);
   width: 100%;
 }
 .nav-menu {

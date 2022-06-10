@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import { toast } from "react-toastify";
 import { useData } from "../../../context";
-import { changeTitle, getTodaysDate, payment } from "../../../utility";
+import { changeTitle, getTodaysDate, paymentGateway } from "../../../utility";
 import { reducerAction } from "../../../utility/constants";
 const short = require("short-uuid");
 
@@ -22,7 +23,7 @@ const CartSummary = () => {
     return price * quantity;
   };
 
-  const initialisePayment = async() => {
+  const initialisePayment = async () => {
     dispatch({
       type: reducerAction.ADD_ORDER,
       value: {
@@ -35,7 +36,8 @@ const CartSummary = () => {
         address: address.filter(({ _id }) => _id === defaultAddress)[0],
       },
     });
-    await payment(totalPrice * 100);
+    toast.success("Your Order has been Placed");
+    await paymentGateway(totalPrice * 100);
   };
 
   useEffect(() => changeTitle(`Cart - ${cart.length} items`), []);

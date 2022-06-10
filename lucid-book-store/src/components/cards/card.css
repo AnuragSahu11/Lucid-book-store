@@ -29,6 +29,7 @@
   flex-shrink: 1;
   flex-basis: 5rem;
 }
+
 @media only screen and (max-width: 1124px) {
   .margin-left {
     margin-left: 64px;
@@ -36,6 +37,10 @@
   .select-address-content {
     width: 65vw;
     min-width: fit-content;
+  }
+  .order-card {
+    margin-right: 24px;
+    margin-left: 24px;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -47,7 +52,8 @@
     min-width: fit-content;
   }
   .order-card {
-    margin-right: 24px;
+    margin-right: 12px;
+    margin-left: 12px;
   }
 }
 

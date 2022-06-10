@@ -82,3 +82,11 @@ export const mediumLoader = {
   width: "32px",
   height: "32px",
 };
+
+export const toastProps = {
+  autoClose: 2000,
+  hideProgressBar: true,
+  closeOnClick: true,
+  style: { fontSize: "1.5rem" },
+  position: "top-center",
+};

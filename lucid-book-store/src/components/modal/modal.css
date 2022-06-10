@@ -4,14 +4,15 @@
   z-index: 2;
   position: fixed;
   left: 0px;
+  top: 5rem;
 }
 .modal-wrapper .modal {
   background-color: var(--background-white);
   margin-top: 0px;
   width: 300px;
 }
-.address-modal {
-  margin-top: -50px;
+.form-input {
+  width: 100%;
 }
 .select-address-modal .modal {
   width: fit-content;

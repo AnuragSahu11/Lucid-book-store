@@ -15,8 +15,10 @@ const Search = () => {
       setSearchedProducts("");
     } else {
       let matchingProducts = products
-        .filter(({ title }) =>
-          title.toLowerCase().includes(searchText.toLowerCase())
+        .filter(
+          ({ title, author }) =>
+            title.toLowerCase().includes(searchText.toLowerCase()) ||
+            author.toLowerCase().includes(searchText.toLowerCase())
         )
         .slice(0, 15);
       setSearchedProducts(
@@ -41,7 +43,7 @@ const Search = () => {
         value={searchText}
         type="text"
         className="form-input br-3"
-        placeholder="search"
+        placeholder="Search by book, author"
       />
       <div onClick={goToSearchResultsPage} className="search-results">
         {searchedProducts}

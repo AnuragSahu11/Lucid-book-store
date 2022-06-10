@@ -1,7 +1,7 @@
-import { getHeader } from "../utility";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { reducerAction } from "../utility/constants";
+import { getHeader } from "./request-header";
 
 const addToWishlistApiMethod = async (product, token, dispatch) => {
   try {

@@ -43,8 +43,8 @@ const UserProfilePage = () => {
             </a>
           </div>
         </div>
-        <div className="profile-info p-l-3 p-dw-4 elevated dk-shadow br-3">
-          <div className="subtitle semibold is-dark is-4 m-up-2 m-dw-3">
+        <div className="profile-info p-dw-4 elevated dk-shadow br-3">
+          <div className="subtitle p-l-3 semibold is-dark is-4 m-up-2 m-dw-3">
             Your Orders
           </div>
           <div className="order-card-wrapper">
