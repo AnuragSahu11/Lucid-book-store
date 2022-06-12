@@ -17,6 +17,7 @@
 }
 .card {
   height: auto;
+  max-height: 80%;
 }
 .card-icon {
   top: var(--xs);
