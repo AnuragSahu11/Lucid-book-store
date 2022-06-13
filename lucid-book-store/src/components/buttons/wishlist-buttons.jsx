@@ -128,7 +128,15 @@ const RemoveFromWishlist = ({ id, setLoading }) => {
 };
 
 const AddToCartWishlist = ({ product, setLoading }) => {
-  const { dataState, dispatch } = useData();
+  const {
+    dataState,
+    dataState: { cart },
+    dispatch,
+  } = useData();
+
+  const currProduct = cart.find(({ id }) => product.id === id);
+
+
   const { token } = useAuth();
   const { _id } = product;
   const addToWishlistClick = async () => {
@@ -153,7 +161,9 @@ const AddToCartWishlist = ({ product, setLoading }) => {
         className="btn-primary width-100 btn-w-icon btn-small"
       >
         <i className="fas fa-shopping-cart" />
-        Add to Cart
+        {checkInList(dataState.cart, product.id)
+          ? `In cart ${currProduct.qty}`
+          : " Add to Cart"}
       </button>
     </>
   );
