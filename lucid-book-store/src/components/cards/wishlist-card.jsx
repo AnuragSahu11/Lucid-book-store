@@ -10,6 +10,7 @@ import {
   AddToCartWishlist,
   RemoveFromWishlist,
 } from "../buttons/wishlist-buttons";
+import { Loader } from "../loader/loader";
 
 const WishlistCard = ({ product }) => {
   const navigate = useNavigate();
@@ -28,12 +29,13 @@ const WishlistCard = ({ product }) => {
   const goToProductPage = () => {
     navigate(`/productListing/${id}`);
   };
-
+  const [isLoading, setLoading] = useState(false);
   return (
     <>
       <div className="card product-card m-x-3 elevated m-dw-5 li-shadow">
+        <Loader isLoading={isLoading} />
         <div className="card-head">
-          <RemoveFromWishlist id={_id} />
+          <RemoveFromWishlist id={_id} setLoading={setLoading} />
           <span className="card-badge">{badge}</span>
           <div onClick={goToProductPage} className="card-image">
             <img
@@ -67,7 +69,7 @@ const WishlistCard = ({ product }) => {
             </p>
           </div>
           <div className="btn-vertical">
-            <AddToCartWishlist product={product} />
+            <AddToCartWishlist product={product} setLoading={setLoading} />
           </div>
         </div>
       </div>

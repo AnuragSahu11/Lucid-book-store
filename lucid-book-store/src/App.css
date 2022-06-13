@@ -28,9 +28,6 @@ footer {
 .pointer {
   cursor: pointer;
 }
-.order-card {
-  width: 50rem;
-}
 .is-lighter {
   color: var(--font-lighter);
 }
@@ -42,13 +39,18 @@ input {
     width: 70vw;
   }
 }
-
+.order-cart-wrapper {
+  display: flex;
+  flex-direction: column;
+}
 :root {
   --background-white: white;
+  --loader-background: rgba(255, 255, 255, 0.8);
 }
 .dark-theme {
   --background-white: #171717;
   --input-grey: #2c3032;
+  --loader-background: rgba(42, 45, 47, 0.8);
 }
 input {
   background-color: var(--input-grey);

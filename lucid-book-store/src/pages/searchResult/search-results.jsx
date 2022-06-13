@@ -10,8 +10,10 @@ const SearchResultPage = () => {
     dataState: { products },
   } = useData();
   useEffect(() => changeTitle(`Search result for "${searchText}"`));
-  const matchingProducts = products.filter(({ title }) =>
-    title.toLowerCase().includes(searchText.toLocaleLowerCase())
+  const matchingProducts = products.filter(
+    ({ title, author }) =>
+      title.toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+      author.toLowerCase().includes(searchText.toLocaleLowerCase())
   );
   return (
     <div className="search-result-page">

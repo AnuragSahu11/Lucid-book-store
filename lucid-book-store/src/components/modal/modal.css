@@ -3,14 +3,16 @@
   height: 100vh;
   z-index: 2;
   position: fixed;
+  left: 0px;
+  top: 5rem;
 }
 .modal-wrapper .modal {
   background-color: var(--background-white);
   margin-top: 0px;
-  width: 30vw;
+  width: 300px;
 }
-.address-modal {
-  margin-top: -50px;
+.form-input {
+  width: 100%;
 }
 .select-address-modal .modal {
   width: fit-content;
@@ -21,7 +23,9 @@
 .select-address-modal-para {
   border-bottom: solid var(--grey);
 }
-
+.modal .select-address-content {
+  width: fit-content;
+}
 @media only screen and (max-width: 1280px) {
   .address-modal .modal {
     width: 50vw;
@@ -35,5 +39,8 @@
 @media only screen and (max-width: 778px) {
   .address-modal .modal {
     width: 90vw;
+  }
+  .select-address-modal .modal {
+    width: 250px;
   }
 }

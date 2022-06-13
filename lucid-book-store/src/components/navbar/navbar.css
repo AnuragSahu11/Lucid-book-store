@@ -1,6 +1,6 @@
 .navbar {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   top: 0px;
   position: sticky;
   background-color: var(--background-white);
@@ -16,10 +16,15 @@
   background-color: var(--background-white);
   position: absolute;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
+  cursor: pointer;
 }
 .search-result-p {
   background-color: var(--background-white);
+  width: 100%;
+}
+.search-result-p:hover {
+  background-color: var(--grey);
   width: 100%;
 }
 .nav-menu {
@@ -49,13 +54,37 @@
   flex-direction: column;
   margin-right: auto;
 }
+.nav-wishlist-btn {
+  margin-left: var(--xxs);
+}
+.nav-cart-btn {
+  margin-left: var(--xxs);
+}
+.nav-user-btn {
+  margin-left: var(--xxs);
+  margin-right: var(--s);
+}
 
 @media only screen and (max-width: 1024px) {
   .navbar .nav-search {
     display: block;
   }
+  .nav-wishlist-btn {
+    margin-left: 0px;
+  }
+  .nav-cart-btn {
+    margin-left: 0px;
+  }
+  .nav-user-btn {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .signup-btn {
+    display: none;
+  }
 }
-@media only screen and (max-width: 640px) {
+
+@media only screen and (max-width: 768px) {
   .nav-head {
     width: 100%;
     display: flex;
@@ -63,16 +92,8 @@
     flex-direction: row;
     align-items: center;
   }
-  @media only screen and (max-width: 768px) {
-    .nav-end input {
-      width: 80vw;
-    }
-    .custom-nav .nav-btn {
-      display: block;
-      margin-top: 10px;
-    }
-  }
   .nav-menu {
+    margin-left: 0px;
     display: none;
   }
   .nav-hamburger {
@@ -80,5 +101,12 @@
     cursor: pointer;
     margin-left: auto;
     display: block;
+  }
+  .custom-nav .nav-btn {
+    display: block;
+    margin-top: 10px;
+  }
+  .nav-btn {
+    margin-left: 0px;
   }
 }

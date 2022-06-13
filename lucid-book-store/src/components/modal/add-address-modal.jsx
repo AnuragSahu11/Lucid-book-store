@@ -4,7 +4,10 @@ import {
   addAddress,
   updateAddress,
 } from "../../server-requests/server-requests";
-import { initialInputFieldAddAddress } from "../../utility/constants";
+import {
+  dummyAddress,
+  initialInputFieldAddAddress,
+} from "../../utility/constants";
 import { toast } from "react-toastify";
 
 const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
@@ -41,6 +44,10 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
     } else {
       toast.warn("Fill correct Address");
     }
+  };
+
+  const clickAddDummy = () => {
+    setInputField(dummyAddress);
   };
 
   useEffect(() => {
@@ -147,17 +154,25 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
               type="number"
               className="form-input"
               placeholder="Phone number"
+              value={mobile}
             />
           </div>
 
-          <div className="btn-horizontal">
+          <div className="btn-vertical">
             <button
               onClick={clickAdd}
-              className="btn-primary width-70 m-up-4 btn-small btn-w-icon"
+              className="btn-primary width- m-up-4 btn-small btn-w-icon"
             >
               <i className="fas fa-plus"></i>
               {editAddressID ? "Update" : "Add"}
             </button>
+            <button
+              onClick={clickAddDummy}
+              className="btn-secondary width-7 m-up-4 btn-small btn-w-icon"
+            >
+              <i className="fas fa-plus"></i>
+              Add dummy address
+            </button>{" "}
           </div>
         </div>
       </div>

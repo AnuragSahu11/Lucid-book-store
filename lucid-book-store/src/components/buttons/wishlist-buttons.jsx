@@ -10,9 +10,9 @@ import {
 } from "../../server-requests/server-requests";
 import { toast } from "react-toastify";
 
-const AddToWishlistLarge = ({ product }) => {
+const AddToWishlistLarge = ({ product, setLoading }) => {
   const { dataState, dispatch } = useData();
-  const { token, setIsLoading } = useAuth();
+  const { token } = useAuth();
   const navigate = useNavigate();
   const addToWishlistClick = async () => {
     if (!token) {
@@ -20,9 +20,9 @@ const AddToWishlistLarge = ({ product }) => {
       toast.info("Login required");
     }
     if (token && !checkInList(dataState.wishlist, product.id)) {
-      setIsLoading(true);
+      setLoading(true);
       await addToWishlistApiMethod(product, token, dispatch);
-      setIsLoading(false);
+      setLoading(false);
     }
 
     removeFromCartApiMethod(product._id, token, dispatch);
@@ -44,7 +44,7 @@ const AddToWishlistLarge = ({ product }) => {
 
 const AddToWishlistSingleProductPage = ({ product }) => {
   const { dataState, dispatch } = useData();
-  const { token, setIsLoading } = useAuth();
+  const { token, setPageLoading } = useAuth();
   const navigate = useNavigate();
   const addToWishlistClick = async () => {
     if (!token) {
@@ -52,9 +52,9 @@ const AddToWishlistSingleProductPage = ({ product }) => {
       toast.info("Login required");
     }
     if (token && !checkInList(dataState.wishlist, product.id)) {
-      setIsLoading(true);
+      setPageLoading(true);
       await addToWishlistApiMethod(product, token, dispatch);
-      setIsLoading(false);
+      setPageLoading(false);
     }
   };
   return (
@@ -72,22 +72,22 @@ const AddToWishlistSingleProductPage = ({ product }) => {
   );
 };
 
-const AddToWishlistSmall = ({ product }) => {
+const AddToWishlistSmall = ({ product, setLoading }) => {
   const { dataState, dispatch } = useData();
-  const { token, setIsLoading } = useAuth();
+  const { token } = useAuth();
   const navigate = useNavigate();
   const AddToWishlistClick = async () => {
     if (!token) {
       navigate("/login");
       toast.info("Login required");
     } else if (checkInList(dataState.wishlist, product.id)) {
-      setIsLoading(true);
+      setLoading(true);
       await removeFromWishlistApiMethod(product._id, token, dispatch);
-      setIsLoading(false);
+      setLoading(false);
     } else if (token) {
-      setIsLoading(true);
+      setLoading(true);
       await addToWishlistApiMethod(product, token, dispatch);
-      setIsLoading(false);
+      setLoading(false);
     }
   };
   const isRed = checkInList(dataState.wishlist, product.id)
@@ -105,13 +105,13 @@ const AddToWishlistSmall = ({ product }) => {
   );
 };
 
-const RemoveFromWishlist = ({ id }) => {
+const RemoveFromWishlist = ({ id, setLoading }) => {
   const { dispatch } = useData();
-  const { token, setIsLoading } = useAuth();
+  const { token } = useAuth();
   const removeButtonClick = async () => {
-    setIsLoading(true);
+    setLoading(true);
     await removeFromWishlistApiMethod(id, token, dispatch);
-    setIsLoading(false);
+    setLoading(false);
   };
   return (
     <>
@@ -127,19 +127,19 @@ const RemoveFromWishlist = ({ id }) => {
   );
 };
 
-const AddToCartWishlist = ({ product }) => {
+const AddToCartWishlist = ({ product, setLoading }) => {
   const { dataState, dispatch } = useData();
-  const { token, setIsLoading } = useAuth();
+  const { token } = useAuth();
   const { _id } = product;
   const addToWishlistClick = async () => {
     if (checkInList(dataState.cart, product.id)) {
-      setIsLoading(true);
+      setLoading(true);
       await increaseQtyApiMethod(_id, token, dispatch);
-      setIsLoading(false);
+      setLoading(false);
     } else {
-      setIsLoading(true);
+      setLoading(true);
       await addToCartApiMethod(product, token, dispatch);
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 

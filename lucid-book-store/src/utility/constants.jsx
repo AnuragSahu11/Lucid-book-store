@@ -59,7 +59,7 @@ export const demoOrder = {
     state: "Chhattisgarh",
     country: "India",
     zipCode: "490002",
-    mobile: "123456789",
+    mobile: "8962730146",
   },
 };
 
@@ -71,4 +71,32 @@ export const initialInputFieldAddAddress = {
   country: "India",
   name: "",
   mobile: "",
+};
+
+export const dummyAddress = {
+  street: "Chandni Chowk, gali no. 12",
+  city: "North Delhi",
+  state: "New Delhi",
+  zipCode: "110006",
+  country: "India",
+  name: "Sidhu Sharma",
+  mobile: "9211138899",
+};
+
+export const largeLoader = {
+  width: "42px",
+  height: "42px",
+};
+
+export const mediumLoader = {
+  width: "32px",
+  height: "32px",
+};
+
+export const toastProps = {
+  autoClose: 2000,
+  hideProgressBar: true,
+  closeOnClick: true,
+  style: { fontSize: "1.5rem" },
+  position: "top-center",
 };

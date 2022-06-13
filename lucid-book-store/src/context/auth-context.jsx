@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const { dispatch } = useData();
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [isLoading, setIsLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(false);
 
   const signupHandler = async (credentials) => {
     const { email, password, firstName, lastName } = credentials;
@@ -74,8 +74,8 @@ const AuthProvider = ({ children }) => {
         loginHandler,
         logoutHandler,
         token,
-        isLoading,
-        setIsLoading,
+        pageLoading,
+        setPageLoading,
       }}
     >
       {children}

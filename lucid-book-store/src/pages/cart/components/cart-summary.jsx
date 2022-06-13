@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import { toast } from "react-toastify";
 import { useData } from "../../../context";
-import { changeTitle, getTodaysDate, payment } from "../../../utility";
+import { changeTitle, getTodaysDate, paymentGateway } from "../../../utility";
 import { reducerAction } from "../../../utility/constants";
 const short = require("short-uuid");
 
@@ -22,20 +23,27 @@ const CartSummary = () => {
     return price * quantity;
   };
 
-  const initialisePayment = async() => {
-    dispatch({
-      type: reducerAction.ADD_ORDER,
-      value: {
-        orderID: short.generate(),
-        totalAmount: totalPrice,
-        orderProducts: cart.map(({ title, author, price, image, id, qty }) => {
-          return { title, author, price, image, id, qty };
-        }),
-        date: getTodaysDate(),
-        address: address.filter(({ _id }) => _id === defaultAddress)[0],
-      },
-    });
-    await payment(totalPrice * 100);
+  const initialisePayment = async () => {
+    if (address.length > 0) {
+      dispatch({
+        type: reducerAction.ADD_ORDER,
+        value: {
+          orderID: short.generate(),
+          totalAmount: totalPrice,
+          orderProducts: cart.map(
+            ({ title, author, price, image, id, qty }) => {
+              return { title, author, price, image, id, qty };
+            }
+          ),
+          date: getTodaysDate(),
+          address: address.filter(({ _id }) => _id === defaultAddress)[0],
+        },
+      });
+      toast.success("Your Order has been Placed");
+      await paymentGateway(totalPrice * 100);
+    } else {
+      toast.warn("Select a address");
+    }
   };
 
   useEffect(() => changeTitle(`Cart - ${cart.length} items`), []);
@@ -64,7 +72,7 @@ const CartSummary = () => {
         <hr />
         <div className="subtitle width-100 flex-row space-between is-3 m-y-1 is-dark">
           <p className="m-y-0">Total {cart.length} items</p>
-          <p className="m-y-0">{totalPrice}</p>
+          <p className="m-y-0">${totalPrice}</p>
         </div>
         <hr />
         <div className="subtitle width-100 flex-row regular space-between is-dark">

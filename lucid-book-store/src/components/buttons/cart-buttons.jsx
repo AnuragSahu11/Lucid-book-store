@@ -10,9 +10,9 @@ import {
 import { checkInList } from "../../utility";
 import { toast } from "react-toastify";
 
-const AddToCartProductListing = ({ product, classes }) => {
+const AddToCartProductListing = ({ product, classes, setLoading }) => {
   const navigate = useNavigate();
-  const { token, setIsLoading } = useAuth();
+  const { token } = useAuth();
   const { dataState, dispatch } = useData();
   const [buttonText, setButtonText] = useState(null);
 
@@ -22,9 +22,9 @@ const AddToCartProductListing = ({ product, classes }) => {
       toast.info("Login required");
     }
     if (token && !checkInList(dataState.cart, product.id)) {
-      setIsLoading(true);
+      setLoading(true);
       await addToCartApiMethod(product, token, dispatch);
-      setIsLoading(false);
+      setLoading(false);
     } else {
       navigate("/cart");
     }
@@ -52,13 +52,13 @@ const AddToCartProductListing = ({ product, classes }) => {
   );
 };
 
-const IncreaseProductQuantity = ({ id }) => {
-  const { token, setIsLoading } = useAuth();
+const IncreaseProductQuantity = ({ id, setLoading }) => {
+  const { token } = useAuth();
   const { dispatch } = useData();
   const increaseQtyButton = async () => {
-    setIsLoading(true);
+    setLoading(true);
     await increaseQtyApiMethod(id, token, dispatch);
-    setIsLoading(false);
+    setLoading(false);
   };
   return (
     <>
@@ -75,14 +75,14 @@ const IncreaseProductQuantity = ({ id }) => {
   );
 };
 
-const DecreaseProductQuantity = ({ id, qty }) => {
-  const { token, setIsLoading } = useAuth();
+const DecreaseProductQuantity = ({ id, qty, setLoading }) => {
+  const { token } = useAuth();
   const { dispatch } = useData();
 
   const decreaseQtyclick = async () => {
-    setIsLoading(true);
+    setLoading(true);
     await decreaseQtyApiMethod(id, token, dispatch);
-    setIsLoading(false);
+    setLoading(false);
   };
   return (
     <>
@@ -100,13 +100,13 @@ const DecreaseProductQuantity = ({ id, qty }) => {
   );
 };
 
-const RemoveFromCart = ({ id }) => {
+const RemoveFromCart = ({ id, setLoading }) => {
   const { dispatch } = useData();
-  const { token, setIsLoading } = useAuth();
+  const { token } = useAuth();
   const removeItemClick = async () => {
-    setIsLoading(true);
+    setLoading(true);
     await removeFromCartApiMethod(id, token, dispatch);
-    setIsLoading(false);
+    setLoading(false);
   };
   return (
     <>

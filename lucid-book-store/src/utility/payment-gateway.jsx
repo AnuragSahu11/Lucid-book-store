@@ -1,18 +1,17 @@
 import logo from "../components/navbar/logo.png";
 import { toast } from "react-toastify";
 
-const payment = async (amount) => {
+const paymentGateway = async (amount) => {
   const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
   const options = {
     key: "rzp_test_1DkvrVVAyqheiz",
     amount: amount,
-    currency: "INR",
+    currency: "USD",
     name: "Lucid Book Store",
     description: "Payment for your order",
     image: logo,
     handler: function (response) {
-      console.log(response);
       toast.success("Order placed");
     },
     prefill: {
@@ -43,4 +42,4 @@ const loadScript = async (src) => {
   });
 };
 
-export { payment };
+export { paymentGateway };
