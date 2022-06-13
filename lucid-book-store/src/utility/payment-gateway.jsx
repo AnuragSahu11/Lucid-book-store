@@ -7,7 +7,7 @@ const paymentGateway = async (amount) => {
   const options = {
     key: "rzp_test_1DkvrVVAyqheiz",
     amount: amount,
-    currency: "INR",
+    currency: "USD",
     name: "Lucid Book Store",
     description: "Payment for your order",
     image: logo,

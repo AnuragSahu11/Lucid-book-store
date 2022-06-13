@@ -2,7 +2,7 @@ import { OrderList } from "../list/order-list";
 
 const OrderCard = ({ orderData }) => {
   const {
-    address: { name },
+    address: { name, street, city, state, zipCode, mobile },
     orderID,
     totalAmount,
     date,
@@ -17,10 +17,11 @@ const OrderCard = ({ orderData }) => {
       <div className="order-card-id width-100 is-light is-2">
         order ID - {orderID}
       </div>
-      <div className="order-card-id width-100 semibold is-2">
-        Total - {totalAmount}
+      <div className="order-card-id semibold is-2">Total - ${totalAmount}</div>
+      <div className="order-card-address width-100 is-2">
+        Delivered to -{" "}
+        {`${name}, ${street}, ${city}, ${state}, ${zipCode}, ${mobile}`}
       </div>
-      <div className="order-card-address width-100 is-2">{}</div>
       <div className="cart-body width-100">
         {orderProducts.map((product) => (
           <OrderList productData={product} />

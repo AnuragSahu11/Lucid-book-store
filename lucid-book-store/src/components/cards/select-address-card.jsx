@@ -10,6 +10,7 @@ const SelectAddressCard = () => {
     dataState,
     dataState: { address },
   } = useData();
+
   const [showModal, setShowModal] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState({});
 
@@ -21,7 +22,7 @@ const SelectAddressCard = () => {
   const clickSelectAddress = () => {
     toggleModal();
   };
-
+  console.log(dataState.defaultAddress);
   useEffect(() => {
     setSelectedAddress(
       address.filter((address) => address._id === dataState.defaultAddress)[0]

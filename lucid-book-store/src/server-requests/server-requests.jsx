@@ -121,6 +121,16 @@ const addAddress = async (addressData, token, dispatch) => {
       getHeader(token)
     );
     dispatch({ type: reducerAction.UPDATE_ADDRESS, value: data.address });
+    let addedAddress = data.address.filter((address) => {
+      return (
+        address.name === addressData.name &&
+        address.street === addressData.street
+      );
+    })[0];
+    dispatch({
+      type: reducerAction.CHANGE_DEFAULT_ADDRESS,
+      value: addedAddress._id,
+    });
     toast.success("Address Added");
   } catch (err) {
     toast.error("Add Address failed");
