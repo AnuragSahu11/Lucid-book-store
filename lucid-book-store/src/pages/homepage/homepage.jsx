@@ -9,10 +9,10 @@ const Homepage = () => {
     changeTitle("Lucid Bookstore");
   }, []);
   return (
-    <>
+    <div className="homepage-background">
       <HomepageCategories />
       <HomepageFeatures />
-    </>
+    </div>
   );
 };
 
