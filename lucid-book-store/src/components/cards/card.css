@@ -17,6 +17,8 @@
 }
 .card {
   height: auto;
+}
+.product-card {
   max-height: 80%;
 }
 .card-icon {
