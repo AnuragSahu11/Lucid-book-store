@@ -18,8 +18,8 @@
 .card {
   height: auto;
 }
-.product-card {
-  max-height: 80%;
+.product-listing {
+  height: min-content;
 }
 .card-icon {
   top: var(--xs);
