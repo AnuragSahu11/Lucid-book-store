@@ -19,7 +19,7 @@ const ProductList = () => {
   )(dataState, [...dataState.products]);
 
   return (
-    <div className="product-listing p-up-5 space-evenly flex-r-w">
+    <div className="product-listing p-up-5 flex-r-w">
       {filteredProducts.map((item) => (
         <ProductCard key={item.id} product={item} />
       ))}

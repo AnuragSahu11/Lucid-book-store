@@ -1,7 +1,13 @@
 :root {
   --rating-background: #f3f3f3;
 }
-
+.product-listing {
+  justify-content: flex-start;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 44px;
+}
 .product-card {
   width: 280px;
 }
@@ -28,6 +34,9 @@
 }
 
 @media only screen and (max-width: 788px) {
+  .product-listing {
+    padding-left: 0px;
+  }
   .filter-menu {
     z-index: 1;
     background-color: var(--background-white);
