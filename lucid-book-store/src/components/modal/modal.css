@@ -4,7 +4,7 @@
   z-index: 2;
   position: fixed;
   left: 0px;
-  top: 5rem;
+  top: 1rem;
 }
 .modal-wrapper .modal {
   background-color: var(--background-white);

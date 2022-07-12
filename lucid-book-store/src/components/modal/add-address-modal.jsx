@@ -75,84 +75,84 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
           >
             <i className="fas fa-times" />
           </button>
-          <div className="textbox m-dw-1">
-            <div className="title">Add Address</div>
+          <div className="textbox">
+            <div className="title m-y-0">Add Address</div>
           </div>
 
           <div className="form-div align-left address-modal-form">
-            <p className="form-label">Full Name</p>
-            <i className="fas fa-user is-lighter is-grey"></i>
+            <p className="form-label m-y-0">Full Name</p>
+            <i className="fas fa-user is-lighter is-grey m-up-1"></i>
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, name: e.target.value })
               }
               type="text"
-              className="form-input"
+              className="form-input m-up-1"
               placeholder="Full Name"
               value={name}
             />
           </div>
-          <div className="form-div align-left m-up-2">
-            <p className="form-label">Street</p>
-            <i className="fas fa-road is-lighter"></i>
+          <div className="form-div align-left m-up-1">
+            <p className="form-label m-y-0">Street</p>
+            <i className="fas fa-road is-lighter m-up-1"></i>
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, street: e.target.value })
               }
               type="text"
-              className="form-input"
+              className="form-input m-up-1"
               placeholder="House, street"
               value={street}
             />
           </div>
-          <div className="form-div align-left m-up-2">
-            <p className="form-label">City</p>
-            <i className="fas fa-city is-lighter"></i>
+          <div className="form-div align-left m-up-1">
+            <p className="form-label m-y-0">City</p>
+            <i className="fas fa-city is-lighter m-up-1"></i>
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, city: e.target.value })
               }
               type="text"
-              className="form-input"
+              className="form-input m-up-1"
               placeholder="City"
               value={city}
             />
           </div>
-          <div className="form-div align-left m-up-2">
-            <p className="form-label">State</p>
-            <i className="fas fa-map is-lighter"></i>
+          <div className="form-div align-left m-up-1">
+            <p className="form-label m-y-0">State</p>
+            <i className="fas fa-map is-lighter m-up-1"></i>
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, state: e.target.value })
               }
               type="text"
-              className="form-input"
+              className="form-input m-up-1"
               placeholder="State"
               value={state}
             />
           </div>
-          <div className="form-div align-left m-up-2">
-            <p className="form-label">Pin Code</p>
-            <i className="fas fa-angle-double-right is-lighter"></i>
+          <div className="form-div align-left m-up-1">
+            <p className="form-label m-y-0">Pin Code</p>
+            <i className="fas fa-angle-double-right is-lighter m-up-1"></i>
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, zipCode: e.target.value })
               }
               type="number"
-              className="form-input"
+              className="form-input m-up-1"
               placeholder="zip code"
               value={zipCode}
             />
           </div>
-          <div className="form-div align-left m-up-2">
-            <p className="form-label">Phone Number</p>
-            <i className="fas fa-phone is-lighter"></i>{" "}
+          <div className="form-div align-left m-up-1">
+            <p className="form-label m-y-0">Phone Number</p>
+            <i className="fas fa-phone is-lighter m-up-1"></i>{" "}
             <input
               onChange={(e) =>
                 setInputField({ ...inputField, mobile: e.target.value })
               }
               type="number"
-              className="form-input"
+              className="form-input m-up-1"
               placeholder="Phone number"
               value={mobile}
             />
@@ -161,14 +161,14 @@ const AddAddressModal = ({ hideAddressModal, addressModal, editAddressID }) => {
           <div className="btn-vertical">
             <button
               onClick={clickAdd}
-              className="btn-primary width- m-up-4 btn-small btn-w-icon"
+              className="btn-primary width- m-up-3 btn-small btn-w-icon"
             >
               <i className="fas fa-plus"></i>
               {editAddressID ? "Update" : "Add"}
             </button>
             <button
               onClick={clickAddDummy}
-              className="btn-secondary width-7 m-up-4 btn-small btn-w-icon"
+              className="btn-secondary width-7 m-up-3 btn-small btn-w-icon"
             >
               <i className="fas fa-plus"></i>
               Add dummy address

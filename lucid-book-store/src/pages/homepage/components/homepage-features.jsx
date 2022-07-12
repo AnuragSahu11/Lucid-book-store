@@ -63,10 +63,10 @@ const HomepageFeatures = () => {
                 </div>
                 <div className="textbox">
                   <p className="text">
-                    Lorem ipsum dolor sit amet, consectetur adipisic ingelit.
-                    Quia,velit. Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit.Lorem ipsum dolor sit amet. Lorem ipsum
-                    dolor sit amet.
+                    Improve your understanding of fundamental analysis by
+                    learning the essentials. With the abundance of books for
+                    sale, you can learn about different stages and levels of
+                    fundamental analysis.
                   </p>
                 </div>
                 <button
@@ -95,10 +95,10 @@ const HomepageFeatures = () => {
                 </div>
                 <div className="textbox">
                   <p className="text">
-                    Lorem ipsum dolor sit amet, consectetur adipisic ingelit.
-                    Quia,velit. Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit.Lorem ipsum dolor sit amet. Lorem ipsum
-                    dolor sit amet.
+                    Learn about cryptocurrency trading by reading our most
+                    recent and cutting-edge books on the subject, which cover
+                    everything whether to purchase or sell crypto hold long term
+                    or short term.
                   </p>
                 </div>
 
@@ -128,10 +128,9 @@ const HomepageFeatures = () => {
                 </div>
                 <div className="textbox">
                   <p className="text">
-                    Lorem ipsum dolor sit amet, consectetur adipisic ingelit.
-                    Quia,velit. Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit.Lorem ipsum dolor sit amet. Lorem ipsum
-                    dolor sit amet.
+                    The core of trading is technical analysis. Use our
+                    hand-picked books to learn to read charts and spot chart
+                    patterns so you can trade them for a profit.{" "}
                   </p>
                 </div>
                 <button
@@ -160,10 +159,9 @@ const HomepageFeatures = () => {
                 </div>
                 <div className="textbox">
                   <p className="text">
-                    Lorem ipsum dolor sit amet, consectetur adipisic ingelit.
-                    Quia,velit. Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit.Lorem ipsum dolor sit amet. Lorem ipsum
-                    dolor sit amet.
+                    Learn several investment strategies employed by the most
+                    successful traders worldwide and imitate these strategies to
+                    profit similarly to them.
                   </p>
                 </div>
                 <button
