@@ -19,6 +19,7 @@ Checkout the live website [here](https://lucid-bookstore.netlify.app/)
 - Login/Signup pages
 - Search Products
 - Search Result page
+- Address management
 
 ### Misc Features
 - Persistent Dark mode
